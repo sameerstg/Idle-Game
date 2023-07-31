@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class MovingState : State
 {
-    public override void OnEnter()
+    public override void Enter()
     {
         throw new System.NotImplementedException();
     }
 
-    public override void OnExit()
+    public override void Exit()
     {
         throw new System.NotImplementedException();
     }
 
-    public override void OnUpdate()
+    public override void Update()
     {
         throw new System.NotImplementedException();
     }
