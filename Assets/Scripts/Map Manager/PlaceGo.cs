@@ -5,6 +5,7 @@ public class PlaceGo : MonoBehaviour
 {
 
 
+    public Transform pointOfEntrance;
     public Place place;
     private void Awake()
     {

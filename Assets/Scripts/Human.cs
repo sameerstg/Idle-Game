@@ -9,27 +9,35 @@ public class Human : MonoBehaviour
     /// </summary>
     public float walkSpeed;
     public float runningSpeed;
-    
-    //public int index;
-    //[ContextMenu("Go")]
-    //public void SetDestination()
-    //{
-    //    StartCoroutine(SetDestinationCoroutine());
-    //}
-    //public IEnumerator SetDestinationCoroutine()
-    //{
-    //    float tempTime = 0,timeToReach = Vector3.Distance(transform.position, WaypointsManager._instance.waypoints[index].position)/walkSpeed;
-    //    Debug.Log(Time.time);
-    //    Debug.Log(timeToReach);
-    //    while(tempTime < timeToReach)
-    //    {
-    //        transform.position = Vector3.Lerp(transform.position,WaypointsManager._instance.waypoints[index].position,tempTime/ timeToReach);
-    //        tempTime += Time.deltaTime;
-    //        yield return null;
-            
-    //    }
-    //    Debug.Log(Time.time);
 
-    //}
+    public PlaceGo placeToGo;
+    public Transform currentTransform;
+    public List<Transform> goingTransforms = new();
+    [ContextMenu("Go")]
+    public void GoToPlace()
+    {
+        StartCoroutine(Move());
+       
+    }
+    public IEnumerator Move()
+    {
+
+        goingTransforms = WaypointSystem._instance.GetPathToPlace(placeToGo, currentTransform);
+      
+        while (goingTransforms.Count>0)
+        {
+
+            while(Vector3.Distance(transform.position,goingTransforms[0].position)>0.1f)
+            {
+
+               transform.position =  Vector3.MoveTowards(transform.position, goingTransforms[0].position,walkSpeed*Time.deltaTime);
+                yield return null;
+            }
+            currentTransform = goingTransforms[0];
+            goingTransforms.RemoveAt(0);
+
+        }
+        goingTransforms.Clear();
+    }
 
 }
