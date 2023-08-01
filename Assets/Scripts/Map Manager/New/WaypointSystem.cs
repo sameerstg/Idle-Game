@@ -32,7 +32,7 @@ public LineRenderer lineRenderer;
     {
         if (linerenderersParrent != null)
         {
-             Destroy(linerenderersParrent.gameObject);
+             DestroyImmediate(linerenderersParrent.gameObject);
 
         }
         linerenderersParrent= Instantiate(new GameObject("Lines"), linerenderersParrent).transform;
