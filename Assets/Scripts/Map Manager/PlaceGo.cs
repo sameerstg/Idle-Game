@@ -19,6 +19,7 @@ public class PlaceGo : MonoBehaviour
 public class Place
 {
 
+    
     public string name;
     public Transform point;
     public List<Transform> neighbouringWaypoints = new();
