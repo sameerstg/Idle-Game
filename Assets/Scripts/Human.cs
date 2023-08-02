@@ -12,6 +12,7 @@ public class Human : MonoBehaviour
     public float runningSpeed;
 
     public PlaceGo placeToGo;
+    private PlaceGo currentPlace;
     public Transform currentTransform;
     public List<Transform> goingTransforms = new();
     [ContextMenu("Go")]
@@ -40,6 +41,8 @@ public class Human : MonoBehaviour
 
             }
             goingTransforms.Clear();
+            placeToGo = null;
+            currentPlace = placeToGo;
         }
        
     }

@@ -54,7 +54,7 @@ public class PathManager : MonoBehaviour
                 {
                     if (!path.connectedPaths.Contains(commonPath))
                     {
-                        path.connectedPaths.Add(commonPath);
+                        path.connectedPaths.Add(commonPath);                        
                         path.SetDistance();
                     }
                    
@@ -65,6 +65,31 @@ public class PathManager : MonoBehaviour
 
 
 
+    }
+    public Transform GetCommonTransform(List<Path> paths)
+    {
+        List<Transform> path1Transforms = paths[0].transforms;
+        foreach (var transform in path1Transforms)
+        {
+
+
+
+            for (int i = 0; i < paths.Count; i++)
+            {
+                if (!paths[i].transforms.Contains(transform))
+                {
+
+                    break;
+                }
+                if (i== paths.Count-1)
+                {
+                    return transform;
+                }
+            }
+          
+
+        }
+        return null;
     }
 }
 

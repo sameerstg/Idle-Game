@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -53,8 +54,8 @@ public LineRenderer lineRenderer;
     public List<Transform> GetPathToPlace(PlaceGo placeToGo,Transform currentTransform)
     {
         List<Transform> transformsInOrder = new();
-        var currentPath = GetAllPathByTransform(currentTransform)[0];
-        if (currentPath == null)
+        var _currentPath = GetAllPathByTransform(currentTransform)[0];
+        if (_currentPath == null)
         {
             return transformsInOrder;
 
@@ -64,24 +65,110 @@ public LineRenderer lineRenderer;
 
             return transformsInOrder;            
         }
-        if (currentPath.connectedPlaces.Contains(placeToGo))
+        if (_currentPath.connectedPlaces.Contains(placeToGo))
         {
 
-            return GetTransformInOrder(currentPath, placeToGo.pointOfEntrance, currentTransform);
+            return GetTransformInOrderInPath(_currentPath, currentTransform, placeToGo.pointOfEntrance );
         }
         else
         {
-            
-            //do
+            Path currentPath = _currentPath;
+            List<Path> visitedPaths = new() { currentPath};
+            List<Tuple<List<Path>,bool>>listOfListOfPathToPlace= new() {new Tuple<List<Path>, bool>( new List<Path>() { currentPath },false) };
+            List<Path> toBeVisited = new();
+            Path placePath = GetAllPathContainingPlace(placeToGo)[0];
+            //foreach (var connectedPaths in currentPath.connectedPaths)
             //{
+            //    foreach (var path in connectedPaths.paths)
+            //    {
+            //        if (!visitedPaths.Contains(path))
+            //        {
+            //            toBeVisited.Add(path);
+            //        }
+            //    }
+            //}
 
-            //} while (true);
 
-            return null;
+            do
+            {
+                // listOfPotentialPath : adding list of path which may and may not have place where we want to go
+                foreach (var listOfPotentialPath in listOfListOfPathToPlace)
+                {
+                    // pathContainingPotentalConnectedPath : adding path  which may and may not have place where we want to go
+
+                    foreach (var pathContaininPotentalConnectedPath in listOfPotentialPath.Item1)
+                    {
+                        // connectedPaths : connected paths containing connected paths which may or maynot contain place
+                        foreach (var connectedPath in pathContaininPotentalConnectedPath.connectedPaths)
+                        {
+                            // path : we will check if we have or havent visited it and if it contains our place
+                            // if it does we will add in list
+                            foreach (var path in connectedPath.paths)
+                            {
+                                if (!visitedPaths.Contains(path))
+                                {
+                                    if (path.connectedPlaces.Contains(placeToGo))
+                                    {
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //} while (true);
+
+                return null;
         }
         
     }
-    public List<Transform> GetTransformInOrder(Path path,Transform togoTransform, Transform currentTransform)
+    public List<Path> GetAllPathContainingPlace(PlaceGo place)
+    {
+        return pathManager.paths.FindAll(x => x.connectedPlaces.Contains(place));
+
+    }
+
+    public List<Transform> GetTransformInOrderInPaths(List<Path> pathsInOrder, Transform togoTransform, Transform _currentTransform)
+    {
+        List<Transform> transformsInOrder = new();
+        if (pathsInOrder.Count < 2)
+        {
+            Debug.LogError("not enought paths");
+            return transformsInOrder;
+        }
+        if (!pathsInOrder[0].transforms.Contains(_currentTransform))
+        {
+            Debug.LogError("currentTransform is not correct");
+            return transformsInOrder;
+
+        }
+        if (!pathsInOrder[^1].transforms.Contains(togoTransform))
+        {
+            Debug.LogError("togoTransform is not correct");
+            return transformsInOrder;
+        }
+        List<Path> visitedPaths = new();
+        var currentTransform = _currentTransform;
+        for (int i = 1; i < pathsInOrder.Count; i++)
+        {
+            if (visitedPaths.Contains(pathsInOrder[i - 1]) || visitedPaths.Contains(pathsInOrder[i]))
+            {
+                return transformsInOrder;
+            }
+            visitedPaths.Add(pathsInOrder[i]);
+            visitedPaths.Add(pathsInOrder[i - 1]);
+            var commonTransformInTwoPath = pathManager.GetCommonTransform(new List<Path> { pathsInOrder[i-1], pathsInOrder[i] });
+            transformsInOrder.AddRange(GetTransformInOrderInPath(pathsInOrder[i - 1], currentTransform, commonTransformInTwoPath));
+            currentTransform = transformsInOrder[^1];
+            if (i==pathsInOrder.Count-1)
+            {
+                transformsInOrder.AddRange(GetTransformInOrderInPath(pathsInOrder[i], commonTransformInTwoPath,togoTransform));
+            }
+        }
+        return transformsInOrder;
+    }
+    public List<Transform> GetTransformInOrderInPath(Path path, Transform currentTransform,Transform togoTransform)
     {
         if (!path.transforms.Contains(togoTransform)|| !path.transforms.Contains(currentTransform))
         {
