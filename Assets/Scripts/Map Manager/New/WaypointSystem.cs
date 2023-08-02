@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class WaypointSystem : MonoBehaviour
@@ -108,5 +109,19 @@ public LineRenderer lineRenderer;
 
         }
 
+    }
+}
+[CustomEditor(typeof(WaypointSystem))]
+public class WaypointSystemEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        WaypointSystem myScript = (WaypointSystem)target;
+        if (GUILayout.Button("Show Lines"))
+        {
+            myScript.Show();
+        }
     }
 }

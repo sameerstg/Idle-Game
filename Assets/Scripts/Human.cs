@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Human : MonoBehaviour
@@ -40,4 +41,18 @@ public class Human : MonoBehaviour
         goingTransforms.Clear();
     }
 
+}
+[CustomEditor(typeof(Human))]
+public class HumanEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        Human myScript = (Human)target;
+        if (GUILayout.Button("Move") )
+        {
+            myScript.GoToPlace();
+        }
+    }
 }

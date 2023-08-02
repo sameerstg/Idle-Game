@@ -12,7 +12,7 @@ public class PathManager : MonoBehaviour
 
 
         paths = GetComponentsInChildren<Path>().ToList();
-
+        // common transform is the key and all connected path is in list
         Dictionary<Transform, List<Path>> dict = new();
 
         foreach (var path in paths)
@@ -43,6 +43,7 @@ public class PathManager : MonoBehaviour
                 
             }
         }
+        // setting all connected path
         foreach (var item in dict)
         {
             if (item.Value.Count>1)
