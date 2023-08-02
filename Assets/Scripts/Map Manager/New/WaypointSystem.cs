@@ -53,7 +53,7 @@ public LineRenderer lineRenderer;
     public List<Transform> GetPathToPlace(PlaceGo placeToGo,Transform currentTransform)
     {
         List<Transform> transformsInOrder = new();
-        var currentPath = pathManager.paths.Find(x => x.transforms.Find(x => x.transform == currentTransform));
+        var currentPath = GetAllPathByTransform(currentTransform)[0];
         if (currentPath == null)
         {
             return transformsInOrder;
@@ -67,10 +67,11 @@ public LineRenderer lineRenderer;
         if (currentPath.connectedPlaces.Contains(placeToGo))
         {
 
-            return GetTransformInOrder(currentPath.transforms, placeToGo.pointOfEntrance, currentTransform);
+            return GetTransformInOrder(currentPath, placeToGo.pointOfEntrance, currentTransform);
         }
         else
         {
+            
             //do
             //{
 
@@ -80,9 +81,9 @@ public LineRenderer lineRenderer;
         }
         
     }
-    public List<Transform> GetTransformInOrder(List<Transform> transforms,Transform togoTransform, Transform currentTransform)
+    public List<Transform> GetTransformInOrder(Path path,Transform togoTransform, Transform currentTransform)
     {
-        if (!transforms.Contains(togoTransform)|| !transforms.Contains(currentTransform))
+        if (!path.transforms.Contains(togoTransform)|| !path.transforms.Contains(currentTransform))
         {
             return null;
         }
@@ -90,18 +91,18 @@ public LineRenderer lineRenderer;
         {
             return null;
         }
-        int currentIndex = transforms.IndexOf(currentTransform) ,togo = transforms.IndexOf(togoTransform);
+        int currentIndex = path.transforms.IndexOf(currentTransform) ,togo = path.transforms.IndexOf(togoTransform);
       
         if (currentIndex< togo)
         {
            
-            return transforms.GetRange(currentIndex + 1, togo - currentIndex);
+            return path.transforms.GetRange(currentIndex + 1, togo - currentIndex);
             
         }
         else
         {
             List<Transform> trans = new();
-            trans.AddRange(transforms);
+            trans.AddRange(path.transforms);
             trans.Reverse();
             currentIndex = trans.IndexOf(currentTransform); togo = trans.IndexOf(togoTransform);
            
@@ -109,6 +110,11 @@ public LineRenderer lineRenderer;
 
         }
 
+    }
+    List<Path> GetAllPathByTransform(Transform transform)
+    {
+
+        return pathManager.paths.FindAll(x => x.transforms.Find(x => x.transform == transform));
     }
 }
 [CustomEditor(typeof(WaypointSystem))]

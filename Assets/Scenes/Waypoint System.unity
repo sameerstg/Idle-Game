@@ -486,10 +486,23 @@ MonoBehaviour:
   - {fileID: 1621146862}
   - {fileID: 113528846}
   connectedPlaces: []
-  connectedPath:
-  - {fileID: 850063334}
-  - {fileID: 1458526338}
-  - {fileID: 791870620}
+  connectedPaths:
+  - paths:
+    - {fileID: 850063334}
+    - {fileID: 412952108}
+    commonPath: {fileID: 1892966740}
+    distance: 0
+  - paths:
+    - {fileID: 412952108}
+    - {fileID: 1458526338}
+    commonPath: {fileID: 1621146862}
+    distance: 0
+  - paths:
+    - {fileID: 412952108}
+    - {fileID: 791870620}
+    commonPath: {fileID: 113528846}
+    distance: 0
+  distance: 138.69348
 --- !u!1 &471833906
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,8 +695,13 @@ MonoBehaviour:
   connectedPlaces:
   - {fileID: 884950412}
   - {fileID: 1433107660}
-  connectedPath:
-  - {fileID: 412952108}
+  connectedPaths:
+  - paths:
+    - {fileID: 412952108}
+    - {fileID: 791870620}
+    commonPath: {fileID: 113528846}
+    distance: 0
+  distance: 110.655014
 --- !u!1 &795375796
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,8 +843,13 @@ MonoBehaviour:
   connectedPlaces:
   - {fileID: 1635702675}
   - {fileID: 1095139468}
-  connectedPath:
-  - {fileID: 412952108}
+  connectedPaths:
+  - paths:
+    - {fileID: 850063334}
+    - {fileID: 412952108}
+    commonPath: {fileID: 1892966740}
+    distance: 0
+  distance: 111.12725
 --- !u!1 &884950407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,8 +1769,13 @@ MonoBehaviour:
   connectedPlaces:
   - {fileID: 395339050}
   - {fileID: 1405505152}
-  connectedPath:
-  - {fileID: 412952108}
+  connectedPaths:
+  - paths:
+    - {fileID: 412952108}
+    - {fileID: 1458526338}
+    commonPath: {fileID: 1621146862}
+    distance: 0
+  distance: 119.16736
 --- !u!1 &1621146861
 GameObject:
   m_ObjectHideFlags: 0

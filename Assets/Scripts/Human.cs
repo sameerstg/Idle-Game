@@ -24,21 +24,24 @@ public class Human : MonoBehaviour
     {
 
         goingTransforms = WaypointSystem._instance.GetPathToPlace(placeToGo, currentTransform);
-      
-        while (goingTransforms.Count>0)
+        if (goingTransforms != null)
         {
-
-            while(Vector3.Distance(transform.position,goingTransforms[0].position)>0.1f)
+            while (goingTransforms.Count > 0)
             {
 
-               transform.position =  Vector3.MoveTowards(transform.position, goingTransforms[0].position,walkSpeed*Time.deltaTime);
-                yield return null;
-            }
-            currentTransform = goingTransforms[0];
-            goingTransforms.RemoveAt(0);
+                while (Vector3.Distance(transform.position, goingTransforms[0].position) > 0.1f)
+                {
 
+                    transform.position = Vector3.MoveTowards(transform.position, goingTransforms[0].position, walkSpeed * Time.deltaTime);
+                    yield return null;
+                }
+                currentTransform = goingTransforms[0];
+                goingTransforms.RemoveAt(0);
+
+            }
+            goingTransforms.Clear();
         }
-        goingTransforms.Clear();
+       
     }
 
 }

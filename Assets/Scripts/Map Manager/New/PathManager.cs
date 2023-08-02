@@ -17,7 +17,7 @@ public class PathManager : MonoBehaviour
 
         foreach (var path in paths)
         {
-            path.connectedPath.Clear();
+            path.connectedPaths.Clear();
 
             var places = path.connectedPlaces;
 
@@ -48,13 +48,20 @@ public class PathManager : MonoBehaviour
         {
             if (item.Value.Count>1)
             {
+                    ConnectedPath commonPath = new (item.Value, item.Key);
+                commonPath.SetDistance();
                 foreach (var path in item.Value)
                 {
-                    path.connectedPath.AddRange(item.Value);
-                    path.connectedPath.Remove(path);
+                    if (!path.connectedPaths.Contains(commonPath))
+                    {
+                        path.connectedPaths.Add(commonPath);
+                        path.SetDistance();
+                    }
+                   
                 }
             }
         }
+        
 
 
 
