@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -72,11 +73,7 @@ public LineRenderer lineRenderer;
         }
         else
         {
-            Path currentPath = _currentPath;
-            List<Path> visitedPaths = new() { currentPath};
-            List<Tuple<List<Path>,bool>>listOfListOfPathToPlace= new() {new Tuple<List<Path>, bool>( new List<Path>() { currentPath },false) };
-            List<Path> toBeVisited = new();
-            Path placePath = GetAllPathContainingPlace(placeToGo)[0];
+            return GetPathToPlaceInTransforms(_currentPath, placeToGo, currentTransform);
             //foreach (var connectedPaths in currentPath.connectedPaths)
             //{
             //    foreach (var path in connectedPaths.paths)
@@ -89,44 +86,96 @@ public LineRenderer lineRenderer;
             //}
 
 
-            do
+            //do
+            //{
+            //    // listOfPotentialPath : adding list of path which may and may not have place where we want to go
+            //    foreach (var listOfPotentialPath in listOfListOfPathToPlace)
+            //    {
+            //        // pathContainingPotentalConnectedPath : adding path  which may and may not have place where we want to go
+
+            //        foreach (var pathContaininPotentalConnectedPath in listOfPotentialPath.Item1)
+            //        {
+            //            // connectedPaths : connected paths containing connected paths which may or maynot contain place
+            //            foreach (var connectedPath in pathContaininPotentalConnectedPath.connectedPaths)
+            //            {
+            //                // path : we will check if we have or havent visited it and if it contains our place
+            //                // if it does we will add in list
+            //                foreach (var path in connectedPath.paths)
+            //                {
+            //                    if (!visitedPaths.Contains(path))
+            //                    {
+            //                        if (path.connectedPlaces.Contains(placeToGo))
+            //                        {
+
+            //                        }
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+
+            //} while (true);
+
+            return null;
+        }
+        
+    }
+    public List<Transform> GetPathToPlaceInTransforms(Path currentPath,PlaceGo place,Transform currentTransform)
+    {
+        List<Tuple<List<Path>, bool>> listOfListOfPathToPlace = new() { new Tuple<List<Path>, bool>(new List<Path>() { currentPath }, false) },toAdd= new(),toDelete=  new();
+        List<Path> placePaths = GetAllPathContainingPlace(place);
+        
+        if (placePaths == null)
+        {
+            return null;
+        }
+        foreach (var listOfTransformAndBoolIfFound in listOfListOfPathToPlace)
+        {
+            if (listOfTransformAndBoolIfFound.Item2 || !toDelete.Contains(listOfTransformAndBoolIfFound))
             {
-                // listOfPotentialPath : adding list of path which may and may not have place where we want to go
-                foreach (var listOfPotentialPath in listOfListOfPathToPlace)
+                continue;
+            }
+            else
+            {
+                    toDelete.Add(listOfTransformAndBoolIfFound);
+                foreach (var connectedPath in listOfTransformAndBoolIfFound.Item1[^1].connectedPaths)
                 {
-                    // pathContainingPotentalConnectedPath : adding path  which may and may not have place where we want to go
-
-                    foreach (var pathContaininPotentalConnectedPath in listOfPotentialPath.Item1)
+                    foreach (var path in connectedPath.paths)
                     {
-                        // connectedPaths : connected paths containing connected paths which may or maynot contain place
-                        foreach (var connectedPath in pathContaininPotentalConnectedPath.connectedPaths)
+                        if (listOfTransformAndBoolIfFound.Item1.Contains(path))
                         {
-                            // path : we will check if we have or havent visited it and if it contains our place
-                            // if it does we will add in list
-                            foreach (var path in connectedPath.paths)
-                            {
-                                if (!visitedPaths.Contains(path))
-                                {
-                                    if (path.connectedPlaces.Contains(placeToGo))
-                                    {
-
-                                    }
-                                }
-                            }
+                            continue;
+                        }
+                        if (placePaths.Contains(path))
+                        {
+                            var newlistOfTransformAndBoolIfFound = new Tuple<List<Path>, bool>(listOfTransformAndBoolIfFound.Item1,true);
+                            newlistOfTransformAndBoolIfFound.Item1.Add(path);
+                            listOfListOfPathToPlace.Add(newlistOfTransformAndBoolIfFound);
+                        }
+                        else
+                        {
+                            var newlistOfTransformAndBoolIfFound = new Tuple<List<Path>, bool>(listOfTransformAndBoolIfFound.Item1, false);
+                            newlistOfTransformAndBoolIfFound.Item1.Add(path);
+                            listOfListOfPathToPlace.Add(newlistOfTransformAndBoolIfFound);
                         }
                     }
                 }
-
-                //} while (true);
-
-                return null;
+            }
         }
-        
+        int ansI = 0;
+        for (int i = 1; i < listOfListOfPathToPlace.Count; i++)
+        {
+            if (listOfListOfPathToPlace[i].Item1.Count< listOfListOfPathToPlace[ansI].Item1.Count)
+            {
+                ansI = i;
+            }
+        }
+        return GetTransformInOrderInPaths(listOfListOfPathToPlace[ansI].Item1, place.pointOfEntrance, currentTransform);
+
     }
     public List<Path> GetAllPathContainingPlace(PlaceGo place)
     {
         return pathManager.paths.FindAll(x => x.connectedPlaces.Contains(place));
-
     }
 
     public List<Transform> GetTransformInOrderInPaths(List<Path> pathsInOrder, Transform togoTransform, Transform _currentTransform)
