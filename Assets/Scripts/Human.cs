@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -51,14 +53,26 @@ public class Human : MonoBehaviour
 [CustomEditor(typeof(Human))]
 public class HumanEditor : Editor
 {
+    string[] _choices ;
+    int _choiceIndex = 0;
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-
-        Human myScript = (Human)target;
-        if (GUILayout.Button("Move") )
+        if (Application.isPlaying)
         {
-            myScript.GoToPlace();
+            Human humnan = (Human)target;
+
+            _choices = WaypointSystem._instance.placeMananger.places.Select(x => x.name).ToArray();
+            _choiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices);
+            EditorUtility.SetDirty(target);
+            if (GUILayout.Button("Move"))
+            {
+                humnan.placeToGo = WaypointSystem._instance.placeMananger.places[_choiceIndex];
+                humnan.GoToPlace();
+            }
+
         }
+       
+
     }
 }

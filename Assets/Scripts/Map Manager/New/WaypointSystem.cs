@@ -129,47 +129,69 @@ public LineRenderer lineRenderer;
         {
             return null;
         }
-        foreach (var listOfTransformAndBoolIfFound in listOfListOfPathToPlace)
+        
+        for(int i = 0;i< listOfListOfPathToPlace.Count;i++)
         {
-            if (listOfTransformAndBoolIfFound.Item2 || !toDelete.Contains(listOfTransformAndBoolIfFound))
+            if (listOfListOfPathToPlace[i].Item2 )
             {
                 continue;
             }
             else
             {
-                    toDelete.Add(listOfTransformAndBoolIfFound);
-                foreach (var connectedPath in listOfTransformAndBoolIfFound.Item1[^1].connectedPaths)
+                foreach (var connectedPath in listOfListOfPathToPlace[i].Item1[^1].connectedPaths)
                 {
                     foreach (var path in connectedPath.paths)
                     {
-                        if (listOfTransformAndBoolIfFound.Item1.Contains(path))
+                        if (listOfListOfPathToPlace[i].Item1.Contains(path))
                         {
                             continue;
                         }
                         if (placePaths.Contains(path))
                         {
-                            var newlistOfTransformAndBoolIfFound = new Tuple<List<Path>, bool>(listOfTransformAndBoolIfFound.Item1,true);
-                            newlistOfTransformAndBoolIfFound.Item1.Add(path);
-                            listOfListOfPathToPlace.Add(newlistOfTransformAndBoolIfFound);
+
+                            var paths = listOfListOfPathToPlace[i].Item1.ToList();
+                            paths.Add(path);
+                            listOfListOfPathToPlace.Add(new Tuple<List<Path>, bool>(paths, true));
+
                         }
                         else
                         {
-                            var newlistOfTransformAndBoolIfFound = new Tuple<List<Path>, bool>(listOfTransformAndBoolIfFound.Item1, false);
-                            newlistOfTransformAndBoolIfFound.Item1.Add(path);
-                            listOfListOfPathToPlace.Add(newlistOfTransformAndBoolIfFound);
+                            var paths = listOfListOfPathToPlace[i].Item1.ToList();
+                            paths.Add(path);
+                            listOfListOfPathToPlace.Add(new Tuple<List<Path>, bool>(paths, false));
+
                         }
                     }
                 }
+                listOfListOfPathToPlace.Remove(listOfListOfPathToPlace[i]);
+
+                i = -1;
             }
         }
-        int ansI = 0;
-        for (int i = 1; i < listOfListOfPathToPlace.Count; i++)
+        foreach (var listOfPath in listOfListOfPathToPlace)
         {
-            if (listOfListOfPathToPlace[i].Item1.Count< listOfListOfPathToPlace[ansI].Item1.Count)
+            if (!listOfPath.Item2)
             {
-                ansI = i;
+                Debug.Log("wrong entry");
+                continue;
             }
+            foreach (var item in listOfPath.Item1)
+            {
+                Debug.Log(item.gameObject.name);
+            }
+            Debug.Log(".....");
         }
+
+        //listOfListOfPathToPlace.RemoveAll(x => !x.Item2);
+        //Debug.Log(listOfListOfPathToPlace.Count);
+        int ansI = 0;
+        //for (int i = 1; i < listOfListOfPathToPlace.Count; i++)
+        //{
+        //    if (listOfListOfPathToPlace[i].Item1.Count< listOfListOfPathToPlace[ansI].Item1.Count)
+        //    {
+        //        ansI = i;
+        //    }
+        //}
         return GetTransformInOrderInPaths(listOfListOfPathToPlace[ansI].Item1, place.pointOfEntrance, currentTransform);
 
     }
@@ -201,7 +223,7 @@ public LineRenderer lineRenderer;
         var currentTransform = _currentTransform;
         for (int i = 1; i < pathsInOrder.Count; i++)
         {
-            if (visitedPaths.Contains(pathsInOrder[i - 1]) || visitedPaths.Contains(pathsInOrder[i]))
+            if (visitedPaths.Contains(pathsInOrder[i]))
             {
                 return transformsInOrder;
             }
@@ -209,7 +231,9 @@ public LineRenderer lineRenderer;
             visitedPaths.Add(pathsInOrder[i - 1]);
             var commonTransformInTwoPath = pathManager.GetCommonTransform(new List<Path> { pathsInOrder[i-1], pathsInOrder[i] });
             transformsInOrder.AddRange(GetTransformInOrderInPath(pathsInOrder[i - 1], currentTransform, commonTransformInTwoPath));
+          
             currentTransform = transformsInOrder[^1];
+           
             if (i==pathsInOrder.Count-1)
             {
                 transformsInOrder.AddRange(GetTransformInOrderInPath(pathsInOrder[i], commonTransformInTwoPath,togoTransform));
