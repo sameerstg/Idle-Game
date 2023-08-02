@@ -127,6 +127,7 @@ public LineRenderer lineRenderer;
         
         if (placePaths == null)
         {
+            Debug.LogError("Place path not found");
             return null;
         }
         
@@ -138,7 +139,7 @@ public LineRenderer lineRenderer;
             }
             else
             {
-                foreach (var connectedPath in listOfListOfPathToPlace[i].Item1[^1].connectedPaths)
+                foreach (var connectedPath in listOfListOfPathToPlace[i].Item1[^1].directlyConnectedPaths)
                 {
                     foreach (var path in connectedPath.paths)
                     {
@@ -168,20 +169,20 @@ public LineRenderer lineRenderer;
                 i = -1;
             }
         }
-        foreach (var listOfPath in listOfListOfPathToPlace)
-        {
-            if (!listOfPath.Item2)
-            {
-                Debug.Log("wrong entry");
-                continue;
-            }
-            foreach (var item in listOfPath.Item1)
-            {
-                Debug.Log(item.gameObject.name);
-            }
-            Debug.Log(".....");
-        }
-
+        //foreach (var listOfPath in listOfListOfPathToPlace)
+        //{
+        //    if (!listOfPath.Item2)
+        //    {
+        //        Debug.Log("wrong entry");
+        //        continue;
+        //    }
+        //    foreach (var item in listOfPath.Item1)
+        //    {
+        //        Debug.Log(item.gameObject.name);
+        //    }
+        //    Debug.Log(".....");
+        //}
+        Debug.Log(listOfListOfPathToPlace.Count);
         //listOfListOfPathToPlace.RemoveAll(x => !x.Item2);
         //Debug.Log(listOfListOfPathToPlace.Count);
         int ansI = 0;
@@ -192,32 +193,33 @@ public LineRenderer lineRenderer;
         //        ansI = i;
         //    }
         //}
-        return GetTransformInOrderInPaths(listOfListOfPathToPlace[ansI].Item1, place.pointOfEntrance, currentTransform);
+        return GetTransformInOrderInPathsWithDistance(listOfListOfPathToPlace[ansI].Item1, place.pointOfEntrance, currentTransform).Item1;
 
     }
+    
     public List<Path> GetAllPathContainingPlace(PlaceGo place)
     {
         return pathManager.paths.FindAll(x => x.connectedPlaces.Contains(place));
     }
 
-    public List<Transform> GetTransformInOrderInPaths(List<Path> pathsInOrder, Transform togoTransform, Transform _currentTransform)
+    public Tuple<List<Transform>,float> GetTransformInOrderInPathsWithDistance(List<Path> pathsInOrder, Transform togoTransform, Transform _currentTransform)
     {
-        List<Transform> transformsInOrder = new();
+        Tuple<List<Transform>, float> transformInOrderInPathsWithDistance = new(new List<Transform>(),0);
         if (pathsInOrder.Count < 2)
         {
             Debug.LogError("not enought paths");
-            return transformsInOrder;
+            return transformInOrderInPathsWithDistance;
         }
         if (!pathsInOrder[0].transforms.Contains(_currentTransform))
         {
             Debug.LogError("currentTransform is not correct");
-            return transformsInOrder;
+            return transformInOrderInPathsWithDistance;
 
         }
         if (!pathsInOrder[^1].transforms.Contains(togoTransform))
         {
             Debug.LogError("togoTransform is not correct");
-            return transformsInOrder;
+            return transformInOrderInPathsWithDistance;
         }
         List<Path> visitedPaths = new();
         var currentTransform = _currentTransform;
@@ -225,30 +227,33 @@ public LineRenderer lineRenderer;
         {
             if (visitedPaths.Contains(pathsInOrder[i]))
             {
-                return transformsInOrder;
+                return transformInOrderInPathsWithDistance;
             }
             visitedPaths.Add(pathsInOrder[i]);
             visitedPaths.Add(pathsInOrder[i - 1]);
             var commonTransformInTwoPath = pathManager.GetCommonTransform(new List<Path> { pathsInOrder[i-1], pathsInOrder[i] });
-            transformsInOrder.AddRange(GetTransformInOrderInPath(pathsInOrder[i - 1], currentTransform, commonTransformInTwoPath));
+            transformInOrderInPathsWithDistance.Item1.AddRange(GetTransformInOrderInPath(pathsInOrder[i - 1], currentTransform, commonTransformInTwoPath));
           
-            currentTransform = transformsInOrder[^1];
+            currentTransform = transformInOrderInPathsWithDistance.Item1[^1];
            
             if (i==pathsInOrder.Count-1)
             {
-                transformsInOrder.AddRange(GetTransformInOrderInPath(pathsInOrder[i], commonTransformInTwoPath,togoTransform));
+                transformInOrderInPathsWithDistance.Item1.AddRange(GetTransformInOrderInPath(pathsInOrder[i], commonTransformInTwoPath,togoTransform));
             }
         }
-        return transformsInOrder;
+        return transformInOrderInPathsWithDistance;
     }
     public List<Transform> GetTransformInOrderInPath(Path path, Transform currentTransform,Transform togoTransform)
     {
         if (!path.transforms.Contains(togoTransform)|| !path.transforms.Contains(currentTransform))
         {
+            Debug.Log("incorrect togo and current");
             return null;
         }
         if (togoTransform == currentTransform)
         {
+            Debug.Log("incorrect togo and current");
+
             return null;
         }
         int currentIndex = path.transforms.IndexOf(currentTransform) ,togo = path.transforms.IndexOf(togoTransform);

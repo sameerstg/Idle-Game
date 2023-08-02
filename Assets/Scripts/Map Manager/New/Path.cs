@@ -7,7 +7,8 @@ public class Path : MonoBehaviour
 {
     public List<Transform> transforms = new();
     public List<PlaceGo> connectedPlaces = new();
-    public List<ConnectedPath> connectedPaths = new();
+    public List<ConnectedPath> directlyConnectedPaths = new();
+    public List<ConnectedPath> indirectedConnectedPaths = new();
     public float distance;
     
     public void SetDistance()
@@ -43,8 +44,5 @@ public class ConnectedPath
         this.paths = paths;
         this.commonPoint = commonPoint;
 }
-    public ConnectedPath()
-    {
-
-    }
+   
 }
