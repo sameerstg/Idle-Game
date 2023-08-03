@@ -8,11 +8,22 @@ public class Npc : MonoBehaviour
 {
     public float walkSpeed,runSpeed;
     public Waypoint currentWaypoint, togoWaypoint;
+    public Place togoPlace;
     public List<Waypoint> togoWaypoints = new();
+    public bool useTogoWaypoint;
 
     public void Move()
     {
-        togoWaypoints = WaypointSystem._instance.GetWaypoint(currentWaypoint,togoWaypoint);
+        if (useTogoWaypoint)
+        {
+        togoWaypoints = PathManager._instance.GetPath(currentWaypoint,togoWaypoint);
+
+        }
+        else
+        {
+            togoWaypoints = PathManager._instance.GetPath(currentWaypoint, togoPlace);
+
+        }
         StartCoroutine(MoveByOne());
     }
     public IEnumerator MoveByOne()
@@ -41,8 +52,10 @@ public class NpcEditor : Editor {
 
 
 
-    string[] _choices;
-        int _choiceIndex = 0;
+    string[] waypoints;
+        int waypointIndex = 0;
+    string[] places;
+    int placeIndex = 0;
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -50,13 +63,29 @@ public class NpcEditor : Editor {
 
         if ( Application.isPlaying)
         {
+           
             Npc npc = (Npc)target;
-            _choices = WaypointSystem._instance.waypoints.Select(x => x.name).ToArray();
-            _choiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices);
-                npc.togoWaypoint = WaypointSystem._instance.waypoints[_choiceIndex];
+            if (npc.useTogoWaypoint)
+            {
+                waypoints = PathManager._instance.waypointSystem.waypoints.Select(x => x.name).ToArray();
+                waypointIndex = EditorGUILayout.Popup(waypointIndex, waypoints);
+                npc.togoWaypoint = PathManager._instance.waypointSystem.waypoints[waypointIndex];
+
+            }
+
+            else{
+                places = PathManager._instance.placeManager.places.Select(x => x.name).ToArray();
+
+                placeIndex = EditorGUILayout.Popup(placeIndex, places);
+                npc.togoPlace = PathManager._instance.placeManager.places[placeIndex];
+
+            }
+
             EditorUtility.SetDirty(target);
             if (GUILayout.Button("Move"))
             {
+                
+
               
                 npc.Move();
             }
