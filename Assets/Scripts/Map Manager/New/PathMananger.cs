@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class PathManager : MonoBehaviour
 {
+
     public List<Path> paths;
-    
+
     public void Set()
     {
 
@@ -21,14 +22,14 @@ public class PathManager : MonoBehaviour
 
             var places = path.connectedPlaces;
 
-           
+
             foreach (var trans in path.transforms)
             {
 
                 foreach (var placeInAPath in places)
                 {
                     if (placeInAPath.pointOfEntrance == null ||
-                        Vector3.Distance(placeInAPath.pointOfEntrance.position,placeInAPath.transform.position)>
+                        Vector3.Distance(placeInAPath.pointOfEntrance.position, placeInAPath.transform.position) >
                          Vector3.Distance(placeInAPath.pointOfEntrance.position, trans.position))
                     {
                         placeInAPath.pointOfEntrance = trans;
@@ -40,28 +41,28 @@ public class PathManager : MonoBehaviour
 
                 }
                 dict[trans].Add(path);
-                
+
             }
         }
         // setting all connected path
         foreach (var item in dict)
         {
-            if (item.Value.Count>1)
+            if (item.Value.Count > 1)
             {
-                    ConnectedPath commonPath = new (item.Value, item.Key);
+                ConnectedPath commonPath = new(item.Value, item.Key);
                 commonPath.SetDistance();
                 foreach (var path in item.Value)
                 {
                     if (!path.directlyConnectedPaths.Contains(commonPath))
                     {
-                        path.directlyConnectedPaths.Add(commonPath);                        
+                        path.directlyConnectedPaths.Add(commonPath);
                         path.SetDistance();
                     }
-                   
+
                 }
             }
         }
-        
+
 
 
 
@@ -81,12 +82,12 @@ public class PathManager : MonoBehaviour
 
                     break;
                 }
-                if (i== paths.Count-1)
+                if (i == paths.Count - 1)
                 {
                     return transform;
                 }
             }
-          
+
 
         }
         return null;

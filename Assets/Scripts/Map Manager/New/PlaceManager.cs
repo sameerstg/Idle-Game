@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlaceMananger : MonoBehaviour
+public class PlaceManager : MonoBehaviour
 {
     public List<PlaceGo> places;
     public void Set()

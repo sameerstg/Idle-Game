@@ -10,7 +10,7 @@ public class WaypointSystem : MonoBehaviour
 
     public static WaypointSystem _instance;
     public PathManager pathManager;
-    public PlaceMananger placeMananger;
+    public PlaceManager placeMananger;
     Transform linerenderersParrent;
 public LineRenderer lineRenderer;
 
@@ -23,7 +23,7 @@ public LineRenderer lineRenderer;
     void Initiate()
     {
         pathManager = GetComponentInChildren<PathManager>();
-        placeMananger = GetComponentInChildren<PlaceMananger>();
+        placeMananger = GetComponentInChildren<PlaceManager>();
         pathManager.Set();
         placeMananger.Set();
     }
@@ -44,6 +44,7 @@ public LineRenderer lineRenderer;
         foreach (var path in pathManager.paths)
         {
             var line = Instantiate(lineRenderer,linerenderersParrent);
+            line.name = path.gameObject.name;
             line.positionCount = path.transforms.Count;
             for (int i = 0;i<path.transforms.Count;i++)
             {
@@ -266,12 +267,10 @@ public LineRenderer lineRenderer;
         }
         else
         {
-            List<Transform> trans = new();
-            trans.AddRange(path.transforms);
+            var trans = path.transforms.GetRange(togo ,  currentIndex-togo);
+
             trans.Reverse();
-            currentIndex = trans.IndexOf(currentTransform); togo = trans.IndexOf(togoTransform);
-           
-            return trans.GetRange(currentIndex+1 , togo - currentIndex );
+            return trans;
 
         }
 

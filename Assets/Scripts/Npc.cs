@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public class Human : MonoBehaviour
+public class Npc : MonoBehaviour
 {
     /// <summary>
     /// speed = unity units/seconds
@@ -50,8 +50,8 @@ public class Human : MonoBehaviour
     }
 
 }
-[CustomEditor(typeof(Human))]
-public class HumanEditor : Editor
+[CustomEditor(typeof(Npc))]
+public class NpcEditor : Editor
 {
     string[] _choices ;
     int _choiceIndex = 0;
@@ -60,7 +60,7 @@ public class HumanEditor : Editor
         DrawDefaultInspector();
         if (Application.isPlaying)
         {
-            Human humnan = (Human)target;
+            Npc humnan = (Npc)target;
 
             _choices = WaypointSystem._instance.placeMananger.places.Select(x => x.name).ToArray();
             _choiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices);
