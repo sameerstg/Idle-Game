@@ -23,10 +23,13 @@ public class WaypointSystem : MonoBehaviour
     {
         waypoints = GetComponentsInChildren<Waypoint>().ToList();
     }
-    public void Set()
+    public void Set(bool makeBi = false)
     {
         Initialize();
-        FixError();
+        if (makeBi)
+        {
+            MakeAllBiDirectional();
+        }
         Visualize();
     }
 
@@ -57,7 +60,7 @@ public class WaypointSystem : MonoBehaviour
         }
     }
 
-    public void FixError()
+    public void MakeAllBiDirectional()
     {
         foreach (var point in waypoints)
         {
@@ -149,7 +152,7 @@ public class WaypointSystemEditor : Editor
 
         if (GUILayout.Button("Set"))
         {
-            waypointSystem.Set();
+            waypointSystem.Set(true);
         }
 
     }
