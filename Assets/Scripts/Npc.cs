@@ -15,6 +15,8 @@ public class Npc : MonoBehaviour
 
     public List<Transform> transformsTogo =new();
     public Transform currentTransform;
+    public RelaxWaypoint relaxWaypoint;
+    
     public void Move()
     {
         if (useTogoWaypoint)
@@ -75,7 +77,22 @@ public class Npc : MonoBehaviour
     }
     internal void MoveRelax()
     {
-        transformsTogo = togoPlace.GetPathRelaxPoint();
+        var relaxPath = togoPlace.GetPathRelaxPoint();
+        if (relaxPath == null||relaxPath.Item1 == null)
+        {
+            return;
+        }
+        transformsTogo = relaxPath.Item1;
+        relaxWaypoint = relaxPath.Item2;
+        StartCoroutine(MoveByOneTransforms());
+    }
+    internal void RelaxToPlace()
+    {
+        transformsTogo = togoPlace.GetPathRelaxPoint(relaxWaypoint);
+        if (transformsTogo == null)
+        {
+            return;
+        }
         StartCoroutine(MoveByOneTransforms());
     }
 }
@@ -126,7 +143,10 @@ public class NpcEditor : Editor {
             {
                 npc.MoveRelax();
             }
-
+            if (GUILayout.Button(" Relax To Place"))
+            {
+                npc.RelaxToPlace();
+            }
         }
 
 

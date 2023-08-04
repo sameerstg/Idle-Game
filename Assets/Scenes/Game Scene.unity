@@ -164,10 +164,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 26431987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 018eba2603d5e324198adf58db6d5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints: []
+  equipedNpc: {fileID: 0}
 --- !u!1 &80678482
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,10 +209,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 80678482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 018eba2603d5e324198adf58db6d5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints: []
+  equipedNpc: {fileID: 0}
 --- !u!1 &92254207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,10 +1510,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 462953805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 018eba2603d5e324198adf58db6d5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints: []
+  equipedNpc: {fileID: 0}
 --- !u!1 &477780683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1723,10 +1723,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 616741376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 018eba2603d5e324198adf58db6d5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints: []
+  equipedNpc: {fileID: 0}
 --- !u!1 &629476268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,40 +1772,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipedNpc: {fileID: 0}
---- !u!1 &637941588
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 637941589}
-  m_Layer: 0
-  m_Name: Relax Points
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &637941589
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 637941588}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1553790000}
-  - {fileID: 1362308330}
-  - {fileID: 651558287}
-  m_Father: {fileID: 857837675}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &651558286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,8 +1796,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651558286}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 142.2, y: 0, z: 71.2}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.800003, y: 0, z: -64.90001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1839,7 +1805,7 @@ Transform:
   - {fileID: 988980586}
   - {fileID: 906139482}
   - {fileID: 1951504601}
-  m_Father: {fileID: 637941589}
+  m_Father: {fileID: 889058942}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &651558288
@@ -1851,14 +1817,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 651558286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b19fbfecadb6d742b057e25a4895180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints:
-  - {fileID: 1589262811}
-  - {fileID: 988980587}
-  - {fileID: 906139483}
-  - {fileID: 1951504602}
+  connectedRelaxWaypoints:
+  - {fileID: 1362308331}
+  relaxpoints: []
 --- !u!1 &667801267
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,10 +2152,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 725170767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 018eba2603d5e324198adf58db6d5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints: []
+  equipedNpc: {fileID: 0}
 --- !u!1 &734653415
 GameObject:
   m_ObjectHideFlags: 0
@@ -2416,10 +2380,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 770841243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 018eba2603d5e324198adf58db6d5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints: []
+  equipedNpc: {fileID: 0}
 --- !u!1 &812126177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2498,7 +2462,6 @@ Transform:
   m_Children:
   - {fileID: 1082341427}
   - {fileID: 172146859}
-  - {fileID: 637941589}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2573,7 +2536,6 @@ GameObject:
   m_Component:
   - component: {fileID: 889058942}
   - component: {fileID: 889058943}
-  - component: {fileID: 889058944}
   m_Layer: 0
   m_Name: Waiting room
   m_TagString: Untagged
@@ -2592,7 +2554,10 @@ Transform:
   m_LocalPosition: {x: 160, y: 0, z: 136.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1553790000}
+  - {fileID: 1362308330}
+  - {fileID: 651558287}
   m_Father: {fileID: 172146859}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2610,21 +2575,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points:
   - {fileID: 276434722}
-  relaxWaypoints: []
---- !u!114 &889058944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889058941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b19fbfecadb6d742b057e25a4895180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectedRelaxWaypoints: []
-  relaxpoints: []
+  relaxWaypoints:
+  - {fileID: 1553790001}
 --- !u!1 &906139481
 GameObject:
   m_ObjectHideFlags: 0
@@ -2666,10 +2618,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 906139481}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 018eba2603d5e324198adf58db6d5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints: []
+  equipedNpc: {fileID: 0}
 --- !u!1 &933702293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,10 +2809,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 988980585}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 018eba2603d5e324198adf58db6d5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints: []
+  equipedNpc: {fileID: 0}
 --- !u!1 &1023913445
 GameObject:
   m_ObjectHideFlags: 0
@@ -3156,10 +3108,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1139290591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 018eba2603d5e324198adf58db6d5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints: []
+  equipedNpc: {fileID: 0}
 --- !u!1 &1160766031
 GameObject:
   m_ObjectHideFlags: 0
@@ -3871,8 +3823,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1362308329}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 142.2, y: 0, z: 90.4}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.800003, y: 0, z: -45.700005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3880,7 +3832,7 @@ Transform:
   - {fileID: 616741377}
   - {fileID: 725170768}
   - {fileID: 80678483}
-  m_Father: {fileID: 637941589}
+  m_Father: {fileID: 889058942}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1362308331
@@ -3892,14 +3844,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1362308329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b19fbfecadb6d742b057e25a4895180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints:
-  - {fileID: 770841245}
-  - {fileID: 616741378}
-  - {fileID: 725170769}
-  - {fileID: 80678484}
+  connectedRelaxWaypoints:
+  - {fileID: 651558288}
+  relaxpoints: []
 --- !u!1 &1398926009
 GameObject:
   m_ObjectHideFlags: 0
@@ -4497,8 +4447,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553789999}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 142.2, y: 0, z: 112.4}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.800003, y: 0, z: -23.700005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4506,7 +4456,7 @@ Transform:
   - {fileID: 1994667927}
   - {fileID: 462953806}
   - {fileID: 1139290592}
-  m_Father: {fileID: 637941589}
+  m_Father: {fileID: 889058942}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1553790001
@@ -4518,14 +4468,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1553789999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b19fbfecadb6d742b057e25a4895180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints:
-  - {fileID: 26431989}
-  - {fileID: 1994667928}
-  - {fileID: 462953807}
-  - {fileID: 1139290593}
+  connectedRelaxWaypoints:
+  - {fileID: 1362308331}
+  relaxpoints: []
 --- !u!1 &1563034903
 GameObject:
   m_ObjectHideFlags: 0
@@ -4617,10 +4565,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1589262809}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 018eba2603d5e324198adf58db6d5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints: []
+  equipedNpc: {fileID: 0}
 --- !u!1 &1592462109
 GameObject:
   m_ObjectHideFlags: 0
@@ -5348,10 +5296,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1951504600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 018eba2603d5e324198adf58db6d5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints: []
+  equipedNpc: {fileID: 0}
 --- !u!1 &1955716393
 GameObject:
   m_ObjectHideFlags: 0
@@ -5549,10 +5497,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1994667926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0afe86317ac59954badbe2fb385a026d, type: 3}
+  m_Script: {fileID: 11500000, guid: 018eba2603d5e324198adf58db6d5438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedWaypoints: []
+  equipedNpc: {fileID: 0}
 --- !u!1 &2077713428
 GameObject:
   m_ObjectHideFlags: 0
