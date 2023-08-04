@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ public class Npc : MonoBehaviour
     public List<Waypoint> togoWaypoints = new();
     public bool useTogoWaypoint;
 
+    public List<Transform> transformsTogo =new();
+    public Transform currentTransform;
     public void Move()
     {
         if (useTogoWaypoint)
@@ -24,9 +27,9 @@ public class Npc : MonoBehaviour
             togoWaypoints = PathManager._instance.GetPath(currentWaypoint, togoPlace);
 
         }
-        StartCoroutine(MoveByOne());
+        StartCoroutine(MoveByOneWaypoints());
     }
-    public IEnumerator MoveByOne()
+    public IEnumerator MoveByOneWaypoints()
     {
         if (togoWaypoints != null)
         {
@@ -45,6 +48,35 @@ public class Npc : MonoBehaviour
             }
             togoWaypoints.Clear();
         }
+        
+    }
+
+    public IEnumerator MoveByOneTransforms()
+    {
+        if (transformsTogo != null)
+        {
+            while (transformsTogo.Count > 0)
+            {
+
+                while (Vector3.Distance(transform.position, transformsTogo[0].position) > 0.1f)
+                {
+
+                    transform.position = Vector3.MoveTowards(transform.position, transformsTogo[0].transform.position, walkSpeed * Time.deltaTime);
+                    yield return null;
+                }
+                
+                currentTransform = transformsTogo[0];
+                transformsTogo.RemoveAt(0);
+
+            }
+            transformsTogo.Clear();
+        }
+
+    }
+    internal void MoveRelax()
+    {
+        transformsTogo = togoPlace.GetPathRelaxPoint();
+        StartCoroutine(MoveByOneTransforms());
     }
 }
 [CustomEditor(typeof(Npc))]
@@ -88,6 +120,11 @@ public class NpcEditor : Editor {
 
               
                 npc.Move();
+            }
+
+            if (GUILayout.Button("Go Relax"))
+            {
+                npc.MoveRelax();
             }
 
         }

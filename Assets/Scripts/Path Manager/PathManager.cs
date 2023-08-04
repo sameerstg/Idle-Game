@@ -87,8 +87,9 @@ public class PathManager : MonoBehaviour
             var j = visited.IndexOf(visited.Find(x => x.Item1 == index.Item2));
             index = visited[j];
         }
+        ans.Add(index.Item1);
         ans.Reverse();
-       
+        Debug.Log(ans.Count);
         return ans;
 
 
@@ -154,7 +155,9 @@ public class PathManager : MonoBehaviour
             var j = visited.IndexOf(visited.Find(x => x.Item1 == index.Item2));
             index = visited[j];
         }
+        ans.Add(index.Item1);
         ans.Reverse();
+        Debug.Log(ans.Count);
         return ans;
 
 
