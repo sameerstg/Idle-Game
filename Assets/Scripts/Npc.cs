@@ -21,15 +21,28 @@ public class Npc : MonoBehaviour
     {
         if (useTogoWaypoint)
         {
-        togoWaypoints = PathManager._instance.GetPath(currentWaypoint,togoWaypoint);
+            togoWaypoints = PathManager._instance.GetPath(currentWaypoint, togoWaypoint);
 
         }
         else
         {
             togoWaypoints = PathManager._instance.GetPath(currentWaypoint, togoPlace);
+            
 
         }
         StartCoroutine(MoveByOneWaypoints());
+    }
+    public void MoveToRelaxPoint()
+    {
+        if (togoPlace != null && togoPlace.HaveEmptyRelaxPoint())
+        {
+            var pathWithRelaxWaypoint = togoPlace.GetPathRelaxPoint();
+            if (pathWithRelaxWaypoint.Item2 != null)
+            {
+                transformsTogo = pathWithRelaxWaypoint.Item1;
+                StartCoroutine(MoveByOneTransforms());
+            }
+        }
     }
     public IEnumerator MoveByOneWaypoints()
     {
@@ -50,7 +63,9 @@ public class Npc : MonoBehaviour
             }
             togoWaypoints.Clear();
         }
-        
+        MoveToRelaxPoint();
+
+
     }
 
     public IEnumerator MoveByOneTransforms()
@@ -139,14 +154,14 @@ public class NpcEditor : Editor {
                 npc.Move();
             }
 
-            if (GUILayout.Button("Go Relax"))
-            {
-                npc.MoveRelax();
-            }
-            if (GUILayout.Button(" Relax To Place"))
-            {
-                npc.RelaxToPlace();
-            }
+            //if (GUILayout.Button("Go Relax"))
+            //{
+            //    npc.MoveRelax();
+            //}
+            //if (GUILayout.Button(" Relax To Place"))
+            //{
+            //    npc.RelaxToPlace();
+            //}
         }
 
 

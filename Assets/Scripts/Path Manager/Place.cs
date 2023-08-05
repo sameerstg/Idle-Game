@@ -9,10 +9,17 @@ public class Place : MonoBehaviour
 
     public List<Waypoint> points = new();
     public List<RelaxWaypoint> relaxWaypoints;
+    [Header("Dont assign")]
+    public List<RelaxPoint> relaxPoints = new();
 
     private void Awake()
     {
         relaxWaypoints = GetComponentsInChildren<RelaxWaypoint>().ToList();
+        relaxPoints = GetComponentsInChildren<RelaxPoint>().ToList();
+    }
+    public bool HaveEmptyRelaxPoint()
+    {
+        return relaxPoints.Exists(x => x.equipedNpc == null);
     }
     public Tuple<List<Transform>, RelaxWaypoint> GetPathRelaxPoint()
     {
