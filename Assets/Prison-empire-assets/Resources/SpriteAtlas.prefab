@@ -1,0 +1,862 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1756588048592240
+GameObject:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Component:
+  - component: {fileID: 4355214694481767}
+  - component: {fileID: 114087855104968977}
+  m_Layer: 0
+  m_Name: SpriteAtlas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4355214694481767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756588048592240}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!114 &114087855104968977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756588048592240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a6c2a3f15a7c564f993df05a15ccc37, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  spritesData:
+  - sprite: {fileID: 21300000, guid: 22871210fe0b5bd438647c8a5cae10d9, type: 2}
+    name: barra_progreso
+  - sprite: {fileID: 21300000, guid: f25908682b5b7ba4b9a3333ebd601205, type: 2}
+    name: bocadillo_info
+  - sprite: {fileID: 21300000, guid: 769b3698102a93d4682b87211e1c62a2, type: 2}
+    name: bocadillo_info_interior
+  - sprite: {fileID: 21300000, guid: c64227895ad5e024492dd941083110dc, type: 2}
+    name: bocadillo_info_sin_sombra
+  - sprite: {fileID: 21300000, guid: 6618e88ffde3c92459b373e60bee7ad5, type: 2}
+    name: boton_cuadrado_blanco
+  - sprite: {fileID: 21300000, guid: fb7bf59be8d545640aac81962b6a5bee, type: 2}
+    name: boton_cuadrado_gris
+  - sprite: {fileID: 21300000, guid: 9f99c5943b555db40b132e338f8c5b38, type: 2}
+    name: boton_cuadrado_rojo
+  - sprite: {fileID: 21300000, guid: 33f775bde03abd949a233695931c19bc, type: 2}
+    name: boton_cuadrado_verde
+  - sprite: {fileID: 21300000, guid: a7d64afe506ff75429d408183d474aba, type: 2}
+    name: boton_info
+  - sprite: {fileID: 21300000, guid: 8430b07867cea8a48987b4aba27fe387, type: 2}
+    name: boton_mas
+  - sprite: {fileID: 21300000, guid: 6c0c1943d7c2193409359d4916012449, type: 2}
+    name: boton_mini_rojo
+  - sprite: {fileID: 21300000, guid: 829e4b065a67a92429588981267426bd, type: 2}
+    name: boton_rojo
+  - sprite: {fileID: 21300000, guid: 661338852e4c92c4a8c02768ece9379a, type: 2}
+    name: flecha_popup_info
+  - sprite: {fileID: 21300000, guid: 48ba5572258c6834b9d885a72b8aa341, type: 2}
+    name: flecha_tutorial
+  - sprite: {fileID: 21300000, guid: 3c5ba484f4540bc4794b13400f402336, type: 2}
+    name: fondo_barra_recursos
+  - sprite: {fileID: 21300000, guid: ca85958c6adeca14eb1677717bda8dd6, type: 2}
+    name: icono_alert
+  - sprite: {fileID: 21300000, guid: 30147f1929386f44ba17d07762510ae9, type: 2}
+    name: icono_cancelar_rojo
+  - sprite: {fileID: 21300000, guid: 48fb27041466cb94e8537b0b2e3526f9, type: 2}
+    name: icono_cerrar
+  - sprite: {fileID: 21300000, guid: 1a4605a308fd5c4459189ef85dcffb9a, type: 2}
+    name: icono_confirmar
+  - sprite: {fileID: 21300000, guid: 6500455331a00d74194ed5f5a457b6da, type: 2}
+    name: icono_flecha_desplazamiento
+  - sprite: {fileID: 21300000, guid: c9a48e9d290a61a41b0c6d9bc0ec0020, type: 2}
+    name: icono_game_center
+  - sprite: {fileID: 21300000, guid: 7417819642f2f604eaf6a951ef9d5f8b, type: 2}
+    name: icono_terraformacion_deshacer
+  - sprite: {fileID: 21300000, guid: b1fea4b8907ed674e8ca660d3a3dd8bc, type: 2}
+    name: icono_tiempo_construccion
+  - sprite: {fileID: 21300000, guid: 069d292601194e94d819e0bb78bc95c1, type: 2}
+    name: icono_votacion_indeciso
+  - sprite: {fileID: 21300000, guid: 3e209496dd10270499466fb7e99b7c90, type: 2}
+    name: icono_votacion_no
+  - sprite: {fileID: 21300000, guid: 1fa486671cec0d241bca09d742eeb585, type: 2}
+    name: stick_bocadillo
+  - sprite: {fileID: 21300000, guid: 4291fec0fdda75b44b0bdffb9156caa1, type: 2}
+    name: tick_tecnologia_completada
+  - sprite: {fileID: 21300000, guid: 0851ec6aa4fff73418d6d52f9c246158, type: 2}
+    name: water_splash_boat
+  - sprite: {fileID: 21300000, guid: 600f19ac427d7fb468eea106d4b3a7a5, type: 2}
+    name: water_texture
+  - sprite: {fileID: 21300000, guid: b6318836a84bd82468d1a5b240abc389, type: 2}
+    name: water_trail_texture
+  - sprite: {fileID: 21300000, guid: b779124c28d66874da9050b448788499, type: 2}
+    name: bar_needs_1
+  - sprite: {fileID: 21300000, guid: 4dd41d21a20a25843be6915b56ea22f9, type: 2}
+    name: bar_needs_2
+  - sprite: {fileID: 21300000, guid: 7132fb8f6efbdf442a3dffe3c8a5bbfc, type: 2}
+    name: icon_comfort_outline
+  - sprite: {fileID: 21300000, guid: 4dc8e415ebbfcdb4198229e6f77e0e93, type: 2}
+    name: icon_fun_outline
+  - sprite: {fileID: 21300000, guid: 63e33a32a11bc624b8255b4a6e2f0abb, type: 2}
+    name: icon_health_outline
+  - sprite: {fileID: 21300000, guid: 8054f7f3ed4b13b49bf84f236f5741f9, type: 2}
+    name: icon_hunger_outline
+  - sprite: {fileID: 21300000, guid: 321e8d726376d884c9aceb5862f34871, type: 2}
+    name: icon_hygiene_outline
+  - sprite: {fileID: 21300000, guid: b7cca23c2ea5fbe45b660cba78ceb788, type: 2}
+    name: icon_security_outline
+  - sprite: {fileID: 21300000, guid: 4265d4b3b8a027247a5dea2e7538eb2c, type: 2}
+    name: icon_bathroom
+  - sprite: {fileID: 21300000, guid: d6a5facf667cb924287ed58d8f5a7330, type: 2}
+    name: icon_carpentry
+  - sprite: {fileID: 21300000, guid: b8b045358441fc241bfbba0a6e8f061c, type: 2}
+    name: icon_dinningroom
+  - sprite: {fileID: 21300000, guid: 3bbc8f70cbd097c438128d40f352842d, type: 2}
+    name: icon_exit
+  - sprite: {fileID: 21300000, guid: 51503122bb370054484dd209e349f669, type: 2}
+    name: icon_generator
+  - sprite: {fileID: 21300000, guid: 5844ef0645431ff429c8ee634083bfb2, type: 2}
+    name: icon_infirmary
+  - sprite: {fileID: 21300000, guid: 93e868b585a74e74790235ec79c99216, type: 2}
+    name: icon_kitchen
+  - sprite: {fileID: 21300000, guid: 0a81cfb8908866741acbed3bd941c4c1, type: 2}
+    name: icon_laundry
+  - sprite: {fileID: 21300000, guid: 6a8bcfbe4ac5ddf4d89d7f4fd2d4e489, type: 2}
+    name: icon_maintenance
+  - sprite: {fileID: 21300000, guid: 6cfd52fa3b23db6428dfc2a370269043, type: 2}
+    name: icon_metal
+  - sprite: {fileID: 21300000, guid: 6f4c801986f025f47a95396afc14d6fe, type: 2}
+    name: icon_module
+  - sprite: {fileID: 21300000, guid: 09fd08db275a45846b33d5146ae1331c, type: 2}
+    name: icon_office
+  - sprite: {fileID: 21300000, guid: 384e298570a70b84ca6821d8741fbeb0, type: 2}
+    name: icon_prisonyard
+  - sprite: {fileID: 21300000, guid: d215eead47e540a46acc6360df51c6b2, type: 2}
+    name: icon_pumpingstation
+  - sprite: {fileID: 21300000, guid: 262bb31425d444d49b6b1592660651cc, type: 2}
+    name: icon_quarter
+  - sprite: {fileID: 21300000, guid: f887f6f8f7737aa4298f63d7587f84b5, type: 2}
+    name: icon_reception
+  - sprite: {fileID: 21300000, guid: b19ef361fe1463f49893adb6b8e32cfb, type: 2}
+    name: icon_sector
+  - sprite: {fileID: 21300000, guid: 9cd3e0d1b16aa084abda1fb2d4e9f1b2, type: 2}
+    name: icon_sewing
+  - sprite: {fileID: 21300000, guid: a92cafce198ee5a43bfa4e980abbc439, type: 2}
+    name: icon_shoot
+  - sprite: {fileID: 21300000, guid: 1f437860003adeb49885e31c2a88dd3e, type: 2}
+    name: icon_shooting
+  - sprite: {fileID: 21300000, guid: d7f5c774ab4a4d6478d0528c2efa9b5c, type: 2}
+    name: icon_sleep
+  - sprite: {fileID: 21300000, guid: 19b4c9f1057dcbd498c50d6fcbe177fe, type: 2}
+    name: icon_training
+  - sprite: {fileID: 21300000, guid: e3e33cd525e16204290d8a1778b6196b, type: 2}
+    name: icon_visitingroom
+  - sprite: {fileID: 21300000, guid: 853bd51a06bcc3b4cb89cf4100139276, type: 2}
+    name: icon_workshop
+  - sprite: {fileID: 21300000, guid: 39f5c30d234daa849b4c6ab67b784ec8, type: 2}
+    name: bar_progress
+  - sprite: {fileID: 21300000, guid: 25124e126a31cbe44a604aad5ec6cb47, type: 2}
+    name: bar_star_exp
+  - sprite: {fileID: 21300000, guid: 80cf8ed5953e4ef4685458da19f8502e, type: 2}
+    name: dashed_line_1
+  - sprite: {fileID: 21300000, guid: bb92481626beba444a40870a01179fd2, type: 2}
+    name: dashed_line_timer
+  - sprite: {fileID: 21300000, guid: 2a3fb43a47b398d4fa9e178080954588, type: 2}
+    name: icon_bar_marketing
+  - sprite: {fileID: 21300000, guid: 301c79a15270ae348b78f763901e4215, type: 2}
+    name: icon_bar_salary
+  - sprite: {fileID: 21300000, guid: cbded973d8f73e740a83e9f1a5878fe3, type: 2}
+    name: icon_bar_video_mult
+  - sprite: {fileID: 21300000, guid: 3feaaad9d7947874c98e53b4f386798d, type: 2}
+    name: icon_bar_video_popup
+  - sprite: {fileID: 21300000, guid: d7b9439209dea3c4585a37f7d28032bf, type: 2}
+    name: loading_bar
+  - sprite: {fileID: 21300000, guid: bc2c41eb43807f54f88cd6e8375c8bc1, type: 2}
+    name: loading_bar_gold
+  - sprite: {fileID: 21300000, guid: 9ccce92fead233746a11f4128bcfd007, type: 2}
+    name: icon_bathroom_prison_event_01
+  - sprite: {fileID: 21300000, guid: 1f652fac7bf2b6048b7ed8c87c2a4bb5, type: 2}
+    name: icon_carpentry_prison_01
+  - sprite: {fileID: 21300000, guid: 1f0e6f4f25a2bb5438ad954355a7b801, type: 2}
+    name: icon_infirmary_prison_event_01
+  - sprite: {fileID: 21300000, guid: 49c8ac1dd6749d14aa817aed79a6bc9f, type: 2}
+    name: icon_jail_prison_event_01
+  - sprite: {fileID: 21300000, guid: aee44d9de5e7170478cae80ba961d87a, type: 2}
+    name: icon_laundry_prison_event_01
+  - sprite: {fileID: 21300000, guid: 9cb2770a26accbe43907fc46c0108d37, type: 2}
+    name: icon_metal_prison_01
+  - sprite: {fileID: 21300000, guid: 55d3ea60e7d26e24cbedb8b4c3659289, type: 2}
+    name: icon_module_prison_event_01
+  - sprite: {fileID: 21300000, guid: 2a0ec249a706ce7439622b177e3dbeee, type: 2}
+    name: icon_sewing_prison_01
+  - sprite: {fileID: 21300000, guid: aeffe86ae0ce91f449d04a29a6746f14, type: 2}
+    name: icon_shooting_prison_01
+  - sprite: {fileID: 21300000, guid: 2f15bedb8b8864b409fbfc609a582801, type: 2}
+    name: icon_visitingroom_prison_01
+  - sprite: {fileID: 21300000, guid: 56daec302de20854592e7ff147c82dec, type: 2}
+    name: icon_warsimulator_prison_event_01
+  - sprite: {fileID: 21300000, guid: 16cdb15908d7a64458307f3697503aa4, type: 2}
+    name: icon_yard_prison_event_01
+  - sprite: {fileID: 21300000, guid: e8dc9d9f810a4d146b76ce23de9a6590, type: 2}
+    name: arrow_close
+  - sprite: {fileID: 21300000, guid: 28c5f84f2de021640a4936c795861194, type: 2}
+    name: arrow_swipe
+  - sprite: {fileID: 21300000, guid: 8e34a346a54811347bca6d6ed6ebcdd1, type: 2}
+    name: button_blue
+  - sprite: {fileID: 21300000, guid: aaa46f58024443f458a058b8b140def4, type: 2}
+    name: button_close
+  - sprite: {fileID: 21300000, guid: 03b81b34d586df64fa8051b237b5674d, type: 2}
+    name: button_dark_blue
+  - sprite: {fileID: 21300000, guid: 3fb699a3127eb7b409db153b1fdd227c, type: 2}
+    name: button_energy
+  - sprite: {fileID: 21300000, guid: 54aab4523ad97be4796ab3adb92f3ed9, type: 2}
+    name: button_gems
+  - sprite: {fileID: 21300000, guid: 104504f0bc762094fbdf9a1a681b9013, type: 2}
+    name: button_gold
+  - sprite: {fileID: 21300000, guid: e34212f62cc756c49aa75eb1d3b4a122, type: 2}
+    name: button_grey
+  - sprite: {fileID: 21300000, guid: 966c8eaea3bfff94aaee99d2adf60850, type: 2}
+    name: button_main_menu_blue
+  - sprite: {fileID: 21300000, guid: 1620592d4b6cecf4d99726105b8360c1, type: 2}
+    name: button_main_menu_white
+  - sprite: {fileID: 21300000, guid: 23ac7dc0417a9e142abede52e5d93a0c, type: 2}
+    name: button_orange
+  - sprite: {fileID: 21300000, guid: 8a3171b842f6300439173744a77d286a, type: 2}
+    name: button_orange_2
+  - sprite: {fileID: 21300000, guid: af6649e6aa2e2fe458dfe5ef0bee0aef, type: 2}
+    name: button_purple
+  - sprite: {fileID: 21300000, guid: d8d4dff1421de0b4e94a13734dcf9d03, type: 2}
+    name: button_red
+  - sprite: {fileID: 21300000, guid: d68907200e779574fa3fcc3070497fc4, type: 2}
+    name: button_salary
+  - sprite: {fileID: 21300000, guid: fd096e169c734ae46b00e92203c8a0e9, type: 2}
+    name: button_small
+  - sprite: {fileID: 21300000, guid: 35fe96be783fcde449ee544b5b283a13, type: 2}
+    name: button_water
+  - sprite: {fileID: 21300000, guid: 2c0c81bb464d7bb42a1366967d2d62cd, type: 2}
+    name: icon_admin_desk
+  - sprite: {fileID: 21300000, guid: a3920a498471526478fda19e11033169, type: 2}
+    name: icon_armoury
+  - sprite: {fileID: 21300000, guid: fc9a004a01f2be84aba73a34335ef788, type: 2}
+    name: icon_athletics
+  - sprite: {fileID: 21300000, guid: 41dc293e95df3e742abd557fe7bf6d52, type: 2}
+    name: icon_auxdesk
+  - sprite: {fileID: 21300000, guid: ca2bf192468e3274da2498305cbdc481, type: 2}
+    name: icon_basket
+  - sprite: {fileID: 21300000, guid: 26480039e2430404fb7475ff858c6f3c, type: 2}
+    name: icon_bed
+  - sprite: {fileID: 21300000, guid: e5604f815cfa3ea4c8307749f3807389, type: 2}
+    name: icon_bench
+  - sprite: {fileID: 21300000, guid: 282468a58372a7f4c8954e772d0dc6ca, type: 2}
+    name: icon_bike
+  - sprite: {fileID: 21300000, guid: 569dd8eab35e31c41a6cd89ac1cec4dc, type: 2}
+    name: icon_bleachers
+  - sprite: {fileID: 21300000, guid: 8cab6d842fe80d94888cf7d797274b37, type: 2}
+    name: icon_boilder
+  - sprite: {fileID: 21300000, guid: 35b8ca91c64066a4595298f5462c86a8, type: 2}
+    name: icon_box
+  - sprite: {fileID: 21300000, guid: 7c2495f9f88bd3c4aa09e3bf940140a6, type: 2}
+    name: icon_boxingbag
+  - sprite: {fileID: 21300000, guid: 600c14e5ce841c9429a9df9311b02586, type: 2}
+    name: icon_burner
+  - sprite: {fileID: 21300000, guid: de50eb8f2555d4f43ab66131d8ac31dc, type: 2}
+    name: icon_cameras
+  - sprite: {fileID: 21300000, guid: ee2fbcd658dd51a4696cdfe645d845d0, type: 2}
+    name: icon_canteentable
+  - sprite: {fileID: 21300000, guid: ba9ab184b519f9145ada2091cd39f27c, type: 2}
+    name: icon_carpentry_drill
+  - sprite: {fileID: 21300000, guid: fa71a5d5993c60541b89a93cba643492, type: 2}
+    name: icon_carpentry_equipment
+  - sprite: {fileID: 21300000, guid: 41f5ebaf03f3a9646a839d98c5ef431f, type: 2}
+    name: icon_carpentry_tool
+  - sprite: {fileID: 21300000, guid: 1f401d5c39cbd3d40bf9f051acc70a4b, type: 2}
+    name: icon_carpentry_varnish
+  - sprite: {fileID: 21300000, guid: ae2778714fabe4d4daa49024bb02452a, type: 2}
+    name: icon_climbingwall
+  - sprite: {fileID: 21300000, guid: 45deffcf57eed9443aaf8fd994a398df, type: 2}
+    name: icon_coffee
+  - sprite: {fileID: 21300000, guid: d4e933d5b1a53a943a584c39a3dc7c94, type: 2}
+    name: icon_communication
+  - sprite: {fileID: 21300000, guid: 6b2f556d431c5dc4bbf5a407e7e7bc41, type: 2}
+    name: icon_computer_desk
+  - sprite: {fileID: 21300000, guid: e80db7266f7dd754c95f3e194981ba09, type: 2}
+    name: icon_console
+  - sprite: {fileID: 21300000, guid: c450fa8d156f0cf439aa724616b6a043, type: 2}
+    name: icon_couch
+  - sprite: {fileID: 21300000, guid: 525aa9881ac5c1248b080057e12b041c, type: 2}
+    name: icon_decor
+  - sprite: {fileID: 21300000, guid: 6a120b824adea5640a67c889f748c1da, type: 2}
+    name: icon_desk
+  - sprite: {fileID: 21300000, guid: d2f5b9413fbfd5748a8528ee9bae4577, type: 2}
+    name: icon_detector
+  - sprite: {fileID: 21300000, guid: 2e23fc91c60e6e546be7ad5ff7fa8179, type: 2}
+    name: icon_dishwasher
+  - sprite: {fileID: 21300000, guid: 8864f48992b0b274584dc650ea00aa45, type: 2}
+    name: icon_electric_battery
+  - sprite: {fileID: 21300000, guid: ff2fe6abae224754e8fcfb2f0e841fc2, type: 2}
+    name: icon_electric_generator
+  - sprite: {fileID: 21300000, guid: 7e746bd30e774a24b95c010b8486d05d, type: 2}
+    name: icon_extractor
+  - sprite: {fileID: 21300000, guid: cfa287720fdad1e4fba4d0f9eed28400, type: 2}
+    name: icon_firesensor
+  - sprite: {fileID: 21300000, guid: 94e4339c769417f42a57c9530cf8c84c, type: 2}
+    name: icon_football
+  - sprite: {fileID: 21300000, guid: e62dbdbc08279fa46b5ae39ac34d39a5, type: 2}
+    name: icon_fridge
+  - sprite: {fileID: 21300000, guid: 52bc2f45624a64947a0dacea709ece58, type: 2}
+    name: icon_fryer
+  - sprite: {fileID: 21300000, guid: 89b21721b3f504048909d4939c6e89b0, type: 2}
+    name: icon_harmonica
+  - sprite: {fileID: 21300000, guid: 05ff2c0a226638a46a94c454f9e54ae9, type: 2}
+    name: icon_heating
+  - sprite: {fileID: 21300000, guid: eb84379bce521b549bbf527696dc3271, type: 2}
+    name: icon_infirmary_bed
+  - sprite: {fileID: 21300000, guid: 9e8954f7e1801e84f9727a5ed2d86c95, type: 2}
+    name: icon_infirmary_desfibrillator
+  - sprite: {fileID: 21300000, guid: c922c35e7e602f74e9d1841fad625135, type: 2}
+    name: icon_infirmary_medicine
+  - sprite: {fileID: 21300000, guid: a00d3ae434fe1ce44a79f11f9a52707a, type: 2}
+    name: icon_infirmary_monitor
+  - sprite: {fileID: 21300000, guid: e125d2d527de9194db9a2ae56a78532b, type: 2}
+    name: icon_infirmary_surgery
+  - sprite: {fileID: 21300000, guid: effdd9aee9c1900468832caf394271a4, type: 2}
+    name: icon_infirmary_xray
+  - sprite: {fileID: 21300000, guid: 7fa854104070c5b4e81f9dc4212cee0e, type: 2}
+    name: icon_internet
+  - sprite: {fileID: 21300000, guid: 690a9acf4f4b2fe4fa55e8e47009b5dc, type: 2}
+    name: icon_jail
+  - sprite: {fileID: 21300000, guid: ef989966a2b0b1e4a8918a769cdbe6b2, type: 2}
+    name: icon_kitchen_sink
+  - sprite: {fileID: 21300000, guid: 9efe61bae0f121547aa6abad08bdc85e, type: 2}
+    name: icon_laundry_cleaning
+  - sprite: {fileID: 21300000, guid: b4392853ef5a78343bc852a281d06589, type: 2}
+    name: icon_laundry_cleaningtank
+  - sprite: {fileID: 21300000, guid: fa12ab2b54483354f827fd7440e5542b, type: 2}
+    name: icon_lightclothing
+  - sprite: {fileID: 21300000, guid: a963162c6486ea947b0c65b0dcd6b8e4, type: 2}
+    name: icon_lighting
+  - sprite: {fileID: 21300000, guid: 80d1b07c45f4b6d42bd1a3dac3a47bde, type: 2}
+    name: icon_locker
+  - sprite: {fileID: 21300000, guid: e9241c487151c304596a39d6438f6158, type: 2}
+    name: icon_maintenance_equipment
+  - sprite: {fileID: 21300000, guid: d6e46844217c5364b851dc22955e3432, type: 2}
+    name: icon_maintenance_products
+  - sprite: {fileID: 21300000, guid: 4e172ffa22641c441b0377e523268a8a, type: 2}
+    name: icon_metal_equipment
+  - sprite: {fileID: 21300000, guid: 172f74202d6ba5a42bb1a73bce67752a, type: 2}
+    name: icon_metal_foundry
+  - sprite: {fileID: 21300000, guid: f3bd8cc83272cb2448ffe25902a45aac, type: 2}
+    name: icon_metal_press
+  - sprite: {fileID: 21300000, guid: 8c7b6290e5a6e1145a7049c91de8b4cb, type: 2}
+    name: icon_metal_tool
+  - sprite: {fileID: 21300000, guid: 215c746bf985e6947845f29bc5675d87, type: 2}
+    name: icon_monitoring
+  - sprite: {fileID: 21300000, guid: ddfeb78eee8d003409b6ea8385fc4735, type: 2}
+    name: icon_monkeybars
+  - sprite: {fileID: 21300000, guid: 6be88ce4efb578243be8e3585e2253cc, type: 2}
+    name: icon_obstaclecourse
+  - sprite: {fileID: 21300000, guid: 39fe214b530e7834fb5a0991f5d34a90, type: 2}
+    name: icon_orchard
+  - sprite: {fileID: 21300000, guid: c5422a29e38c2a14bbb5a72d24ea1d8e, type: 2}
+    name: icon_pc
+  - sprite: {fileID: 21300000, guid: b5470604013acdf428d5955880a2ec81, type: 2}
+    name: icon_phone
+  - sprite: {fileID: 21300000, guid: 4772e5dcf1c1c704384a13e20a5999b4, type: 2}
+    name: icon_plant
+  - sprite: {fileID: 21300000, guid: 282adb57267c20c4d829933c0e168666, type: 2}
+    name: icon_poker
+  - sprite: {fileID: 21300000, guid: b8deb6fd5906dba4185a44a7dfb72d9e, type: 2}
+    name: icon_protection
+  - sprite: {fileID: 21300000, guid: 112e0302d34279d4f96f47e43274375f, type: 2}
+    name: icon_pullups
+  - sprite: {fileID: 21300000, guid: 42fbe9993ae5b104d9094184cc597be8, type: 2}
+    name: icon_pullups2
+  - sprite: {fileID: 21300000, guid: ec5f52e9fab05c14fb15811c65ce3f1c, type: 2}
+    name: icon_pushups
+  - sprite: {fileID: 21300000, guid: 4c20c706e76f1aa4393d32dd4f60a907, type: 2}
+    name: icon_radio
+  - sprite: {fileID: 21300000, guid: 3f4837d60c895d74699761dcf42b1951, type: 2}
+    name: icon_ropeclimbing
+  - sprite: {fileID: 21300000, guid: 543a7be2a974c904daeef6236194ea6d, type: 2}
+    name: icon_securitydoor
+  - sprite: {fileID: 21300000, guid: 2f67216c34c7a79408fcc89f9fc6d720, type: 2}
+    name: icon_servingtable
+  - sprite: {fileID: 21300000, guid: 8ff17e3eeba61014e8e08d464021a623, type: 2}
+    name: icon_sewing_cut
+  - sprite: {fileID: 21300000, guid: eb27df8f9d8faf84c8132ce6121cb5f1, type: 2}
+    name: icon_sewing_equipment
+  - sprite: {fileID: 21300000, guid: bf17e3be15f274d4a839865ba01ce214, type: 2}
+    name: icon_sewing_ink
+  - sprite: {fileID: 21300000, guid: 51597737d5ee03a4dbe315c3b5059718, type: 2}
+    name: icon_sewing_tool
+  - sprite: {fileID: 21300000, guid: 8c4da29852a996c40a1617d329d5176f, type: 2}
+    name: icon_shelf
+  - sprite: {fileID: 21300000, guid: 22fa7d0b9ac19ba4684340191d4f4c03, type: 2}
+    name: icon_shooting_rangearea
+  - sprite: {fileID: 21300000, guid: 6ba88f69782d3a54e863bc69c610906c, type: 2}
+    name: icon_shooting_targets
+  - sprite: {fileID: 21300000, guid: a5c7dfa79052f704298a60937246908a, type: 2}
+    name: icon_shower
+  - sprite: {fileID: 21300000, guid: 2757c845a5e80664b97773ee9400b9fe, type: 2}
+    name: icon_tablet
+  - sprite: {fileID: 21300000, guid: 7c1ae40757f38034297084f4523a80e7, type: 2}
+    name: icon_terminal
+  - sprite: {fileID: 21300000, guid: e6761a5bd17e4a4409b57c29fa243b66, type: 2}
+    name: icon_tower
+  - sprite: {fileID: 21300000, guid: 68d1255d0b930304aa6c9b0f80650f65, type: 2}
+    name: icon_trenches
+  - sprite: {fileID: 21300000, guid: caaa19b12ec70ac4aa19064fc1471793, type: 2}
+    name: icon_tv
+  - sprite: {fileID: 21300000, guid: 114270bcadbc5cd469e07d190ba65adb, type: 2}
+    name: icon_vegetation
+  - sprite: {fileID: 21300000, guid: c4a19b7ee3f37a74ba81978341ae94c4, type: 2}
+    name: icon_ventilation
+  - sprite: {fileID: 21300000, guid: 68b24ead62c2fc345af1f39d86725928, type: 2}
+    name: icon_visitroom_table
+  - sprite: {fileID: 21300000, guid: fef2b1bcfc6262f44a7198db41f28d13, type: 2}
+    name: icon_washbasin
+  - sprite: {fileID: 21300000, guid: ca0af23771bd3584c93dd2ee2ce092f9, type: 2}
+    name: icon_washer
+  - sprite: {fileID: 21300000, guid: 9973af05da16a8b4bb18cc060e7f7d3a, type: 2}
+    name: icon_water_generator
+  - sprite: {fileID: 21300000, guid: 94fc48dd344d8d24ebace0cdc435f35c, type: 2}
+    name: icon_water_silo
+  - sprite: {fileID: 21300000, guid: 526e4e569ac7b1147999750070f56d6e, type: 2}
+    name: icon_wc
+  - sprite: {fileID: 21300000, guid: 13606417e2fcb494db44d45e984c78d8, type: 2}
+    name: gradient_ads
+  - sprite: {fileID: 21300000, guid: c186110dd6682c44fbacc835379121ac, type: 2}
+    name: gradient_character_offer
+  - sprite: {fileID: 21300000, guid: e1a726eee01336a48845db2478b41678, type: 2}
+    name: gradient_hotel_01
+  - sprite: {fileID: 21300000, guid: 8697487a7e401af4e9f3ffceee9c35b9, type: 2}
+    name: gradient_hotel_02
+  - sprite: {fileID: 21300000, guid: a1d21d21a9adc594390cc8ec0f497116, type: 2}
+    name: gradient_hotel_03
+  - sprite: {fileID: 21300000, guid: e9e288d377afcae4b82e8c784919fb29, type: 2}
+    name: gradient_hotel_04
+  - sprite: {fileID: 21300000, guid: 818384c057be5b643af54545e7ef5165, type: 2}
+    name: gradient_hotel_05
+  - sprite: {fileID: 21300000, guid: aa790411098806840834c31f731cf819, type: 2}
+    name: gradient_main_menu
+  - sprite: {fileID: 21300000, guid: ebb5300b8d9e00d43b865f3c5cb26248, type: 2}
+    name: gradient_manager
+  - sprite: {fileID: 21300000, guid: 2b283b49da90efc42a87e5dbf9c67a14, type: 2}
+    name: gradient_marketing
+  - sprite: {fileID: 21300000, guid: 7996a08f949724b42b9056f254d8f17a, type: 2}
+    name: gradient_masterkey
+  - sprite: {fileID: 21300000, guid: 2160a05678bbfa14d89137a0371ae178, type: 2}
+    name: gradient_menu_background
+  - sprite: {fileID: 21300000, guid: 200771e40612f154889b771b2eca80d2, type: 2}
+    name: gradient_offer
+  - sprite: {fileID: 21300000, guid: 7b980aea3baad804d9b3f2e1da3c15fa, type: 2}
+    name: gradient_offer_2
+  - sprite: {fileID: 21300000, guid: af8deea2fe4e03f4faf14d4e75b7824b, type: 2}
+    name: gradient_offer_3
+  - sprite: {fileID: 21300000, guid: a77fa25e89017384ea7ad2f82e495938, type: 2}
+    name: gradient_offer_gold
+  - sprite: {fileID: 21300000, guid: a8762fcca05ae924fa29b07088ba90c2, type: 2}
+    name: gradient_offer_widget
+  - sprite: {fileID: 21300000, guid: 51202abcd214b9043b9d40ba7572e787, type: 2}
+    name: gradient_rank_A
+  - sprite: {fileID: 21300000, guid: 6126456d4beffe347a90807444edfe93, type: 2}
+    name: gradient_rank_B
+  - sprite: {fileID: 21300000, guid: ace6be6402bb2b643af4abb76de548c6, type: 2}
+    name: gradient_rank_C
+  - sprite: {fileID: 21300000, guid: 1a16e3d22e07e3349aa5463667a2d1d2, type: 2}
+    name: gradient_rank_S
+  - sprite: {fileID: 21300000, guid: b48670dd0ef55b649a6b9580c84974ea, type: 2}
+    name: gradient_tactic_chest
+  - sprite: {fileID: 21300000, guid: 3d83c4089e9f11a49b11320dd2c1fd64, type: 2}
+    name: gradient_welcomeback
+  - sprite: {fileID: 21300000, guid: e5343478ed8c40749a0409fa32545db5, type: 2}
+    name: gradient_white_horizontal
+  - sprite: {fileID: 21300000, guid: 726729deadf1e0d4baa033173fe1e8be, type: 2}
+    name: gradient_white_vertical
+  - sprite: {fileID: 21300000, guid: 37104a3030fe5f3499fefc940119e25a, type: 2}
+    name: grandient_vertical_down
+  - sprite: {fileID: 21300000, guid: 9af9a4b9cda893b4b9d54a62155f48f9, type: 2}
+    name: grandient_vertical_up
+  - sprite: {fileID: 21300000, guid: 5c1890cd01465414f887765378056204, type: 2}
+    name: tab_offer_3
+  - sprite: {fileID: 21300000, guid: 92430006d308e8a4ba254c6cb256ba36, type: 2}
+    name: icon_bonus_carpentry
+  - sprite: {fileID: 21300000, guid: 4ee6f5ffe35b7884fbe7b34f1e5ee137, type: 2}
+    name: icon_bonus_cells
+  - sprite: {fileID: 21300000, guid: 43d3317c884ac3949afc805f2c78a513, type: 2}
+    name: icon_bonus_metalurgy
+  - sprite: {fileID: 21300000, guid: f9b9c0a1f07aed4499b6648021161cdd, type: 2}
+    name: icon_bonus_sewing
+  - sprite: {fileID: 21300000, guid: 66cf714d2298d93429fddbc12ee322dc, type: 2}
+    name: icon_bonus_vip
+  - sprite: {fileID: 21300000, guid: 84efb4355806f23419044014785667a7, type: 2}
+    name: icon_jailbreak
+  - sprite: {fileID: 21300000, guid: e4abe620b97455044ac4b54852d5f9eb, type: 2}
+    name: icon_range
+  - sprite: {fileID: 21300000, guid: e4c940f853c4871428df5c5643dae386, type: 2}
+    name: icon_stress_high
+  - sprite: {fileID: 21300000, guid: c0cd06387d37f9046bf7a40778846c22, type: 2}
+    name: icon_stress_low
+  - sprite: {fileID: 21300000, guid: 938a0ac2ba2e38a4f9023aad9f145ed3, type: 2}
+    name: icon_stress_medium
+  - sprite: {fileID: 21300000, guid: 2cefae936018180409e27c52b81822f1, type: 2}
+    name: icon_subsidy_general
+  - sprite: {fileID: 21300000, guid: 5b38d82a7f42d904e8714a130276cb53, type: 2}
+    name: icon_subsidy_high
+  - sprite: {fileID: 21300000, guid: efee1721e71fa7e408759ebe971d3d8c, type: 2}
+    name: icon_subsidy_low
+  - sprite: {fileID: 21300000, guid: 0c595aa4f50c21442af82e6f178550d5, type: 2}
+    name: icon_subsidy_medium
+  - sprite: {fileID: 21300000, guid: 7b1a82c5195d0c143aa3576b2d6a7f44, type: 2}
+    name: codi1gems
+  - sprite: {fileID: 21300000, guid: f87869a248664794a8bc998599cb9e0d, type: 2}
+    name: codi5gems
+  - sprite: {fileID: 21300000, guid: 3407763e59a5c3e4c9b241ac3368ffe6, type: 2}
+    name: codi10gems
+  - sprite: {fileID: 21300000, guid: 2e160eb9a1861e34ab0e207e26cde654, type: 2}
+    name: codi20gems
+  - sprite: {fileID: 21300000, guid: c756dcdce9a4f894797046f71510ab38, type: 2}
+    name: codi50gems
+  - sprite: {fileID: 21300000, guid: eaf60535f91495a4f9dbd16e34189b5c, type: 2}
+    name: codi100gems
+  - sprite: {fileID: 21300000, guid: fde80bd023767ad4db896e15fc5ea1d8, type: 2}
+    name: icon_alert
+  - sprite: {fileID: 21300000, guid: e234470e57271a040802c224a73d1972, type: 2}
+    name: icon_alert_2
+  - sprite: {fileID: 21300000, guid: 67929c997723d7f46a15eab21316c859, type: 2}
+    name: icon_alert_circle
+  - sprite: {fileID: 21300000, guid: 01fd78d18d244884899062935eb8c7fa, type: 2}
+    name: icon_angry
+  - sprite: {fileID: 21300000, guid: 28dd17a0fae0e4743ab29843e4e1f38e, type: 2}
+    name: icon_angry_border
+  - sprite: {fileID: 21300000, guid: 1767e29494ac60f45ac791699ca5167c, type: 2}
+    name: icon_arrow_swipe
+  - sprite: {fileID: 21300000, guid: 2223f7d31e521a64c864ace176a08a7d, type: 2}
+    name: icon_balance
+  - sprite: {fileID: 21300000, guid: 58f1deb52ec940b4e930dee7ad5ebc12, type: 2}
+    name: icon_build
+  - sprite: {fileID: 21300000, guid: fd975364c45aa684783056b478f87c92, type: 2}
+    name: icon_bus_1
+  - sprite: {fileID: 21300000, guid: bb2ee68f375a02c4aad96b59de85ddc3, type: 2}
+    name: icon_card_common
+  - sprite: {fileID: 21300000, guid: 1d761dfe7f1902e49a537a589c00d872, type: 2}
+    name: icon_card_epic
+  - sprite: {fileID: 21300000, guid: 9d20c4170e162414ebb7a55b605850ba, type: 2}
+    name: icon_cell
+  - sprite: {fileID: 21300000, guid: 85987f61ed113644ba5c5053cc3b7b63, type: 2}
+    name: icon_check_event_1
+  - sprite: {fileID: 21300000, guid: f98eb38b859e23143ba83acafbf7a551, type: 2}
+    name: icon_check_event_2
+  - sprite: {fileID: 21300000, guid: 373f91c3a2dd3e44983a3cd14caeb98c, type: 2}
+    name: icon_clock
+  - sprite: {fileID: 21300000, guid: fed765daced6edc4c8401c7304adf4de, type: 2}
+    name: icon_cloth
+  - sprite: {fileID: 21300000, guid: d2c3dc8a33c6d664bb8adf8f49a41bc4, type: 2}
+    name: icon_comfort
+  - sprite: {fileID: 21300000, guid: 88d8a79621b88bf459950fa3255ef66f, type: 2}
+    name: icon_completed
+  - sprite: {fileID: 21300000, guid: 47eda1174cfccf242bb9774fca0fd20c, type: 2}
+    name: icon_crown
+  - sprite: {fileID: 21300000, guid: 3e72c96b0ed2ca44fa01bd44808796c5, type: 2}
+    name: icon_energy
+  - sprite: {fileID: 21300000, guid: 0b3608026f0e8e147b5f022074114655, type: 2}
+    name: icon_eye
+  - sprite: {fileID: 21300000, guid: 6b3b3570bc498f84b8a947f8b5962e5a, type: 2}
+    name: icon_food
+  - sprite: {fileID: 21300000, guid: c7ba9e1c0f361ee47a8c56f9d5b4b7d9, type: 2}
+    name: icon_fun
+  - sprite: {fileID: 21300000, guid: 1702ff6a5888e774a8881b41219122be, type: 2}
+    name: icon_gems
+  - sprite: {fileID: 21300000, guid: aa17526da767d9d43825899dfb7863f8, type: 2}
+    name: icon_gems_outline
+  - sprite: {fileID: 21300000, guid: ee0baf3864d42024ea232412635636df, type: 2}
+    name: icon_glass
+  - sprite: {fileID: 21300000, guid: 1e7233f818bfe53468cc494e9ec5bc8b, type: 2}
+    name: icon_google_play
+  - sprite: {fileID: 21300000, guid: e189e2d090fc50d48a4fb04d8453c82c, type: 2}
+    name: icon_guard_damage
+  - sprite: {fileID: 21300000, guid: 53d7ef90d19acaf48ba18e0b70d47874, type: 2}
+    name: icon_guard_detection
+  - sprite: {fileID: 21300000, guid: d93323fb49263e840a8ffacc91a91eac, type: 2}
+    name: icon_guard_health
+  - sprite: {fileID: 21300000, guid: fe3d01d2461227d4592bd658d3fd8156, type: 2}
+    name: icon_guard_speed
+  - sprite: {fileID: 21300000, guid: 72cb60ac490e76a4886696926f444c49, type: 2}
+    name: icon_health
+  - sprite: {fileID: 21300000, guid: 23a3e7d8767ff8d45bf80b4889cb19a0, type: 2}
+    name: icon_hired_check
+  - sprite: {fileID: 21300000, guid: d76752398149aba46bffda0b8569f280, type: 2}
+    name: icon_hunger
+  - sprite: {fileID: 21300000, guid: e1098a3c6fd2ffa45b0c355dd378bec0, type: 2}
+    name: icon_hunger_2
+  - sprite: {fileID: 21300000, guid: 3259b64d6fc3b804992446ce6ce3386f, type: 2}
+    name: icon_hygiene
+  - sprite: {fileID: 21300000, guid: 7ee99f23a05060a4e872162a1fdbc5b1, type: 2}
+    name: icon_infinity
+  - sprite: {fileID: 21300000, guid: 6e3bdad10316287449e358a5965c51ad, type: 2}
+    name: icon_information
+  - sprite: {fileID: 21300000, guid: f85b1ccb6dff649419c45937e04a7992, type: 2}
+    name: icon_information_border
+  - sprite: {fileID: 21300000, guid: 032572ed8753ca343bb8cbf4b51dbd31, type: 2}
+    name: icon_management
+  - sprite: {fileID: 21300000, guid: da123a4b7c5cc364999603219c80339e, type: 2}
+    name: icon_management_employees
+  - sprite: {fileID: 21300000, guid: f068e12985b8b64458c6c3c85a267496, type: 2}
+    name: icon_money
+  - sprite: {fileID: 21300000, guid: b7221747903a8cd469a33dbf13016e37, type: 2}
+    name: icon_money_2
+  - sprite: {fileID: 21300000, guid: 7680786cf8882664fb7dda1d9292b946, type: 2}
+    name: icon_offer_x2
+  - sprite: {fileID: 21300000, guid: 1f7b4688db5091f40b2efeb377d31cc4, type: 2}
+    name: icon_plus
+  - sprite: {fileID: 21300000, guid: a9568d4547d939242b827c11dbfc5be7, type: 2}
+    name: icon_popup_bus
+  - sprite: {fileID: 21300000, guid: b70864b96e8c72742be4e16c0e8cc738, type: 2}
+    name: icon_popup_vip
+  - sprite: {fileID: 21300000, guid: f38abb89df2bac54c8e8711790a4ae81, type: 2}
+    name: icon_prisoner_isolation
+  - sprite: {fileID: 21300000, guid: cd95a9b5287051f47b5167d9d425012e, type: 2}
+    name: icon_prisoner_reformed_2
+  - sprite: {fileID: 21300000, guid: 966479dc6566f6e489cb26548cc2b3c8, type: 2}
+    name: icon_prisoner_reformed_3
+  - sprite: {fileID: 21300000, guid: d3b2b1a230d843b44a4564cd702d6dfc, type: 2}
+    name: icon_prisoner_special
+  - sprite: {fileID: 21300000, guid: 9b0d323f7463d3d44ba11ab953e9cab9, type: 2}
+    name: icon_purchase_aviable
+  - sprite: {fileID: 21300000, guid: 388570d4725645e459d0a2ef9ffc1bd5, type: 2}
+    name: icon_quest
+  - sprite: {fileID: 21300000, guid: a6fe63ee232ec494aa746afb520f6e3b, type: 2}
+    name: icon_riot
+  - sprite: {fileID: 21300000, guid: 2794e857c71b76744be0bc34306de04e, type: 2}
+    name: icon_security
+  - sprite: {fileID: 21300000, guid: 32eb57fc9b43a6949a9d8b5e86b4811e, type: 2}
+    name: icon_selected_skin
+  - sprite: {fileID: 21300000, guid: 5eb240a2b2aac4c4d8cd3bb00227a131, type: 2}
+    name: icon_services
+  - sprite: {fileID: 21300000, guid: 00eac280f9450b24b87c1fa60bc6fdd3, type: 2}
+    name: icon_settings
+  - sprite: {fileID: 21300000, guid: e5cb91ed1ddb53847aff34b640bfeb91, type: 2}
+    name: icon_shop
+  - sprite: {fileID: 21300000, guid: c5e97c32f910b9842bd4b37e380a9789, type: 2}
+    name: icon_square
+  - sprite: {fileID: 21300000, guid: 678b8b7faa8e1b54f8cc90fae75a17b0, type: 2}
+    name: icon_stats
+  - sprite: {fileID: 21300000, guid: c8a7e9ef6833d8246a06b3916802d913, type: 2}
+    name: icon_support
+  - sprite: {fileID: 21300000, guid: 5f0200026fe01b6498309d1b5fdb5de4, type: 2}
+    name: icon_upgrade_aviable
+  - sprite: {fileID: 21300000, guid: 1b1a4ffd86e061f41b77fd094710c323, type: 2}
+    name: icon_video
+  - sprite: {fileID: 21300000, guid: 47ca2bd2a0f553044a3bd54fd3d519e5, type: 2}
+    name: icon_vip
+  - sprite: {fileID: 21300000, guid: 555044000164d3542989cd9aef27d983, type: 2}
+    name: icon_water
+  - sprite: {fileID: 21300000, guid: 1d26b0765d041bf41b805f7d82c99b91, type: 2}
+    name: icon_white_square
+  - sprite: {fileID: 21300000, guid: 70f9e41578fd22f4e9e829900e5d81c0, type: 2}
+    name: icono_google_play
+  - sprite: {fileID: 21300000, guid: 1a30d1e62991a504589f6461c1b21a9c, type: 2}
+    name: sprite_portada_logo
+  - sprite: {fileID: 21300000, guid: b669e7f5ccd04034bbd3195759762c29, type: 2}
+    name: icon_advanced_gacha_reward
+  - sprite: {fileID: 21300000, guid: b4d6cf37ff67deb4d81229057df68760, type: 2}
+    name: icon_basic_gacha_reward
+  - sprite: {fileID: 21300000, guid: 751b24754e41e6f4292b053aaa971747, type: 2}
+    name: icon_competitive_event_gacha_reward
+  - sprite: {fileID: 21300000, guid: 5a5eb9fa31e567446bfe68d714e38343, type: 2}
+    name: icon_event_gacha_reward
+  - sprite: {fileID: 21300000, guid: 01244bbd73588dc4286567025cb60aec, type: 2}
+    name: icon_event_gacha_spin
+  - sprite: {fileID: 21300000, guid: ca9e9161c44a68e4582af7cf2e4489c5, type: 2}
+    name: icon_event_legendary_reward
+  - sprite: {fileID: 21300000, guid: 717edc2bf167d5f439828d39fd4ad025, type: 2}
+    name: icon_expert_gacha_reward
+  - sprite: {fileID: 21300000, guid: 1bc05836b984fe84d9512ceb865278bc, type: 2}
+    name: icon_frank
+  - sprite: {fileID: 21300000, guid: 6e4c840cc4c4bc54babec807397c4049, type: 2}
+    name: icon_girobot
+  - sprite: {fileID: 21300000, guid: 381db4dfbb0f9bb4eb45fbcd9c5949c5, type: 2}
+    name: icon_hunter
+  - sprite: {fileID: 21300000, guid: dff95a8560af71f4cae51d01021f8220, type: 2}
+    name: icon_joker
+  - sprite: {fileID: 21300000, guid: c4b75768d680e6245b8a68e01bc98ebe, type: 2}
+    name: icon_kingpon
+  - sprite: {fileID: 21300000, guid: bb34933950f7ece4bbbe4f776a7a05f0, type: 2}
+    name: icon_mason
+  - sprite: {fileID: 21300000, guid: 839420e66d4178c4eb4d205b8c301db0, type: 2}
+    name: icon_pedro
+  - sprite: {fileID: 21300000, guid: 7c3109e067eb32743a451d954d85aef4, type: 2}
+    name: icon_recruitment
+  - sprite: {fileID: 21300000, guid: e7c1aa021547fb149be4362c0c618842, type: 2}
+    name: icon_rider
+  - sprite: {fileID: 21300000, guid: 61e1f4b80ff826846a638f51640a1932, type: 2}
+    name: icon_skullking
+  - sprite: {fileID: 21300000, guid: e8e1135984c18324fbb8fead05ef0cd0, type: 2}
+    name: icon_tony
+  - sprite: {fileID: 21300000, guid: b7674fe2d66835c499ef6051ed8ce138, type: 2}
+    name: icon_waterjoe
+  - sprite: {fileID: 21300000, guid: a22acfdd4747cce43816ed6939b73c5d, type: 2}
+    name: sprite_advanced_gacha_spin_2
+  - sprite: {fileID: 21300000, guid: 03e76c7f3a3dde2459bf140a71e33bdd, type: 2}
+    name: sprite_assistant_manager
+  - sprite: {fileID: 21300000, guid: 0042eb9c07b139e4ca927fea4f66920c, type: 2}
+    name: sprite_basic_gacha_spin_2
+  - sprite: {fileID: 21300000, guid: 9f072cfab2204784cab85035c01b0227, type: 2}
+    name: sprite_bookkeeper
+  - sprite: {fileID: 21300000, guid: 4c2e2b557532bf542a857f7b91bb07bf, type: 2}
+    name: sprite_bus
+  - sprite: {fileID: 21300000, guid: 7c0bf42df5b5e784aa892e97eae2a9b9, type: 2}
+    name: sprite_competitive_event_basic_gacha_spin_2
+  - sprite: {fileID: 21300000, guid: 48f9636e5536dff49bb60d8094d255a9, type: 2}
+    name: sprite_director
+  - sprite: {fileID: 21300000, guid: 12a870885088e10479f666f1550221ac, type: 2}
+    name: sprite_dollar
+  - sprite: {fileID: 21300000, guid: 6ca075ad2672a0b47bad16920db52c42, type: 2}
+    name: sprite_dollars
+  - sprite: {fileID: 21300000, guid: d30e2cf9b7bdf1941a802583e7428a0a, type: 2}
+    name: sprite_epic_card_2
+  - sprite: {fileID: 21300000, guid: b0cf0edcd4cf4bc46ac84007fba4c853, type: 2}
+    name: sprite_epic_chest
+  - sprite: {fileID: 21300000, guid: 758123b4bb733f44abeda0b25df62200, type: 2}
+    name: sprite_expert_gacha_spin_2
+  - sprite: {fileID: 21300000, guid: e4bbf323cd50ae140a1593b4c2c4deee, type: 2}
+    name: sprite_fence
+  - sprite: {fileID: 21300000, guid: 5eb6a3caddefcc04a8866d33badca921, type: 2}
+    name: sprite_finance_expert
+  - sprite: {fileID: 21300000, guid: d1180c5c0778a394bb47fa03419f16ef, type: 2}
+    name: sprite_masterkey
+  - sprite: {fileID: 21300000, guid: 7d82bdaa4b150304aa8da44cb0a976bc, type: 2}
+    name: sprite_mayor_assistant
+  - sprite: {fileID: 21300000, guid: 43308cdc8da59664baa641298e968344, type: 2}
+    name: sprite_no_ads
+  - sprite: {fileID: 21300000, guid: 33f028ebe35763d458711622b3539dad, type: 2}
+    name: sprite_paper_1
+  - sprite: {fileID: 21300000, guid: 32f07f2e125499d40a2ae576c110df16, type: 2}
+    name: sprite_paper_2
+  - sprite: {fileID: 21300000, guid: 865d027bd4fc249408620105f1379c16, type: 2}
+    name: sprite_paper_3
+  - sprite: {fileID: 21300000, guid: 9c348b57fe076d44285c2fd3f0592f1e, type: 2}
+    name: sprite_paper_4
+  - sprite: {fileID: 21300000, guid: 7d95cca4e3764b147b8420aab9c05f86, type: 2}
+    name: sprite_prison_officer
+  - sprite: {fileID: 21300000, guid: 60eb77b782af9c149bb7b586b5046812, type: 2}
+    name: border_offer
+  - sprite: {fileID: 21300000, guid: 9ff0daf935580ec4b80be687f5df2d18, type: 2}
+    name: tab_alert
+  - sprite: {fileID: 21300000, guid: 468fd8562213556488f790f347db8de5, type: 2}
+    name: tab_briefcase_common
+  - sprite: {fileID: 21300000, guid: 8c772f456ec1b28408f1b424f79ce091, type: 2}
+    name: tab_briefcase_epic
+  - sprite: {fileID: 21300000, guid: 6168d0b7ca52f8f48ada7738d6ad349f, type: 2}
+    name: tab_briefcase_event
+  - sprite: {fileID: 21300000, guid: 1a824b37fe07e334cae711b66dadeb17, type: 2}
+    name: tab_briefcase_legendary
+  - sprite: {fileID: 21300000, guid: 9f4f75a24497a8547ba070eb334f0b39, type: 2}
+    name: tab_briefcase_legendary_A
+  - sprite: {fileID: 21300000, guid: ce2c7814c63f7534fae98c901e1cb3ef, type: 2}
+    name: tab_briefcase_legendary_S
+  - sprite: {fileID: 21300000, guid: 3df29ad1d06d48f4185a7d95d151d7c4, type: 2}
+    name: tab_briefcase_rare
+  - sprite: {fileID: 21300000, guid: 726776d9741b5dd41966478abd21db29, type: 2}
+    name: tab_button
+  - sprite: {fileID: 21300000, guid: 9ef4cec26e87a224da74501fdabbf09b, type: 2}
+    name: tab_carddescription_common
+  - sprite: {fileID: 21300000, guid: 5a42dccf2055d1f4a8946af4e9f923ba, type: 2}
+    name: tab_carddescription_epic
+  - sprite: {fileID: 21300000, guid: 0e9c6539906387943a6624043d0965b1, type: 2}
+    name: tab_carddescription_rare
+  - sprite: {fileID: 21300000, guid: 0fe72015212fa174aa92c3737f303b8c, type: 2}
+    name: tab_epic_chest_value
+  - sprite: {fileID: 21300000, guid: b46569eed5b4ff44ba864fce3e092762, type: 2}
+    name: tab_event_invasion
+  - sprite: {fileID: 21300000, guid: 0c541772bd3b48c4eba2b72d04caf58d, type: 2}
+    name: tab_extrasmall
+  - sprite: {fileID: 21300000, guid: b7f9403fcc75a4d44b824e40c1111abf, type: 2}
+    name: tab_golden_ticket
+  - sprite: {fileID: 21300000, guid: d6bc811447d73cb4cbc4181d1f8020d2, type: 2}
+    name: tab_half
+  - sprite: {fileID: 21300000, guid: f52f7105d89dec9488bbd98f86c1a0ca, type: 2}
+    name: tab_item
+  - sprite: {fileID: 21300000, guid: f9ff8fcbd2953bc4d9384ea8c880f45b, type: 2}
+    name: tab_item_resources
+  - sprite: {fileID: 21300000, guid: bf04e05da9b4b73469ee21d780f26d12, type: 2}
+    name: tab_main
+  - sprite: {fileID: 21300000, guid: 29a04b34d23a0ef43a7dd5030e76e2b8, type: 2}
+    name: tab_offer_4
+  - sprite: {fileID: 21300000, guid: 09d20bbc074f77b49a762485946bcea1, type: 2}
+    name: tab_offer_value
+  - sprite: {fileID: 21300000, guid: c222e2781651f2d4fb84e1ffd3aa292e, type: 2}
+    name: tab_offer_value_green
+  - sprite: {fileID: 21300000, guid: 40601dd7bd0ada64093bcd9475d14d35, type: 2}
+    name: icon_tab_shadow_bottom
+  - sprite: {fileID: 21300000, guid: 5ecc2a099830a354a98e23d4dfde2b12, type: 2}
+    name: tab_shop
+  - sprite: {fileID: 21300000, guid: 9fad44b4791113b4d9b7a76ac1a4d792, type: 2}
+    name: tab_skin_selected
+  - sprite: {fileID: 21300000, guid: e3c05c12b4cc850409d9facdd55a6c6f, type: 2}
+    name: tab_skin_unselected
+  - sprite: {fileID: 21300000, guid: f39507d266246024a9d992e304263949, type: 2}
+    name: tab_small
+  - sprite: {fileID: 21300000, guid: c940e9b156f797b4da15cfc897963f9d, type: 2}
+    name: tab_square_rounded_generic
+  - sprite: {fileID: 21300000, guid: 191108cdcbae70f4f8094d461c04a56d, type: 2}
+    name: tile_cross
+  - sprite: {fileID: 21300000, guid: e42549d5fb989d9458f311093fea1be1, type: 2}
+    name: tile_gem_3
+  - sprite: {fileID: 21300000, guid: 42a53abfcb02086478d9f2971576158d, type: 2}
+    name: icon_hand
+  - sprite: {fileID: 21300000, guid: 7187c38ff65dcb644b05fbb3aecc15da, type: 2}
+    name: carpentrytool_furni_5
+  - sprite: {fileID: 21300000, guid: 6e2853c252b1b0542bf965ee693e9a2f, type: 2}
+    name: metaltool_furni_0
+  - sprite: {fileID: 21300000, guid: 3eb7f9e43d091a7499bafacfa483a0f5, type: 2}
+    name: metaltool_furni_1
+  - sprite: {fileID: 21300000, guid: ef92d238c60c04b479614412501bf4fe, type: 2}
+    name: metaltool_furni_2
+  - sprite: {fileID: 21300000, guid: 786cabcb2186fcd478201343d6d4d42a, type: 2}
+    name: metaltool_furni_3
+  - sprite: {fileID: 21300000, guid: b90c874fbd84e8844a3465550f6685e2, type: 2}
+    name: metaltool_furni_4
+  - sprite: {fileID: 21300000, guid: f991429b699ecd04ca1bb4d1580a4f67, type: 2}
+    name: metaltool_furni_5
+  - sprite: {fileID: 21300000, guid: df69243c99345d24d9e859bfe3936cd7, type: 2}
+    name: sewingtool_furni_0
+  - sprite: {fileID: 21300000, guid: 7a89aa5bdc9a55849999e3ffdc935fea, type: 2}
+    name: sewingtool_furni_1
+  - sprite: {fileID: 21300000, guid: 82255bc9ff0378d41a352e16c5bfc282, type: 2}
+    name: sewingtool_furni_2
+  - sprite: {fileID: 21300000, guid: 98ee6841759e89f42b4ccd601035af9b, type: 2}
+    name: sewingtool_furni_3
+  - sprite: {fileID: 21300000, guid: 5ccd969da3ee8b141a723dec53ff054c, type: 2}
+    name: sewingtool_furni_4
+  - sprite: {fileID: 21300000, guid: ac514f8a69a5cbc4a85fafc1bb858309, type: 2}
+    name: sewingtool_furni_5
+  - sprite: {fileID: 21300000, guid: 0ee0c2f81b0f32448ac30278c4a182ab, type: 2}
+    name: shootingtool_furni_0
+  - sprite: {fileID: 21300000, guid: 2997e2e0e91485d48a7b03a34128d5c1, type: 2}
+    name: shootingtool_furni_1
+  - sprite: {fileID: 21300000, guid: d47b4fec4adaad746ab202bdf87a235a, type: 2}
+    name: shootingtool_furni_2
+  - sprite: {fileID: 21300000, guid: 5394f3d46ef79ef4caf993c41fe46f67, type: 2}
+    name: shootingtool_furni_3
+  - sprite: {fileID: 21300000, guid: 6f90f6a73e712cb4ea9a5f301db0d329, type: 2}
+    name: shootingtool_furni_4
+  - sprite: {fileID: 21300000, guid: 9a0911e3f4399c440871703144f9b106, type: 2}
+    name: shootingtool_furni_5
+  - sprite: {fileID: 21300000, guid: 8ad43ec7d805d014486feef6fd57bbca, type: 2}
+    name: ETCArea
