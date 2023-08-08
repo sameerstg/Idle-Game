@@ -15,10 +15,10 @@ public class PathManager : MonoBehaviour
         _instance = this;
     }
 
-    public void Set()
+    public void Set(bool bi = false)
     {
         Initialize();
-        waypointSystem.Set();
+        waypointSystem.Set(bi);
         placeManager.Set();
     }
     void Initialize()
@@ -175,6 +175,10 @@ public class PathManagerEditor : Editor
         if (GUILayout.Button("Set"))
         {
             pathManager.Set();
+        }
+        if (GUILayout.Button("Set and Make Bi"))
+        {
+            pathManager.Set(true);
         }
 
     }

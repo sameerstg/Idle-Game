@@ -22,6 +22,7 @@ public class WaypointSystem : MonoBehaviour
     {
         waypoints = GetComponentsInChildren<Waypoint>().ToList();
     }
+    
     public void Set(bool makeBi = false)
     {
         Initialize();
