@@ -7,9 +7,9 @@ using UnityEngine;
 public class Place : MonoBehaviour
 {
 
-    public List<Waypoint> points = new();
+    public List<Waypoint> connectedWaypoints = new();
     public List<RelaxWaypoint> relaxWaypoints;
-    //[Header("Dont assign")]
+    [Header("Dont assign")]
     public List<RelaxPoint> relaxPoints = new();
 
     public void Set()
