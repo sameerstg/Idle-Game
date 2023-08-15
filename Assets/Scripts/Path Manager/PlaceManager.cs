@@ -9,7 +9,11 @@ public class PlaceManager : MonoBehaviour
     
     public void Set()
     {
-        places = GetComponentsInChildren<Place>().ToList();
+        places = ((Place[])FindObjectsOfType(typeof(Place))).ToList();
+        foreach (var item in places)
+        {
+            item.Set();
+        }
     }
     
 }

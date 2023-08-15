@@ -9,13 +9,25 @@ public class Place : MonoBehaviour
 
     public List<Waypoint> points = new();
     public List<RelaxWaypoint> relaxWaypoints;
-    [Header("Dont assign")]
+    //[Header("Dont assign")]
     public List<RelaxPoint> relaxPoints = new();
 
-    private void Awake()
+    public void Set()
     {
-        relaxWaypoints = GetComponentsInChildren<RelaxWaypoint>().ToList();
-        relaxPoints = GetComponentsInChildren<RelaxPoint>().ToList();
+        //relaxWaypoints = GetComponentsInChildren<RelaxWaypoint>().ToList();
+        relaxPoints.Clear();
+        foreach (var relaxWaypoint in relaxWaypoints)
+        {
+
+            foreach (var relaxPoint in relaxWaypoint.relaxpoints)
+            {
+                if (!relaxPoints.Contains(relaxPoint))
+                {
+                    relaxPoints.Add(relaxPoint);
+                }
+            }
+        }
+        
     }
     public bool HaveEmptyRelaxPoint()
     {

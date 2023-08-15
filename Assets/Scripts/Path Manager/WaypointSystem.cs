@@ -12,15 +12,16 @@ public class WaypointSystem : MonoBehaviour
     public LineRenderer line;
     public GameObject lineParrent;
     
-    private void Awake()
-    {
-        Set();
-    }
+    //private void Awake()
+    //{
+    //    Set();
+    //}
 
 
     public void Initialize()
     {
-        waypoints = GetComponentsInChildren<Waypoint>().ToList();
+        waypoints = ((Waypoint[])FindObjectsOfType(typeof(Waypoint))).ToList();
+        
     }
     
     public void Set(bool makeBi = false)
