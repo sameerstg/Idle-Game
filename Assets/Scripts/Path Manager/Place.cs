@@ -137,10 +137,7 @@ public class Place : MonoBehaviour
         return path;
     }
 }
-public enum PlaceType
-{
-    Entertainment
-}
+
 public enum PlaceName
 {
     OuterEntrance,Entrance,Cell,Entertainment,FoodRoom,Bathroom,FoodPrepartaionRoom,ElectricSupply

@@ -11,7 +11,6 @@ public class Npc : MonoBehaviour
     public Waypoint currentWaypoint, togoWaypoint;
     public Place togoPlace;
     public List<Waypoint> togoWaypoints = new();
-    public bool useTogoWaypoint;
 
     public List<Transform> transformsTogo =new();
     public Transform currentTransform;
@@ -24,27 +23,15 @@ public class Npc : MonoBehaviour
     }
     public void Move(Place placeToGo)
     {
-        
-        togoPlace = placeToGo; 
-            togoWaypoints = PathManager._instance.GetPath(currentWaypoint, placeToGo);
-
-
-      
+        togoPlace = placeToGo;
+        togoWaypoints = PathManager._instance.GetPath(currentWaypoint, placeToGo);
         StartCoroutine(MoveByOneWaypoints());
     }
     public void Move()
     {
-        if (useTogoWaypoint)
-        {
-            togoWaypoints = PathManager._instance.GetPath(currentWaypoint, togoWaypoint);
-
-        }
-        else
-        {
             togoWaypoints = PathManager._instance.GetPath(currentWaypoint, togoPlace);
             
 
-        }
         StartCoroutine(MoveByOneWaypoints());
     }
     public void MoveToRelaxPoint()
@@ -58,6 +45,7 @@ public class Npc : MonoBehaviour
                 StartCoroutine(MoveByOneTransforms());
             }
         }
+        statemachine.SwitchState(new IdleState(this));
     }
     public IEnumerator MoveByOneWaypoints()
     {
@@ -103,6 +91,7 @@ public class Npc : MonoBehaviour
             }
             transformsTogo.Clear();
         }
+        statemachine.currentState.Exit();
 
     }
     internal void MoveRelax()
@@ -131,8 +120,7 @@ public class NpcEditor : Editor {
 
 
 
-    string[] waypoints;
-        int waypointIndex = 0;
+    
     string[] places;
     int placeIndex = 0;
     public override void OnInspectorGUI()
@@ -140,44 +128,35 @@ public class NpcEditor : Editor {
         DrawDefaultInspector();
      
 
-        if ( Application.isPlaying)
-        {
+        //if ( Application.isPlaying)
+        //{
            
-            Npc npc = (Npc)target;
-            if (npc.useTogoWaypoint)
-            {
-                waypoints = PathManager._instance.waypointSystem.waypoints.Select(x => x.name).ToArray();
-                waypointIndex = EditorGUILayout.Popup(waypointIndex, waypoints);
-                npc.togoWaypoint = PathManager._instance.waypointSystem.waypoints[waypointIndex];
+        //    Npc npc = (Npc)target;
+            
+        //        places = PathManager._instance.placeManager.places.Select(x => x.name).ToArray();
 
-            }
+        //        placeIndex = EditorGUILayout.Popup(placeIndex, places);
+        //        npc.togoPlace = PathManager._instance.placeManager.places[placeIndex];
 
-            else{
-                places = PathManager._instance.placeManager.places.Select(x => x.name).ToArray();
 
-                placeIndex = EditorGUILayout.Popup(placeIndex, places);
-                npc.togoPlace = PathManager._instance.placeManager.places[placeIndex];
-
-            }
-
-            EditorUtility.SetDirty(target);
-            if (GUILayout.Button("Move"))
-            {
+        //    EditorUtility.SetDirty(target);
+        //    if (GUILayout.Button("Move"))
+        //    {
                 
 
               
-                npc.Move();
-            }
+        //        npc.Move();
+        //    }
 
-            //if (GUILayout.Button("Go Relax"))
-            //{
-            //    npc.MoveRelax();
-            //}
-            //if (GUILayout.Button(" Relax To Place"))
-            //{
-            //    npc.RelaxToPlace();
-            //}
-        }
+        //    //if (GUILayout.Button("Go Relax"))
+        //    //{
+        //    //    npc.MoveRelax();
+        //    //}
+        //    //if (GUILayout.Button(" Relax To Place"))
+        //    //{
+        //    //    npc.RelaxToPlace();
+        //    //}
+        //}
 
 
 

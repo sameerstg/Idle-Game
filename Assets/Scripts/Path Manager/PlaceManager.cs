@@ -12,6 +12,9 @@ public class PlaceManager : MonoBehaviour
     {
         places.Clear();
         places = ((Place[])FindObjectsByType(typeof(Place),FindObjectsSortMode.None)).ToList();
+
+        places = places.OrderBy(x => x.name).ToList();
+        
         if (parrent != null)
         {
             DestroyImmediate(parrent);

@@ -26,8 +26,16 @@ public class PathManager : MonoBehaviour
         waypointSystem = GetComponentInChildren<WaypointSystem>();
         placeManager = GetComponentInChildren<PlaceManager>();
     }
+   
+    public Place GetPlace(PlaceName placeName)
+    {
+        return  placeManager.places.Find(x => x.placeName == placeName && x.HaveEmptyRelaxPoint()); 
+        
+        
+    }
     public List<Waypoint> GetPath(Waypoint _currentWaypoint, Place place)
     {
+        
         Waypoint togoWaypoint = place.connectedWaypoints.OrderBy(x => Vector3.Distance(x.transform.position, _currentWaypoint.transform.position)).First();
         if (_currentWaypoint == togoWaypoint)
         {
@@ -89,7 +97,7 @@ public class PathManager : MonoBehaviour
         }
         ans.Add(index.Item1);
         ans.Reverse();
-        Debug.Log(ans.Count);
+        //Debug.Log(ans.Count);
         return ans;
 
 

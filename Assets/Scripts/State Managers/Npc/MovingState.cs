@@ -14,7 +14,6 @@ public class MovingState : State
     {
         base.Enter();
         npc.Move(placeToGo);
-        
     }
 
     

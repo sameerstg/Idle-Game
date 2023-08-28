@@ -6,10 +6,14 @@ public class Statemachine
     public Statemachine(Npc npc)
     {
         this.npc = npc;
+        SwitchState(new IdleState(npc));
     }
     public void SwitchState(State state)
     {
-        currentState.Exit();
+        if (currentState!=null)
+        {
+            currentState.Exit();
+        }
         currentState = state;
         currentState.Enter();
     }
