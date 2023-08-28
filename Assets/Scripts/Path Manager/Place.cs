@@ -7,6 +7,8 @@ using UnityEngine;
 public class Place : MonoBehaviour
 {
     public PlaceName placeName;
+
+    public RelaxPointType RelaxPointType;
     public List<Waypoint> connectedWaypoints = new();
     public List<RelaxWaypoint> relaxWaypoints;
     [Header("Dont assign")]
@@ -33,7 +35,13 @@ public class Place : MonoBehaviour
     {
         return relaxPoints.Exists(x => x.equipedNpc == null);
     }
-    public Tuple<List<Transform>, RelaxWaypoint> GetPathRelaxPoint()
+    public List<RelaxPoint> GetPathToWorkRelaxPoint()
+    {
+        var rev = relaxPoints.ToList();
+        rev.Reverse();
+        return rev;
+    }
+    public Tuple<List<Transform>, RelaxWaypoint> GetPathToRelaxPoint()
     {
         List<Transform> path = new();
         if (relaxWaypoints == null || relaxWaypoints.Count==0)
