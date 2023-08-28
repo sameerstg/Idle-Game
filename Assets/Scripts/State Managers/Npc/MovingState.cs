@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class MovingState : State
 {
+    Place placeToGo;
+    public MovingState(Npc npc,Place placeToGo) : base(npc)
+    {
+        this.placeToGo = placeToGo;
+    }
+
     public override void Enter()
     {
-        throw new System.NotImplementedException();
+        base.Enter();
+        npc.Move(placeToGo);
+        
     }
 
-    public override void Exit()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
-    public override void Update()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 }

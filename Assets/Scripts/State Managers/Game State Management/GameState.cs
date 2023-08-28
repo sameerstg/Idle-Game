@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class GameState : State
+public class GameState 
 {
     public string name;
     public float timeFromStart;
@@ -18,16 +18,14 @@ public class GameState : State
     public float periodOfState;
     private OnStateComplete onStateComplete;
 
-    public override void Enter()
+    public void Enter()
     {
         timeFromStart =0;
     }
 
-    public override void Exit()
-    {
-    }
+   
 
-    public override void Update()
+    public  void Update()
     {
         timeFromStart += Time.deltaTime;
         if (timeFromStart>periodOfState)

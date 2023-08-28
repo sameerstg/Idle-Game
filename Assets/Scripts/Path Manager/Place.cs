@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class Place : MonoBehaviour
 {
-
+    public PlaceName placeName;
     public List<Waypoint> connectedWaypoints = new();
     public List<RelaxWaypoint> relaxWaypoints;
     [Header("Dont assign")]
     public List<RelaxPoint> relaxPoints = new();
-
+    
     public void Set()
     {
         //relaxWaypoints = GetComponentsInChildren<RelaxWaypoint>().ToList();
@@ -136,4 +136,12 @@ public class Place : MonoBehaviour
         
         return path;
     }
+}
+public enum PlaceType
+{
+    Entertainment
+}
+public enum PlaceName
+{
+    OuterEntrance,Entrance,Cell,Entertainment,FoodRoom,Bathroom,FoodPrepartaionRoom,ElectricSupply
 }

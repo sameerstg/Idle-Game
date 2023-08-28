@@ -16,7 +16,22 @@ public class Npc : MonoBehaviour
     public List<Transform> transformsTogo =new();
     public Transform currentTransform;
     public RelaxWaypoint relaxWaypoint;
-    
+
+    public Statemachine statemachine;
+    private void Awake()
+    {
+        statemachine = new(this);
+    }
+    public void Move(Place placeToGo)
+    {
+        
+        togoPlace = placeToGo; 
+            togoWaypoints = PathManager._instance.GetPath(currentWaypoint, placeToGo);
+
+
+      
+        StartCoroutine(MoveByOneWaypoints());
+    }
     public void Move()
     {
         if (useTogoWaypoint)

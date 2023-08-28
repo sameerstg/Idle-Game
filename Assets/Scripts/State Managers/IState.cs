@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class State
+public class State
 {
-    public abstract void Enter();
-    public abstract void Update();
-    public abstract void Exit();
+    internal Npc npc;
+
+    public State(Npc npc)
+    {
+        this.npc = npc;
+    }
+    public virtual void Enter(){}
+
+
+    public virtual void Exit(){}
 
 }
+
