@@ -8,13 +8,13 @@ using UnityEngine;
 public class Npc : MonoBehaviour
 {
     public float walkSpeed,runSpeed;
-    public Waypoint currentWaypoint, togoWaypoint;
+    public Waypoint currentWaypoint;
     public Place togoPlace;
+    public RelaxWaypoint relaxWaypoint;
+    public Transform currentTransform;
     public List<Waypoint> togoWaypoints = new();
 
     public List<Transform> transformsTogo =new();
-    public Transform currentTransform;
-    public RelaxWaypoint relaxWaypoint;
 
     public Statemachine statemachine;
     private void Awake()
@@ -27,13 +27,7 @@ public class Npc : MonoBehaviour
         togoWaypoints = PathManager._instance.GetPath(currentWaypoint, placeToGo);
         StartCoroutine(MoveByOneWaypoints());
     }
-    public void Move()
-    {
-            togoWaypoints = PathManager._instance.GetPath(currentWaypoint, togoPlace);
-            
 
-        StartCoroutine(MoveByOneWaypoints());
-    }
     public void MoveToRelaxPoint()
     {
         if (togoPlace != null && togoPlace.HaveEmptyRelaxPoint())
@@ -94,26 +88,7 @@ public class Npc : MonoBehaviour
         statemachine.currentState.Exit();
 
     }
-    internal void MoveRelax()
-    {
-        var relaxPath = togoPlace.GetPathRelaxPoint();
-        if (relaxPath == null||relaxPath.Item1 == null)
-        {
-            return;
-        }
-        transformsTogo = relaxPath.Item1;
-        relaxWaypoint = relaxPath.Item2;
-        StartCoroutine(MoveByOneTransforms());
-    }
-    internal void RelaxToPlace()
-    {
-        transformsTogo = togoPlace.GetPathRelaxPoint(relaxWaypoint);
-        if (transformsTogo == null)
-        {
-            return;
-        }
-        StartCoroutine(MoveByOneTransforms());
-    }
+  
 }
 [CustomEditor(typeof(Npc))]
 public class NpcEditor : Editor {
