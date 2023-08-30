@@ -45,10 +45,15 @@ public class Npc : MonoBehaviour
             else if (togoPlace.RelaxPointType == RelaxPointType.work)
             {
                 var pathWithRelaxWaypoint = togoPlace.GetPathToWorkRelaxPoint();
+                transformsTogo = pathWithRelaxWaypoint.Select(x=>x.transform).ToList();
+                StartCoroutine(MoveByTransforms(true)) ;
             }
-            
+
         }
-        statemachine.SwitchState(new IdleState(this));
+        else
+        {
+            statemachine.SwitchState(new IdleState(this));
+        }
     }
     public IEnumerator MoveByWaypoints()
     {
@@ -74,7 +79,7 @@ public class Npc : MonoBehaviour
 
     }
 
-    public IEnumerator MoveByTransforms()
+    public IEnumerator MoveByTransforms(bool workPlace = false)
     {
         if (transformsTogo != null)
         {
@@ -95,7 +100,15 @@ public class Npc : MonoBehaviour
             }
             transformsTogo.Clear();
         }
-        currentTransform.gameObject.GetComponent<RelaxPoint>().DoWork(this);
+        if (workPlace)
+        {
+
+            currentTransform.gameObject.GetComponent<RelaxPoint>().DoWork(this);
+        }
+        else
+        {
+            statemachine.SwitchState(new IdleState(this));
+        }
 
     }
     public IEnumerator MoveByRelaxPoint(List<RelaxPoint> relaxPoints)
@@ -133,51 +146,51 @@ public class Npc : MonoBehaviour
 
     }
 }
-[CustomEditor(typeof(Npc))]
-public class NpcEditor : Editor {
+//[CustomEditor(typeof(Npc))]
+//public class NpcEditor : Editor {
 
 
 
     
-    string[] places;
-    int placeIndex = 0;
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
+//    string[] places;
+//    int placeIndex = 0;
+//    public override void OnInspectorGUI()
+//    {
+//        DrawDefaultInspector();
      
 
-        //if ( Application.isPlaying)
-        //{
+//        //if ( Application.isPlaying)
+//        //{
            
-        //    Npc npc = (Npc)target;
+//        //    Npc npc = (Npc)target;
             
-        //        places = PathManager._instance.placeManager.places.Select(x => x.name).ToArray();
+//        //        places = PathManager._instance.placeManager.places.Select(x => x.name).ToArray();
 
-        //        placeIndex = EditorGUILayout.Popup(placeIndex, places);
-        //        npc.togoPlace = PathManager._instance.placeManager.places[placeIndex];
+//        //        placeIndex = EditorGUILayout.Popup(placeIndex, places);
+//        //        npc.togoPlace = PathManager._instance.placeManager.places[placeIndex];
 
 
-        //    EditorUtility.SetDirty(target);
-        //    if (GUILayout.Button("Move"))
-        //    {
+//        //    EditorUtility.SetDirty(target);
+//        //    if (GUILayout.Button("Move"))
+//        //    {
                 
 
               
-        //        npc.Move();
-        //    }
+//        //        npc.Move();
+//        //    }
 
-        //    //if (GUILayout.Button("Go Relax"))
-        //    //{
-        //    //    npc.MoveRelax();
-        //    //}
-        //    //if (GUILayout.Button(" Relax To Place"))
-        //    //{
-        //    //    npc.RelaxToPlace();
-        //    //}
-        //}
-
-
+//        //    //if (GUILayout.Button("Go Relax"))
+//        //    //{
+//        //    //    npc.MoveRelax();
+//        //    //}
+//        //    //if (GUILayout.Button(" Relax To Place"))
+//        //    //{
+//        //    //    npc.RelaxToPlace();
+//        //    //}
+//        //}
 
 
-    }
-}
+
+
+//    }
+//}

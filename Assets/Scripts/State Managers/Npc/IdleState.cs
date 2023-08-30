@@ -8,9 +8,8 @@ public class IdleState : State
 
     public override  void Enter()
     {
-        Debug.Log("Idle state");
+        base.Enter();
         Place placeToGo = null;
-        Debug.Log(npc.togoPlace.placeName);
         switch (npc.togoPlace.placeName)
         {
             case PlaceName.OuterEntrance:
@@ -36,17 +35,12 @@ public class IdleState : State
         }
         if (placeToGo != null)
         {
-            npc.Move(placeToGo);
+            Debug.Log($"going to place {placeToGo}");
+            npc.statemachine.SwitchState(new MovingState(npc, placeToGo));
         }
         else
         {
             Debug.Log("place empty");
         }
-    }
-    public override void Exit()
-    {
-       
-    }
-
-  
+    }  
 }

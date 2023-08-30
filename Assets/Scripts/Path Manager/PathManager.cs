@@ -100,7 +100,6 @@ public class PathManager : MonoBehaviour
         }
         ans.Add(index.Item1);
         ans.Reverse();
-        Debug.Log(ans.Count);
         return ans;
 
 

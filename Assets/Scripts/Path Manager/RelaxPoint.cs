@@ -9,13 +9,14 @@ public class RelaxPoint : MonoBehaviour
     public virtual void DoWork(Npc npc)
     {
         equipedNpc = npc;
-        npc.statemachine.SwitchState(new WaitState(npc));
+        //npc.statemachine.SwitchState(new WaitState(npc));
 
     }
     public IEnumerator Wait()
     {
+
         yield return new WaitForSeconds(time);
-        equipedNpc.statemachine.SwitchState(new IdleState(equipedNpc));
+        //equipedNpc.statemachine.SwitchState(new IdleState(equipedNpc));
     } 
     
 }
