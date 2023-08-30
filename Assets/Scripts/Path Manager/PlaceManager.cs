@@ -21,13 +21,13 @@ public class PlaceManager : MonoBehaviour
             parrent = null;
         }
         parrent = new GameObject("Relax Lines");
-            List<RelaxWaypoint> visited=new(), tobeVisited = new();
+            List<Point> visited=new(), tobeVisited = new();
         foreach (var place in places)
         {
             place.Set();
 
 
-            foreach (var relaxWaypoint in place.relaxWaypoints)
+            foreach (var relaxWaypoint in place.pointConnection.connectedPoints)
             {
                 if (!tobeVisited.Contains(relaxWaypoint))
                 {
@@ -35,21 +35,20 @@ public class PlaceManager : MonoBehaviour
                 }
             }
         }
-        do
-        {
+        
+        while (tobeVisited.Count > 0){
             var i = tobeVisited[0];
             tobeVisited.Remove(i);
             if (!visited.Contains(i))
             {
                 visited.Add(i);
-                tobeVisited.AddRange(i.connectedRelaxWaypoints);
-                foreach (var item in i.relaxpoints)
+                tobeVisited.AddRange(i.pointConnection.connectedPoints);
+                foreach (var item in i.pointConnection.relaxPoints)
                 {
-                    Instantiate(line, parrent.transform).SetPositions(new Vector3[] { i.transform.position,item.transform.position});
+                    Instantiate(line, parrent.transform).SetPositions(new Vector3[] { i.transform.position, item.transform.position });
                 }
             }
-            
-        } while (tobeVisited.Count>0);
+        }
 
     }
     

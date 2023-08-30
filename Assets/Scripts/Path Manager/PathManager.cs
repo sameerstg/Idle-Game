@@ -29,15 +29,16 @@ public class PathManager : MonoBehaviour
    
     public Place GetPlace(PlaceName placeName)
     {
+        return  placeManager.places.Find(x => x.placeName == placeName ); 
         return  placeManager.places.Find(x => x.placeName == placeName && x.HaveEmptyRelaxPoint()); 
     }
-    public List<Waypoint> GetPath(Waypoint _currentWaypoint, Place place)
+    public List<Point> GetPath(Point _currentWaypoint, Place place)
     {
         
-        Waypoint togoWaypoint = place.connectedWaypoints.OrderBy(x => Vector3.Distance(x.transform.position, _currentWaypoint.transform.position)).First();
+        Point togoWaypoint = place.pointConnection.connectedPoints.OrderBy(x => Vector3.Distance(x.transform.position, _currentWaypoint.transform.position)).First();
         return GetPath(_currentWaypoint, togoWaypoint);
     }
-    public List<Waypoint> GetPath(Waypoint _currentWaypoint, Waypoint togoWaypoint)
+    public List<Point> GetPath(Point _currentWaypoint, Point togoWaypoint)
     {
         if (_currentWaypoint == togoWaypoint)
         {
@@ -54,19 +55,19 @@ public class PathManager : MonoBehaviour
             Debug.LogError("current waypoint is not in global list");
             return null;
         }
-        if (_currentWaypoint.connectedWaypoints.Count == 0)
+        if (_currentWaypoint.pointConnection.connectedPoints.Count == 0)
         {
             Debug.LogError("current waypoint is not connected with any waypoint");
 
             return null;
         }
-        if (_currentWaypoint.connectedWaypoints.Contains(togoWaypoint))
+        if (_currentWaypoint.pointConnection.connectedPoints.Contains(togoWaypoint))
         {
-            return new List<Waypoint> { _currentWaypoint, togoWaypoint };
+            return new List<Point> { _currentWaypoint, togoWaypoint };
         }
 
 
-        List<Tuple<Waypoint, Waypoint>> tobeVisitedWithParrent = new() { new Tuple<Waypoint, Waypoint>(_currentWaypoint, null) }, visited = new() { };
+        List<Tuple<Point, Point>> tobeVisitedWithParrent = new() { new Tuple<Point, Point>(_currentWaypoint, null) }, visited = new() { };
         while (tobeVisitedWithParrent.Count > 0)
         {
             var i = tobeVisitedWithParrent[0];
@@ -76,17 +77,17 @@ public class PathManager : MonoBehaviour
             {
                 break;
             }
-            foreach (var item in i.Item1.connectedWaypoints)
+            foreach (var item in i.Item1.pointConnection.connectedPoints)
             {
                 if (!visited.Exists(x => x.Item1 == item))
                 {
-                    tobeVisitedWithParrent.Add(new Tuple<Waypoint, Waypoint>(item, i.Item1));
+                    tobeVisitedWithParrent.Add(new Tuple<Point, Point>(item, i.Item1));
                 }
             }
 
         }
        
-        List<Waypoint> ans = new();
+        List<Point> ans = new();
         var index = visited[^1];
         if (index.Item1 != togoWaypoint)
         {
