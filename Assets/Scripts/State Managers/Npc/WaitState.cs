@@ -12,6 +12,5 @@ public class WaitState : State
     {
         base.Enter();
 
-        Debug.Log("waiting state");
     }
 }

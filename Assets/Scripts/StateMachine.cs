@@ -16,7 +16,6 @@ public class Statemachine
     public void SwitchState(State state )
     {
         
-        Debug.Log(state);
         
         if (currentState!=null)
         {
@@ -25,7 +24,6 @@ public class Statemachine
             currentState = null;
         }
         currentState = state;
-        Debug.Log(currentState);
 
         currentStateName = state.GetType().Name;
         Debug.Log(currentStateName);

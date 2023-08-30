@@ -5,18 +5,22 @@ using UnityEngine;
 public class RelaxPoint : MonoBehaviour
 {
     public Npc equipedNpc;
-    public float time;
+    public float waitTime;
     public virtual void DoWork(Npc npc)
     {
         equipedNpc = npc;
-        //npc.statemachine.SwitchState(new WaitState(npc));
+        npc.statemachine.SwitchState(new WaitState(npc));
+        StartCoroutine(Wait());
 
     }
     public IEnumerator Wait()
     {
 
-        yield return new WaitForSeconds(time);
-        //equipedNpc.statemachine.SwitchState(new IdleState(equipedNpc));
+        Debug.Log($"waiting time = {waitTime}");
+        yield return new WaitForSeconds(waitTime);
+        equipedNpc.statemachine.SwitchState(new IdleState(equipedNpc));
+        equipedNpc = null; 
+
     } 
     
 }

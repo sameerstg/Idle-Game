@@ -11,6 +11,7 @@ public class Place : MonoBehaviour
     public RelaxPointType RelaxPointType;
     public List<Waypoint> connectedWaypoints = new();
     public List<RelaxWaypoint> relaxWaypoints;
+    public float relaxpointWaitTime;
     [Header("Dont assign")]
     public List<RelaxPoint> relaxPoints = new();
     
@@ -25,6 +26,7 @@ public class Place : MonoBehaviour
             {
                 if (!relaxPoints.Contains(relaxPoint))
                 {
+                    relaxPoint.waitTime = relaxpointWaitTime;
                     relaxPoints.Add(relaxPoint);
                 }
             }
@@ -149,4 +151,8 @@ public class Place : MonoBehaviour
 public enum PlaceName
 {
     OuterEntrance,Entrance,Cell,Entertainment,FoodRoom,Bathroom,FoodPrepartaionRoom,ElectricSupply
+}
+public enum DestinationType
+{
+    none,place,relaxPoint,workPoint,wayPoint
 }
