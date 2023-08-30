@@ -16,7 +16,7 @@ public class Npc : MonoBehaviour
     public List<Transform> transformsTogo =new();
 
     public Statemachine statemachine;
-    public DestinationType destinationType;
+    public PositionType destinationType,positionType;
     private void Awake()
     {
         statemachine = new(this);
@@ -25,7 +25,7 @@ public class Npc : MonoBehaviour
     {
         togoPlace = placeToGo;
         transformsTogo = PathManager._instance.GetPath(currentTransform.GetComponent<Waypoint>(), placeToGo).Select(x=>x.transform).ToList();
-        destinationType = DestinationType.place;
+        destinationType = PositionType.place;
         StartCoroutine(MoveByTransforms());
     }
 
@@ -40,14 +40,14 @@ public class Npc : MonoBehaviour
                 var pathWithRelaxWaypoint = togoPlace.GetPathToRelaxPoint();
                 if (pathWithRelaxWaypoint.Item2 != null)
                 {
-                    destinationType = DestinationType.relaxPoint;
+                    destinationType = PositionType.relaxPoint;
                     transformsTogo = pathWithRelaxWaypoint.Item1;
                     StartCoroutine(MoveByTransforms());
                 }
             }
             else if (togoPlace.RelaxPointType == RelaxPointType.work)
             {
-                destinationType = DestinationType.workPoint;
+                destinationType = PositionType.workPoint;
 
                 var pathWithRelaxWaypoint = togoPlace.GetPathToWorkRelaxPoint();
                 transformsTogo = pathWithRelaxWaypoint.Select(x => x.transform).ToList();
@@ -77,14 +77,16 @@ public class Npc : MonoBehaviour
                 }
 
 
-                if (destinationType == DestinationType.place || destinationType == DestinationType.wayPoint)
+                if (destinationType == PositionType.place || destinationType == PositionType.wayPoint)
                 {
-
                     currentTransform = transformsTogo[0];
+                    positionType = PositionType.wayPoint;
                 }
                 else
                 {
                     currenRelaxWaypoint = transformsTogo[0];
+                    positionType = PositionType.relaxPoint;
+
                 }
 
                 transformsTogo.RemoveAt(0);
@@ -92,17 +94,24 @@ public class Npc : MonoBehaviour
             }
             transformsTogo.Clear();
         }
-        if (destinationType == DestinationType.place)
+            
+
+        if (destinationType == PositionType.place)
         {
-            destinationType = DestinationType.none;
+            destinationType = PositionType.none;
+            positionType = destinationType;
             MoveToRelaxPoint();
         }
-        else if (destinationType == DestinationType.workPoint || destinationType == DestinationType.relaxPoint)
+        else if (destinationType == PositionType.workPoint || destinationType == PositionType.relaxPoint)
         {
+            destinationType = PositionType.none;
+            positionType = destinationType;
             currenRelaxWaypoint.GetComponent<RelaxPoint>().DoWork(this);
         }
-       
-       
+      
+
+
+
         //if (workPlace)
         //{
 
@@ -138,10 +147,10 @@ public class Npc : MonoBehaviour
     //            {
     //                relaxPoints[0].DoWork(this);
     //            }
-                
+
     //            currentTransform = relaxPoints[0].transform;
     //            relaxPoints.RemoveAt(0);
-                
+
     //        }
     //        relaxPoints.Clear();
     //    }

@@ -152,7 +152,7 @@ public enum PlaceName
 {
     OuterEntrance,Entrance,Cell,Entertainment,FoodRoom,Bathroom,FoodPrepartaionRoom,ElectricSupply
 }
-public enum DestinationType
+public enum PositionType
 {
     none,place,relaxPoint,workPoint,wayPoint
 }
