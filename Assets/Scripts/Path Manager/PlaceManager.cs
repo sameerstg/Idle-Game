@@ -14,42 +14,48 @@ public class PlaceManager : MonoBehaviour
         places = ((Place[])FindObjectsByType(typeof(Place),FindObjectsSortMode.None)).ToList();
 
         places = places.OrderBy(x => x.name).ToList();
-        
+        foreach (var place in places)
+        {
+            place.Set();
+        }
+        Visualize(); 
+    }
+    void Visualize()
+    {
         if (parrent != null)
         {
             DestroyImmediate(parrent);
             parrent = null;
         }
         parrent = new GameObject("Relax Lines");
-            List<Point> visited=new(), tobeVisited = new();
+        List<Point> visited = new(), tobeVisited = new();
         foreach (var place in places)
         {
-            place.Set();
-
-
-            foreach (var relaxWaypoint in place.pointConnection.connectedPoints)
-            {
-                if (!tobeVisited.Contains(relaxWaypoint))
-                {
-                    tobeVisited.Add(relaxWaypoint);
-                }
-            }
+            //foreach (var relax in place.pointConnection.relaxPoints)
+            //{
+            //    if (!tobeVisited.Contains(relax))
+            //    {
+            //        tobeVisited.Add(relax);
+            //    }
+            //}
+            tobeVisited.AddRange(place.pointConnection.relaxPoints);
+            tobeVisited.AddRange(place.pointConnection.indirectRelaxPoints);
         }
-        
-        while (tobeVisited.Count > 0){
+
+        while (tobeVisited.Count > 0)
+        {
             var i = tobeVisited[0];
             tobeVisited.Remove(i);
             if (!visited.Contains(i))
             {
                 visited.Add(i);
-                tobeVisited.AddRange(i.pointConnection.connectedPoints);
-                foreach (var item in i.pointConnection.relaxPoints)
+                //tobeVisited.AddRange(i.pointConnection.connectedPoints);
+                foreach (var item in i.pointConnection.connectedPoints)
                 {
                     Instantiate(line, parrent.transform).SetPositions(new Vector3[] { i.transform.position, item.transform.position });
                 }
             }
         }
-
     }
     
 }

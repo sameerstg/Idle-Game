@@ -14,18 +14,18 @@ public class PathManager : MonoBehaviour
     {
         _instance = this;
     }
-
+    void Initialize()
+    {
+        waypointSystem = GetComponentInChildren<WaypointSystem>();
+        placeManager = GetComponentInChildren<PlaceManager>();
+    }
     public void Set(bool bi = false)
     {
         Initialize();
         waypointSystem.Set(bi);
         placeManager.Set();
     }
-    void Initialize()
-    {
-        waypointSystem = GetComponentInChildren<WaypointSystem>();
-        placeManager = GetComponentInChildren<PlaceManager>();
-    }
+   
    
     public Place GetPlace(PlaceName placeName)
     {
@@ -35,7 +35,9 @@ public class PathManager : MonoBehaviour
     public List<Point> GetPath(Point _currentWaypoint, Place place)
     {
         
-        Point togoWaypoint = place.pointConnection.connectedPoints.OrderBy(x => Vector3.Distance(x.transform.position, _currentWaypoint.transform.position)).First();
+        Point togoWaypoint = place.pointConnection.connectedPoints.OrderBy(x => Vector3.Distance(x.transform.position, _currentWaypoint.transform.position))?.First();
+
+        togoWaypoint ??= place.pointConnection.indirectConnectedPoints.OrderBy(x => Vector3.Distance(x.transform.position, _currentWaypoint.transform.position))?.First();
         return GetPath(_currentWaypoint, togoWaypoint);
     }
     public List<Point> GetPath(Point _currentWaypoint, Point togoWaypoint)
@@ -45,7 +47,7 @@ public class PathManager : MonoBehaviour
             Debug.LogError("current post = final pos");
             return null;
         }
-        if (_currentWaypoint == null)
+        if (_currentWaypoint == null || togoWaypoint == null)
         {
             Debug.LogError("current waypoint is null");
             return null;
@@ -66,11 +68,11 @@ public class PathManager : MonoBehaviour
             return new List<Point> { _currentWaypoint, togoWaypoint };
         }
 
-
+        // first one is chile then second one is parent
         List<Tuple<Point, Point>> tobeVisitedWithParrent = new() { new Tuple<Point, Point>(_currentWaypoint, null) }, visited = new() { };
         while (tobeVisitedWithParrent.Count > 0)
         {
-            var i = tobeVisitedWithParrent[0];
+            var i = tobeVisitedWithParrent.OrderBy(x=>Vector3.Distance( x.Item1.transform.position,_currentWaypoint.transform.position)).First();
             visited.Add(i);
             tobeVisitedWithParrent.Remove(i);
             if (i.Item1 == togoWaypoint)

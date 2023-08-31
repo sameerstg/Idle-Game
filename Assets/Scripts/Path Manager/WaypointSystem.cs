@@ -18,39 +18,17 @@ public class WaypointSystem : MonoBehaviour
     //}
 
 
-    public void Initialize()
+   
+    public void Set(bool makeBi = false)
     {
         waypoints.Clear();
         foreach (var item in ((Point[])FindObjectsOfType(typeof(Point))))
         {
-            if (!waypoints.Contains( item)&& item.positionType == PointType.wayPoint)
+            if (!waypoints.Contains(item))
             {
                 waypoints.Add(item);
-                item.pointConnection.connectedPoints.Clear();
-                item.pointConnection.relaxPoints.Clear();
-                foreach (var point in item.pointConnection.allPoints)
-                {
-                    
-                    if (point.positionType == PointType.wayPoint)
-                    {
-                        item.pointConnection.connectedPoints.Add(point);
-                    }
-                    else if (point.positionType == PointType.relaxPoint || point.positionType == PointType.workPoint)
-                    {
-                        item.pointConnection.relaxPoints.Add(point); 
-                    }
-                }
+                item.pointConnection.OrganizeAllPoints(item, makeBi);
             }
-        }
-        
-    }
-    
-    public void Set(bool makeBi = false)
-    {
-        Initialize();
-        if (makeBi)
-        {
-            MakeAllBiDirectional();
         }
         Visualize();
     }
@@ -83,61 +61,61 @@ public class WaypointSystem : MonoBehaviour
         }
     }
 
-    public void MakeAllBiDirectional()
-    {
-        foreach (var point in waypoints)
-        {
-            point.pointConnection.connectedPoints.Clear();
-            point.pointConnection.relaxPoints.Clear();
-            // if point contain itself it will delete it
-            if (point.pointConnection.allPoints.Contains(point))
-            {
-                point.pointConnection.allPoints.RemoveAll(x => x == point);
+    //public void MakeAllBiDirectional()
+    //{
+    //    foreach (var point in waypoints)
+    //    {
+    //        point.pointConnection.connectedPoints.Clear();
+    //        point.pointConnection.relaxPoints.Clear();
+    //        // if point contain itself it will delete it
+    //        if (point.pointConnection.allPoints.Contains(point))
+    //        {
+    //            point.pointConnection.allPoints.RemoveAll(x => x == point);
                
-            }
-            else
-            {
-                foreach (var connectedPoint in point.pointConnection.allPoints)
-                {
-                    if (connectedPoint.positionType == PointType.wayPoint)
-                    {
+    //        }
+    //        else
+    //        {
+    //            foreach (var connectedPoint in point.pointConnection.allPoints)
+    //            {
+    //                if (connectedPoint.positionType == PointType.wayPoint)
+    //                {
 
-                        if (!point.pointConnection.connectedPoints.Contains(connectedPoint))
-                        {
+    //                    if (!point.pointConnection.connectedPoints.Contains(connectedPoint))
+    //                    {
 
-                            point.pointConnection.connectedPoints.Add(connectedPoint);
+    //                        point.pointConnection.connectedPoints.Add(connectedPoint);
                             
                             
-                        }
-                        // for making bi
-                        if (!connectedPoint.pointConnection.allPoints.Contains(point))
-                        {
-                            connectedPoint.pointConnection.allPoints.Add(point);
-                        }
-                    }
-                    else if (connectedPoint.positionType == PointType.relaxPoint ||  connectedPoint.positionType == PointType.workPoint)
-                    {
-                        if (!point.pointConnection.relaxPoints.Contains(connectedPoint))
-                        {
-                            point.pointConnection.relaxPoints.Add(connectedPoint);
-                        }
-                        // for making bi
-                        if (!connectedPoint.pointConnection.connectedPoints.Contains(point))
-                        {
-                            connectedPoint.pointConnection.connectedPoints.Add(point);
-                        }
-                    }
-                }
-            }
-            //foreach (var item in point.pointConnection.connectedPoints)
-            //{
-            //    if (!item.pointConnection.connectedPoints.Contains(point))
-            //    {
-            //        item.pointConnection.connectedPoints.Add(point);
-            //    }
-            //}
-        }
-    }
+    //                    }
+    //                    // for making bi
+    //                    if (!connectedPoint.pointConnection.allPoints.Contains(point))
+    //                    {
+    //                        connectedPoint.pointConnection.allPoints.Add(point);
+    //                    }
+    //                }
+    //                else if (connectedPoint.positionType == PointType.relaxPoint ||  connectedPoint.positionType == PointType.workPoint)
+    //                {
+    //                    if (!point.pointConnection.relaxPoints.Contains(connectedPoint))
+    //                    {
+    //                        point.pointConnection.relaxPoints.Add(connectedPoint);
+    //                    }
+    //                    // for making bi
+    //                    if (!connectedPoint.pointConnection.connectedPoints.Contains(point))
+    //                    {
+    //                        connectedPoint.pointConnection.connectedPoints.Add(point);
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        //foreach (var item in point.pointConnection.connectedPoints)
+    //        //{
+    //        //    if (!item.pointConnection.connectedPoints.Contains(point))
+    //        //    {
+    //        //        item.pointConnection.connectedPoints.Add(point);
+    //        //    }
+    //        //}
+    //    }
+    //}
    
 
 }

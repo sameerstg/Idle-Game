@@ -9,39 +9,40 @@ public class Place : MonoBehaviour
     public PlaceName placeName;
 
     public RelaxPointType RelaxPointType;
-    public PointConnection pointConnection;
+    public PointConnectionForPlace pointConnection;
     public float relaxpointWaitTime;
     
     public void Set()
     {
         //relaxWaypoints = GetComponentsInChildren<RelaxWaypoint>().ToList();
-        pointConnection. relaxPoints.Clear();
-        pointConnection. connectedPoints.Clear();
-        foreach (var point in pointConnection.allPoints)
-        {
+        //pointConnection.relaxPoints.Clear();
+        //pointConnection.connectedPoints.Clear();
+        //foreach (var point in pointConnection.allPoints)
+        //{
 
 
-            if (point.positionType == PointType.relaxPoint || point.positionType == PointType.workPoint)
-            {
-                if (!pointConnection.relaxPoints.Contains(point))
-                {
-                    point.waitTime = relaxpointWaitTime;
-                    pointConnection.relaxPoints.Add(point);
-                }
-            }
-            else if(point.positionType == PointType.wayPoint)
-            {
-                if (!pointConnection.connectedPoints.Contains(point))
-                {
-                    point.waitTime = relaxpointWaitTime;
-                    pointConnection.connectedPoints.Add(point);
-                }
+        //    if (point.positionType == PointType.relaxPoint || point.positionType == PointType.workPoint)
+        //    {
+        //        if (!pointConnection.relaxPoints.Contains(point))
+        //        {
+        //            point.waitTime = relaxpointWaitTime;
+        //            pointConnection.relaxPoints.Add(point);
+        //        }
+        //    }
+        //    else if(point.positionType == PointType.wayPoint)
+        //    {
+        //        if (!pointConnection.connectedPoints.Contains(point))
+        //        {
+        //            point.waitTime = relaxpointWaitTime;
+        //            pointConnection.connectedPoints.Add(point);
+        //        }
 
-            }
-           
-               
-           
-        }
+        //    }
+
+
+
+        //}
+        pointConnection.OrganizeAllPointsForPlace();
         
     }
     public bool HaveEmptyRelaxPoint()
