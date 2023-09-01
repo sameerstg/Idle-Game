@@ -22,53 +22,52 @@ public class Npc : MonoBehaviour
     {
         togoPlace = placeToGo;
         togoWaypoints.Clear();
-        // for going relax to connected waypoint
+        // for going relax to connected waypoint which is close to next place
         if (currentPoint.positionType != PointType.wayPoint)
         {
-            var dest = currentPoint.pointConnection.connectedPoints[0];
-
-            togoWaypoints.AddRange(new List<Point> {dest });
+            var dest = currentPoint.pointConnection.connectedPoints.OrderBy(x=>Vector3.Distance(placeToGo.transform.position,x.transform.position))?.First();
+            togoWaypoints.AddRange(new List<Point> {dest});
             currentPoint = dest;
         }
         togoWaypoints.AddRange( PathManager._instance.GetPath(currentPoint, placeToGo));
         StartCoroutine(MoveByTransforms(placeToGo.RelaxPointType != RelaxPointType.none));
     }
 
-    public void MoveToRelaxPoint()
-    {
-        if (togoPlace != null && togoPlace.HaveEmptyRelaxPoint())
-        {
+    //public void MoveToRelaxPoint()
+    //{
+    //    if (togoPlace != null && togoPlace.HaveEmptyRelaxPoint())
+    //    {
 
-            if (togoPlace.RelaxPointType == RelaxPointType.relax)
-            {
+    //        if (togoPlace.RelaxPointType == RelaxPointType.relax)
+    //        {
 
-                //var pathWithRelaxWaypoint = togoPlace.GetPathToRelaxPoint();
-                //if (pathWithRelaxWaypoint.Item2 != null)
-                //{
-                //    destinationType = PointType.relaxPoint;
-                //    transformsTogo = pathWithRelaxWaypoint.Item1;
-                //    StartCoroutine(MoveByTransforms());
-                //}
-            }
-            else if (togoPlace.RelaxPointType == RelaxPointType.work)
-            {
-                //destinationType = PointType.workPoint;
+    //            //var pathWithRelaxWaypoint = togoPlace.GetPathToRelaxPoint();
+    //            //if (pathWithRelaxWaypoint.Item2 != null)
+    //            //{
+    //            //    destinationType = PointType.relaxPoint;
+    //            //    transformsTogo = pathWithRelaxWaypoint.Item1;
+    //            //    StartCoroutine(MoveByTransforms());
+    //            //}
+    //        }
+    //        else if (togoPlace.RelaxPointType == RelaxPointType.work)
+    //        {
+    //            //destinationType = PointType.workPoint;
 
-                //var pathWithRelaxWaypoint = togoPlace.GetPathToWorkRelaxPoint();
-                //transformsTogo = pathWithRelaxWaypoint.Select(x => x.transform).ToList();
-                //StartCoroutine(MoveByTransforms());
-            }
+    //            //var pathWithRelaxWaypoint = togoPlace.GetPathToWorkRelaxPoint();
+    //            //transformsTogo = pathWithRelaxWaypoint.Select(x => x.transform).ToList();
+    //            //StartCoroutine(MoveByTransforms());
+    //        }
 
 
-            //var pathWithRelaxWaypoint = togoPlace.GetPathToWorkRelaxPoint();
-            //transformsTogo = pathWithRelaxWaypoint.Select(x => x.transform).ToList();
-            //StartCoroutine(MoveByTransforms());
-        }
-        else
-        {
-            statemachine.SwitchState(new IdleState(this));
-        }
-    }
+    //        //var pathWithRelaxWaypoint = togoPlace.GetPathToWorkRelaxPoint();
+    //        //transformsTogo = pathWithRelaxWaypoint.Select(x => x.transform).ToList();
+    //        //StartCoroutine(MoveByTransforms());
+    //    }
+    //    else
+    //    {
+    //        statemachine.SwitchState(new IdleState(this));
+    //    }
+    //}
 
 
     public IEnumerator MoveByTransforms(bool checkForRelax = false)
@@ -95,11 +94,9 @@ public class Npc : MonoBehaviour
             togoWaypoints.Clear();
         }
 
-        Debug.Log(togoPlace);
         if (checkForRelax && togoPlace.HaveEmptyRelaxPoint() )
         {
 
-            Debug.Log("heere");
             togoWaypoints.AddRange( togoPlace.GetPathFromPlaceToRelax(togoPlace,currentPoint));
             StartCoroutine(MoveByTransforms());
         }
@@ -108,59 +105,10 @@ public class Npc : MonoBehaviour
             statemachine.SwitchState(new IdleState(this));
         }
 
-        //MoveToRelaxPoint();
-
-        //currentPoint.DoWork(this);
-
-
-
-
-
-        //if (workPlace)
-        //{
-
-        //    currentTransform.gameObject.GetComponent<RelaxPoint>().DoWork(this);
-        //}
-        //else
-        //{
-        //    statemachine.SwitchState(new IdleState(this));
-        //}
+      
 
     }
-    //public IEnumerator MoveByRelaxPoint(List<RelaxPoint> relaxPoints)
-    //{
-    //    RelaxPoint prev = null;
-    //    if (relaxPoints != null)
-    //    {
-    //        while (relaxPoints.Count > 0)
-    //        {
-    //            yield return new WaitUntil(()=>relaxPoints[0].equipedNpc != null);
-    //            if (prev != null)
-    //            {
-    //                prev.equipedNpc = null;
-    //            }
-    //            while (Vector3.Distance(transform.position, relaxPoints[0].transform.position) > 0.1f)
-    //            {
-
-    //                transform.position = Vector3.MoveTowards(transform.position, relaxPoints[0].transform.position, walkSpeed * Time.deltaTime);
-    //                yield return null;
-    //            }
-    //            relaxPoints[0].equipedNpc = this;
-    //            prev = relaxPoints[0];
-    //            if (relaxPoints.Count == 1)
-    //            {
-    //                relaxPoints[0].DoWork(this);
-    //            }
-
-    //            currentTransform = relaxPoints[0].transform;
-    //            relaxPoints.RemoveAt(0);
-
-    //        }
-    //        relaxPoints.Clear();
-    //    }
-    //    //currentTransform.gameObject.GetComponent<RelaxPoint>().DoWork(this);
-
-    //}
+  
 }
 //[CustomEditor(typeof(Npc))]
 //public class NpcEditor : Editor {
