@@ -86,6 +86,7 @@ public class PointConnection
             }
            
         }
+        // make 2 point bi directional
         if (makeBi && !point.pointConnection.allPoints.Contains(self))
         {
             point.pointConnection.AddPoint(point, self, makeBi);
@@ -123,10 +124,6 @@ public class PointConnectionForPlace : PointConnection
     public void AddPointForPlace(Point point)
     {
 
-        //if (!allPoints.Contains(point))
-        //{
-        //    allPoints.Add(point);
-        //}
        
         if (point.positionType == PointType.wayPoint  && !connectedPoints.Contains(point))
         {
@@ -148,13 +145,12 @@ public class PointConnectionForPlace : PointConnection
     /// <param name="point">Parent</param>
     public void CheckIndirectPointWithRelaxForPlace(Point parrent)
     {
+            
 
+            // for checking if contains relaxpoints
 
-        foreach (var point in parrent.pointConnection.allPoints)
-        {
-            var pointWithRelax = point.pointConnection.allPoints.FindAll(x => x.positionType == PointType.workPoint || x.positionType == PointType.relaxPoint);
-
-
+            var pointWithRelax = parrent.pointConnection.allPoints.FindAll(x => x.positionType == PointType.workPoint || x.positionType == PointType.relaxPoint);
+            
             if (pointWithRelax.Count>0)
             {
                 if (!connectedPoints.Contains(parrent))
@@ -175,8 +171,14 @@ public class PointConnectionForPlace : PointConnection
                 }
                 
             }
+            var connectedWaypointContainRelaxPoint = parrent.pointConnection.allPoints.FindAll(x => x.positionType == PointType.wayPoint && !connectedPoints.Contains(x) 
+            && !indirectConnectedPoints.Contains(x) && x.pointConnection.allPoints.Exists(xx=>xx.positionType == PointType.workPoint || xx.positionType == PointType.relaxPoint) );
+        foreach (var item in connectedWaypointContainRelaxPoint)
+        {
+            CheckIndirectPointWithRelaxForPlace(item);
         }
-       
+
+
     }
     void AddIndirectForPlace(Point point)
     {

@@ -14,52 +14,64 @@ public class Npc : MonoBehaviour
 
 
     public Statemachine statemachine;
-    public PointType destinationType,positionType;
     private void Awake()
     {
         statemachine = new(this);
     }
     public void Move(Place placeToGo)
     {
-        togoWaypoints = PathManager._instance.GetPath(currentPoint, placeToGo);
-        destinationType = PointType.place;
-        StartCoroutine(MoveByTransforms());
+        togoPlace = placeToGo;
+        togoWaypoints.Clear();
+        // for going relax to connected waypoint
+        if (currentPoint.positionType != PointType.wayPoint)
+        {
+            var dest = currentPoint.pointConnection.connectedPoints[0];
+
+            togoWaypoints.AddRange(new List<Point> {dest });
+            currentPoint = dest;
+        }
+        togoWaypoints.AddRange( PathManager._instance.GetPath(currentPoint, placeToGo));
+        StartCoroutine(MoveByTransforms(placeToGo.RelaxPointType != RelaxPointType.none));
     }
 
     public void MoveToRelaxPoint()
     {
-        //if (togoPlace != null && togoPlace.HaveEmptyRelaxPoint())
-        //{
-            
-        //    if (togoPlace.RelaxPointType == RelaxPointType.relax)
-        //    {
+        if (togoPlace != null && togoPlace.HaveEmptyRelaxPoint())
+        {
 
-        //        var pathWithRelaxWaypoint = togoPlace.GetPathToRelaxPoint();
-        //        if (pathWithRelaxWaypoint.Item2 != null)
-        //        {
-        //            destinationType = PointType.relaxPoint;
-        //            transformsTogo = pathWithRelaxWaypoint.Item1;
-        //            StartCoroutine(MoveByTransforms());
-        //        }
-        //    }
-        //    else if (togoPlace.RelaxPointType == RelaxPointType.work)
-        //    {
-        //        destinationType = PointType.workPoint;
+            if (togoPlace.RelaxPointType == RelaxPointType.relax)
+            {
 
-        //        var pathWithRelaxWaypoint = togoPlace.GetPathToWorkRelaxPoint();
-        //        transformsTogo = pathWithRelaxWaypoint.Select(x => x.transform).ToList();
-        //        StartCoroutine(MoveByTransforms());
-        //    }
+                //var pathWithRelaxWaypoint = togoPlace.GetPathToRelaxPoint();
+                //if (pathWithRelaxWaypoint.Item2 != null)
+                //{
+                //    destinationType = PointType.relaxPoint;
+                //    transformsTogo = pathWithRelaxWaypoint.Item1;
+                //    StartCoroutine(MoveByTransforms());
+                //}
+            }
+            else if (togoPlace.RelaxPointType == RelaxPointType.work)
+            {
+                //destinationType = PointType.workPoint;
 
-        //}
-        //else
-        //{
-        //    statemachine.SwitchState(new IdleState(this));
-        //}
+                //var pathWithRelaxWaypoint = togoPlace.GetPathToWorkRelaxPoint();
+                //transformsTogo = pathWithRelaxWaypoint.Select(x => x.transform).ToList();
+                //StartCoroutine(MoveByTransforms());
+            }
+
+
+            //var pathWithRelaxWaypoint = togoPlace.GetPathToWorkRelaxPoint();
+            //transformsTogo = pathWithRelaxWaypoint.Select(x => x.transform).ToList();
+            //StartCoroutine(MoveByTransforms());
+        }
+        else
+        {
+            statemachine.SwitchState(new IdleState(this));
+        }
     }
 
 
-    public IEnumerator MoveByTransforms()
+    public IEnumerator MoveByTransforms(bool checkForRelax = false)
     {
         if (togoWaypoints != null)
         {
@@ -74,38 +86,33 @@ public class Npc : MonoBehaviour
                 }
 
 
-                if (destinationType == PointType.place || destinationType == PointType.wayPoint)
-                {
-                    currentPoint = togoWaypoints[0];
-                    positionType = PointType.wayPoint;
-                }
-                else
-                {
-                    currentPoint = togoWaypoints[0];
-                    positionType = PointType.relaxPoint;
+                currentPoint = togoWaypoints[0];
 
-                }
 
                 togoWaypoints.RemoveAt(0);
 
             }
             togoWaypoints.Clear();
         }
-            
 
-        if (destinationType == PointType.place)
+        Debug.Log(togoPlace);
+        if (checkForRelax && togoPlace.HaveEmptyRelaxPoint() )
         {
-            destinationType = PointType.none;
-            positionType = destinationType;
-            MoveToRelaxPoint();
+
+            Debug.Log("heere");
+            togoWaypoints.AddRange( togoPlace.GetPathFromPlaceToRelax(togoPlace,currentPoint));
+            StartCoroutine(MoveByTransforms());
         }
-        else if (destinationType == PointType.workPoint || destinationType == PointType.relaxPoint)
+        else
         {
-            destinationType = PointType.none;
-            positionType = destinationType;
-            currentPoint.DoWork(this);
+            statemachine.SwitchState(new IdleState(this));
         }
-      
+
+        //MoveToRelaxPoint();
+
+        //currentPoint.DoWork(this);
+
+
 
 
 

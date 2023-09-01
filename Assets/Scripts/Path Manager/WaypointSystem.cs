@@ -26,7 +26,11 @@ public class WaypointSystem : MonoBehaviour
         {
             if (!waypoints.Contains(item))
             {
-                waypoints.Add(item);
+                if (item.positionType == PointType.wayPoint)
+                {
+
+                    waypoints.Add(item);
+                }
                 item.pointConnection.OrganizeAllPoints(item, makeBi);
             }
         }

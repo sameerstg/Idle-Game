@@ -27,10 +27,13 @@ public class PathManager : MonoBehaviour
     }
    
    
-    public Place GetPlace(PlaceName placeName)
+    public Place GetPlace(PlaceName placeName,bool withEmptyRelax = false)
     {
+        if (withEmptyRelax)
+        {
+            return placeManager.places.Find(x => x.placeName == placeName && x.HaveEmptyRelaxPoint());
+        }
         return  placeManager.places.Find(x => x.placeName == placeName ); 
-        return  placeManager.places.Find(x => x.placeName == placeName && x.HaveEmptyRelaxPoint()); 
     }
     public List<Point> GetPath(Point _currentWaypoint, Place place)
     {
