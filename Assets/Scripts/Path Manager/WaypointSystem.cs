@@ -26,7 +26,7 @@ public class WaypointSystem : MonoBehaviour
         {
             if (!waypoints.Contains(item))
             {
-                if (item.positionType == PointType.wayPoint)
+                if (item.pointType == PointType.wayPoint)
                 {
 
                     waypoints.Add(item);

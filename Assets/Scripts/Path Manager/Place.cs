@@ -53,7 +53,16 @@ public class Place : MonoBehaviour
             points.AddRange(PathManager._instance.GetPath(currentPointOfNpcInPlace, nearestConnecetedPointAndItsEmptyRelax.Item1));
 
         }
-        points.Add(nearestConnecetedPointAndItsEmptyRelax.Item2);
+        if (RelaxPointType == RelaxPointType.work)
+        {
+            var allRelax = nearestConnecetedPointAndItsEmptyRelax.Item1.pointConnection.relaxPoints.ToList();
+            allRelax.Reverse();
+            points.AddRange(allRelax);
+        }
+        else
+        {
+            points.Add(nearestConnecetedPointAndItsEmptyRelax.Item2);
+        }
         return points;
 
     }

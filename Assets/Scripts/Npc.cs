@@ -23,7 +23,7 @@ public class Npc : MonoBehaviour
         togoPlace = placeToGo;
         togoWaypoints.Clear();
         // for going relax to connected waypoint which is close to next place
-        if (currentPoint.positionType != PointType.wayPoint)
+        if (currentPoint.pointType != PointType.wayPoint)
         {
             var dest = currentPoint.pointConnection.connectedPoints.OrderBy(x=>Vector3.Distance(placeToGo.transform.position,x.transform.position))?.First();
             togoWaypoints.AddRange(new List<Point> {dest});
@@ -79,7 +79,10 @@ public class Npc : MonoBehaviour
 
                 while (Vector3.Distance(transform.position, togoWaypoints[0].transform.position) > 0.1f)
                 {
-
+                    while (togoWaypoints[0].equipedNpc != null)
+                    {
+                        yield return null;
+                    }
                     transform.position = Vector3.MoveTowards(transform.position, togoWaypoints[0].transform.position, walkSpeed * Time.deltaTime);
                     yield return null;
                 }
@@ -99,6 +102,11 @@ public class Npc : MonoBehaviour
 
             togoWaypoints.AddRange( togoPlace.GetPathFromPlaceToRelax(togoPlace,currentPoint));
             StartCoroutine(MoveByTransforms());
+        }
+        else if (currentPoint.pointType == PointType.workPoint)
+        {
+            currentPoint.DoWork(this);
+
         }
         else
         {

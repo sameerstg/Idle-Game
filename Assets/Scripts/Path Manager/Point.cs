@@ -8,7 +8,7 @@ public class Point : MonoBehaviour
 
     public PointConnection pointConnection;
 
-    public PointType positionType;
+    public PointType pointType;
     public Npc equipedNpc;
     public float waitTime;
     public virtual void DoWork(Npc npc)
@@ -71,14 +71,14 @@ public class PointConnection
         {
             allPoints.Add(point);
         }
-        if (point.positionType == PointType.relaxPoint || point.positionType == PointType.workPoint)
+        if (point.pointType == PointType.relaxPoint || point.pointType == PointType.workPoint)
         {
             if (!relaxPoints.Contains(point))
             {
                 relaxPoints.Add(point);
             }
         }
-        else if (point.positionType == PointType.wayPoint)
+        else if (point.pointType == PointType.wayPoint)
         {
             if (!connectedPoints.Contains(point))
             {
@@ -125,13 +125,13 @@ public class PointConnectionForPlace : PointConnection
     {
 
        
-        if (point.positionType == PointType.wayPoint  && !connectedPoints.Contains(point))
+        if (point.pointType == PointType.wayPoint  && !connectedPoints.Contains(point))
         {
             connectedPoints.Add(point);
             CheckIndirectPointWithRelaxForPlace(point);
            
         }
-        else if (point.positionType == PointType.relaxPoint  || point.positionType == PointType.workPoint)
+        else if (point.pointType == PointType.relaxPoint  || point.pointType == PointType.workPoint)
         {
             if (!relaxPoints.Contains(point))
             {
@@ -149,7 +149,7 @@ public class PointConnectionForPlace : PointConnection
 
             // for checking if contains relaxpoints
 
-            var pointWithRelax = parrent.pointConnection.allPoints.FindAll(x => x.positionType == PointType.workPoint || x.positionType == PointType.relaxPoint);
+            var pointWithRelax = parrent.pointConnection.allPoints.FindAll(x => x.pointType == PointType.workPoint || x.pointType == PointType.relaxPoint);
             
             if (pointWithRelax.Count>0)
             {
@@ -171,8 +171,8 @@ public class PointConnectionForPlace : PointConnection
                 }
                 
             }
-            var connectedWaypointContainRelaxPoint = parrent.pointConnection.allPoints.FindAll(x => x.positionType == PointType.wayPoint && !connectedPoints.Contains(x) 
-            && !indirectConnectedPoints.Contains(x) && x.pointConnection.allPoints.Exists(xx=>xx.positionType == PointType.workPoint || xx.positionType == PointType.relaxPoint) );
+            var connectedWaypointContainRelaxPoint = parrent.pointConnection.allPoints.FindAll(x => x.pointType == PointType.wayPoint && !connectedPoints.Contains(x) 
+            && !indirectConnectedPoints.Contains(x) && x.pointConnection.allPoints.Exists(xx=>xx.pointType == PointType.workPoint || xx.pointType == PointType.relaxPoint) );
         foreach (var item in connectedWaypointContainRelaxPoint)
         {
             CheckIndirectPointWithRelaxForPlace(item);
@@ -182,7 +182,7 @@ public class PointConnectionForPlace : PointConnection
     }
     void AddIndirectForPlace(Point point)
     {
-        if (point.positionType == PointType.relaxPoint || point.positionType == PointType.workPoint)
+        if (point.pointType == PointType.relaxPoint || point.pointType == PointType.workPoint)
         {
             if (!indirectAllPoints.Contains(point))
             {
