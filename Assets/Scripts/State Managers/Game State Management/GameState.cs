@@ -2,35 +2,43 @@
 using UnityEngine;
 
 [System.Serializable]
-public class GameState 
+public class GameState:IState
 {
-    public string name;
-    public float timeFromStart;
-    public GameState(float periodOfState, OnStateComplete onStateCompleteCallback)
+
+    public GameStateName gameStateName;
+
+    public GameState(GameStateName gameStateName,float startTime)
     {
-        name = GetType().Name;
-        this.periodOfState = periodOfState;
-        this.onStateComplete = onStateCompleteCallback;
+        this.gameStateName = gameStateName;
     }
 
-  
-
-    public float periodOfState;
-    private OnStateComplete onStateComplete;
-
-    public void Enter()
+    public virtual void Enter()
     {
-        timeFromStart =0;
+    }
+    public virtual void Update()
+    {
+
     }
 
-   
-
-    public  void Update()
+    public virtual void Exit()
     {
-        timeFromStart += Time.deltaTime;
-        if (timeFromStart>periodOfState)
-        {
-            onStateComplete?.Invoke();
-        }
     }
+}
+[System.Serializable]
+public class PrisonersEntryState : GameState
+{
+    public float endTime = 60*2;
+    
+    public PrisonersEntryState(GameStateName gameStateName, float startTime) : base(gameStateName, startTime )
+    {
+        
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+
+    }
+
 }

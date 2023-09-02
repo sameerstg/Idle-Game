@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 [System.Serializable]
-public class State
+public class State:IState
 {
     internal Npc npc;
     public State(Npc npc)
@@ -23,4 +20,9 @@ public class State
     }
 
 }
-
+public interface IState
+{
+    public void Enter();
+    
+    public void Exit();
+}

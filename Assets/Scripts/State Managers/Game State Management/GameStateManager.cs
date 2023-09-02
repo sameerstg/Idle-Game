@@ -5,13 +5,25 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
-    public DateTime startTime;
- 
-    private void Awake()
+    public float time;
+    public float totalCourseTime = 10;
+    public GameState currentGameState;
+    private void Update()
     {
-        startTime = DateTime.Now;
+        time += Time.deltaTime;
     }
-  
-}
-public delegate void OnStateComplete();
+    public void CheckTime()
+    {
+        float currentCourse= time % totalCourseTime;
 
+    }
+    public void ChangeState()
+    {
+
+    }
+
+}
+public enum GameStateName
+{
+    PrisonersEntry,Cell,Bathroom,Food,Gym
+}

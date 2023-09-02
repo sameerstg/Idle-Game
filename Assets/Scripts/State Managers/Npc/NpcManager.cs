@@ -17,9 +17,15 @@ public class NpcManager : MonoBehaviour
     }
     public void SendNpc(PlaceName place)
     {
+        StartCoroutine(SendNpcDelay(place));
+    } 
+    public IEnumerator SendNpcDelay(PlaceName place)
+    {
         foreach (var item in npcs)
         {
-            item.statemachine.SwitchState(new MovingState(item,place));
+            item.statemachine.SwitchState(new MovingState(item, place));
+            yield return null;
         }
-    } 
+    }
+
 }
