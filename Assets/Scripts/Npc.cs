@@ -18,19 +18,22 @@ public class Npc : MonoBehaviour
     {
         statemachine = new(this);
     }
-    public void Move(Place placeToGo)
+    public void Move(PlaceName placeToGoName)
     {
-        togoPlace = placeToGo;
+        togoPlace = PathManager._instance.GetPlace(placeToGoName,true);
+
+        
         togoWaypoints.Clear();
         // for going relax to connected waypoint which is close to next place
         if (currentPoint.pointType != PointType.wayPoint)
         {
-            var dest = currentPoint.pointConnection.connectedPoints.OrderBy(x=>Vector3.Distance(placeToGo.transform.position,x.transform.position))?.First();
+            var dest = currentPoint.pointConnection.connectedPoints.OrderBy(x=>Vector3.Distance(togoPlace.transform.position,x.transform.position))?.First();
             togoWaypoints.AddRange(new List<Point> {dest});
             currentPoint = dest;
         }
-        togoWaypoints.AddRange( PathManager._instance.GetPath(currentPoint, placeToGo));
-        StartCoroutine(MoveByTransforms(placeToGo.RelaxPointType != RelaxPointType.none));
+        
+        togoWaypoints.AddRange( PathManager._instance.GetPath(currentPoint, togoPlace));
+        StartCoroutine(MoveByTransforms(togoPlace.RelaxPointType != RelaxPointType.none));
     }
 
     //public void MoveToRelaxPoint()
@@ -77,12 +80,15 @@ public class Npc : MonoBehaviour
             while (togoWaypoints.Count > 0)
             {
 
+                while (togoWaypoints[0].equipedNpc != null)
+                {
+                    yield return null;
+                }
+                currentPoint.equipedNpc = null;
+                togoWaypoints[0].equipedNpc = this;
                 while (Vector3.Distance(transform.position, togoWaypoints[0].transform.position) > 0.1f)
                 {
-                    while (togoWaypoints[0].equipedNpc != null)
-                    {
-                        yield return null;
-                    }
+                    
                     transform.position = Vector3.MoveTowards(transform.position, togoWaypoints[0].transform.position, walkSpeed * Time.deltaTime);
                     yield return null;
                 }
@@ -91,7 +97,9 @@ public class Npc : MonoBehaviour
                 currentPoint = togoWaypoints[0];
 
 
+
                 togoWaypoints.RemoveAt(0);
+
 
             }
             togoWaypoints.Clear();

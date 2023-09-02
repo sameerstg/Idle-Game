@@ -15,4 +15,11 @@ public class NpcManager : MonoBehaviour
     {
        npcs.Add( Instantiate(npc, transform));
     }
+    public void SendNpc(PlaceName place)
+    {
+        foreach (var item in npcs)
+        {
+            item.statemachine.SwitchState(new MovingState(item,place));
+        }
+    } 
 }

@@ -9,14 +9,14 @@ public class IdleState : State
     public override  void Enter()
     {
         base.Enter();
-        Place placeToGo = null;
+        PlaceName placeToGoName = PlaceName.None;
         switch (npc.togoPlace.placeName)
         {
             case PlaceName.OuterEntrance:
-                placeToGo = PathManager._instance.GetPlace(PlaceName.Entrance);
+                placeToGoName = PlaceName.Entrance;
                 break;
             case PlaceName.Entrance:
-                placeToGo = PathManager._instance.GetPlace(PlaceName.Cell);
+                placeToGoName = PlaceName.Cell;
                 break;
             case PlaceName.Cell:
                 break;
@@ -33,10 +33,10 @@ public class IdleState : State
             default:
                 break;
         }
-        if (placeToGo != null)
+        if (placeToGoName != PlaceName.None)
         {
-            Debug.Log($"going to place {placeToGo}");
-            npc.statemachine.SwitchState(new MovingState(npc, placeToGo));
+            Debug.Log($"going to place {placeToGoName}");
+            npc.statemachine.SwitchState(new MovingState(npc, placeToGoName));
         }
         else
         {

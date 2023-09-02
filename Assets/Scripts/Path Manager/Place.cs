@@ -18,7 +18,7 @@ public class Place : MonoBehaviour
     }
     public bool HaveEmptyRelaxPoint()
     {
-        return pointConnection.relaxPoints.Exists(x => x.equipedNpc == null) || pointConnection.indirectRelaxPoints.Exists(x => x.equipedNpc == null);
+        return pointConnection.relaxPoints.Exists(x =>x.pointConnection.relaxPoints.Count==0 && x.pointConnection.relaxPoints.Count==0 ||x.equipedNpc == null) || pointConnection.indirectRelaxPoints.Exists(x => x.equipedNpc == null);
     }
     /// <summary>
     /// 1= parent 2= relax
@@ -71,7 +71,7 @@ public class Place : MonoBehaviour
 
 public enum PlaceName
 {
-    OuterEntrance,Entrance,Cell,Entertainment,FoodRoom,Bathroom,FoodPrepartaionRoom,ElectricSupply
+   None, OuterEntrance,Entrance,Cell,Entertainment,FoodRoom,Bathroom,FoodPrepartaionRoom,ElectricSupply
 }
 public enum PointType
 {

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MovingState : State
 {
-    Place placeToGo;
-    public MovingState(Npc npc,Place placeToGo) : base(npc)
+    PlaceName placeToGo;
+    public MovingState(Npc npc,PlaceName placeToGo) : base(npc)
     {
         this.placeToGo = placeToGo;
     }

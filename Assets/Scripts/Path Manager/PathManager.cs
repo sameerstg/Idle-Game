@@ -29,19 +29,20 @@ public class PathManager : MonoBehaviour
    
     public Place GetPlace(PlaceName placeName,bool withEmptyRelax = false)
     {
-        if (withEmptyRelax)
+        if (withEmptyRelax )
         {
-            return placeManager.places.Find(x => x.placeName == placeName && x.HaveEmptyRelaxPoint());
+            return placeManager.places.Find(x => x.placeName == placeName && x.HaveEmptyRelaxPoint() );
         }
         return  placeManager.places.Find(x => x.placeName == placeName ); 
     }
     public List<Point> GetPath(Point _currentWaypoint, Place place)
     {
-        
+        Debug.Log(place);
         Point togoWaypoint = place.pointConnection.connectedPoints.OrderBy(x => Vector3.Distance(x.transform.position, _currentWaypoint.transform.position))?.First();
 
         togoWaypoint ??= place.pointConnection.indirectConnectedPoints.OrderBy(x => Vector3.Distance(x.transform.position, _currentWaypoint.transform.position))?.First();
-        return GetPath(_currentWaypoint, togoWaypoint);
+
+        return GetPath(_currentWaypoint, togoWaypoint)??new List<Point>();
     }
     public List<Point> GetPath(Point _currentWaypoint, Point togoWaypoint)
     {
@@ -71,6 +72,7 @@ public class PathManager : MonoBehaviour
             return new List<Point> { _currentWaypoint, togoWaypoint };
         }
 
+        
         // first one is chile then second one is parent
         List<Tuple<Point, Point>> tobeVisitedWithParrent = new() { new Tuple<Point, Point>(_currentWaypoint, null) }, visited = new() { };
         while (tobeVisitedWithParrent.Count > 0)
