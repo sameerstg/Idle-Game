@@ -5,25 +5,72 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
+    public static GameStateManager _instance;
     public float time;
-    public float totalCourseTime = 10;
     public GameState currentGameState;
+    private void Awake()
+    {
+        _instance = this;
+    }
+    private void Start()
+    {
+        currentGameState = null;
+        //SwitchState();
+    }
     private void Update()
     {
-        time += Time.deltaTime;
+        currentGameState?.Update();
     }
-    public void CheckTime()
-    {
-        float currentCourse= time % totalCourseTime;
+  
 
-    }
-    public void ChangeState()
+    internal void SwitchState()
     {
+        currentGameState?.Exit();
+        if (currentGameState!=null)
+        {
+            switch (currentGameState.gameStateName)
+            {
+                case GameStateName.PrisonersEntry:
+                    currentGameState = new CellGameState();
+                    break;
+                case GameStateName.Cell:
+                    currentGameState = new EatingGameState();
 
+                    break;
+                case GameStateName.Sleeping:
+                    currentGameState = new BathingGameState();
+
+                    break;
+                
+                case GameStateName.Bathing:
+                    currentGameState = new EatingGameState();
+
+                    break;
+                case GameStateName.Eating:
+                    currentGameState = new GymingGameState();
+
+                    break;
+                case GameStateName.Gym:
+                    currentGameState = new CellGameState();
+
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            currentGameState = new PrisonersEntryState();
+        }
+        Debug.Log(currentGameState.gameStateName); 
+        
+        currentGameState.Enter();
     }
+
+   
 
 }
 public enum GameStateName
 {
-    PrisonersEntry,Cell,Bathroom,Food,Gym
+    PrisonersEntry,Sleeping,Cell,Bathing,Eating,Gym
 }

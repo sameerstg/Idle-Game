@@ -5,15 +5,18 @@ using UnityEngine;
 
 public class NpcManager : MonoBehaviour
 {
-    public Npc npc;
+    public Npc npcPrefab;
     public List<Npc> npcs = new();
+    internal static NpcManager _instance;
+
     private void Awake()
     {
+        _instance = this;
         npcs = GetComponentsInChildren<Npc>().ToList();
     }
     public void CreateNpc()
     {
-       npcs.Add( Instantiate(npc, transform));
+       npcs.Add( Instantiate(npcPrefab, transform));
     }
     public void SendNpc(PlaceName place)
     {

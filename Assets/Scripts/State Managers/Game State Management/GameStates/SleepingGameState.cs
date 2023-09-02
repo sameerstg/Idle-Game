@@ -3,7 +3,10 @@
 
 public class SleepingGameState : GameState
 {
-    public SleepingGameState(float periodOfState, OnStateComplete onStateCompleteCallback) : base(periodOfState, onStateCompleteCallback)
+    public SleepingGameState() : base()
     {
+        gameStateName = GameStateName.Sleeping;
+        placeName = PlaceName.Cell;
+        
     }
 }

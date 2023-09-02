@@ -3,8 +3,13 @@
 
 public class EatingGameState : GameState
 {
-    public EatingGameState(float periodOfState, OnStateComplete onStateCompleteCallback) : base(periodOfState, onStateCompleteCallback)
+    public EatingGameState() : base()
     {
+        gameStateName = GameStateName.Eating;
+        placeName = PlaceName.FoodRoom;
     }
+
+
+
 
 }

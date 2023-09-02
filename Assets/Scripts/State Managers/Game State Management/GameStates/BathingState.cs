@@ -3,7 +3,11 @@
 
 public class BathingGameState : GameState
 {
-    public BathingGameState(float periodOfState, OnStateComplete onStateCompleteCallback) : base(periodOfState, onStateCompleteCallback)
+    public BathingGameState() : base()
     {
+        gameStateName = GameStateName.Bathing;
+
+        placeName = PlaceName.Bathroom;
+
     }
 }

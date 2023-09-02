@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 public class Npc : MonoBehaviour
@@ -20,9 +18,14 @@ public class Npc : MonoBehaviour
     }
     public void Move(PlaceName placeToGoName)
     {
+        //if (placeToGoName == togoPlace.placeName)
+        //{
+        //    return;
+        //}
+        Debug.Log(placeToGoName);
         togoPlace = PathManager._instance.GetPlace(placeToGoName,true);
 
-        
+
         togoWaypoints.Clear();
         // for going relax to connected waypoint which is close to next place
         if (currentPoint.pointType != PointType.wayPoint)
@@ -31,70 +34,40 @@ public class Npc : MonoBehaviour
             togoWaypoints.AddRange(new List<Point> {dest});
             currentPoint = dest;
         }
-        
+
         togoWaypoints.AddRange( PathManager._instance.GetPath(currentPoint, togoPlace));
         StartCoroutine(MoveByTransforms(togoPlace.RelaxPointType != RelaxPointType.none));
     }
 
-    //public void MoveToRelaxPoint()
-    //{
-    //    if (togoPlace != null && togoPlace.HaveEmptyRelaxPoint())
-    //    {
-
-    //        if (togoPlace.RelaxPointType == RelaxPointType.relax)
-    //        {
-
-    //            //var pathWithRelaxWaypoint = togoPlace.GetPathToRelaxPoint();
-    //            //if (pathWithRelaxWaypoint.Item2 != null)
-    //            //{
-    //            //    destinationType = PointType.relaxPoint;
-    //            //    transformsTogo = pathWithRelaxWaypoint.Item1;
-    //            //    StartCoroutine(MoveByTransforms());
-    //            //}
-    //        }
-    //        else if (togoPlace.RelaxPointType == RelaxPointType.work)
-    //        {
-    //            //destinationType = PointType.workPoint;
-
-    //            //var pathWithRelaxWaypoint = togoPlace.GetPathToWorkRelaxPoint();
-    //            //transformsTogo = pathWithRelaxWaypoint.Select(x => x.transform).ToList();
-    //            //StartCoroutine(MoveByTransforms());
-    //        }
-
-
-    //        //var pathWithRelaxWaypoint = togoPlace.GetPathToWorkRelaxPoint();
-    //        //transformsTogo = pathWithRelaxWaypoint.Select(x => x.transform).ToList();
-    //        //StartCoroutine(MoveByTransforms());
-    //    }
-    //    else
-    //    {
-    //        statemachine.SwitchState(new IdleState(this));
-    //    }
-    //}
-
-
     public IEnumerator MoveByTransforms(bool checkForRelax = false)
     {
+        Debug.Log("dd");
         if (togoWaypoints != null)
         {
             while (togoWaypoints.Count > 0)
             {
-
-                while (togoWaypoints[0].equipedNpc != null)
+                if (togoWaypoints[0] != currentPoint)
                 {
-                    yield return null;
-                }
-                currentPoint.equipedNpc = null;
-                togoWaypoints[0].equipedNpc = this;
-                while (Vector3.Distance(transform.position, togoWaypoints[0].transform.position) > 0.1f)
-                {
-                    
-                    transform.position = Vector3.MoveTowards(transform.position, togoWaypoints[0].transform.position, walkSpeed * Time.deltaTime);
-                    yield return null;
-                }
+                    while (togoWaypoints[0].equipedNpc != null)
+                    {
+                        Debug.Log("dd");
 
+                        yield return null;
+                    }
+                    currentPoint.equipedNpc = null;
+                    togoWaypoints[0].equipedNpc = this;
+                    while (Vector3.Distance(transform.position, togoWaypoints[0].transform.position) > 0.1f)
+                    {
 
-                currentPoint = togoWaypoints[0];
+                        transform.position = Vector3.MoveTowards(transform.position, togoWaypoints[0].transform.position, walkSpeed * Time.deltaTime);
+                        yield return null;
+                    }
+
+                    Debug.Log("dd");
+
+                    currentPoint = togoWaypoints[0];
+                }
+               
 
 
 
@@ -102,8 +75,12 @@ public class Npc : MonoBehaviour
 
 
             }
+            currentPoint.equipedNpc = null;
+
             togoWaypoints.Clear();
         }
+
+        Debug.Log("dd");
 
         if (checkForRelax && togoPlace.HaveEmptyRelaxPoint() )
         {
@@ -121,29 +98,29 @@ public class Npc : MonoBehaviour
             statemachine.SwitchState(new IdleState(this));
         }
 
-      
+
 
     }
-  
+
 }
 //[CustomEditor(typeof(Npc))]
 //public class NpcEditor : Editor {
 
 
 
-    
+
 //    string[] places;
 //    int placeIndex = 0;
 //    public override void OnInspectorGUI()
 //    {
 //        DrawDefaultInspector();
-     
+
 
 //        //if ( Application.isPlaying)
 //        //{
-           
+
 //        //    Npc npc = (Npc)target;
-            
+
 //        //        places = PathManager._instance.placeManager.places.Select(x => x.name).ToArray();
 
 //        //        placeIndex = EditorGUILayout.Popup(placeIndex, places);
@@ -153,9 +130,9 @@ public class Npc : MonoBehaviour
 //        //    EditorUtility.SetDirty(target);
 //        //    if (GUILayout.Button("Move"))
 //        //    {
-                
 
-              
+
+
 //        //        npc.Move();
 //        //    }
 
