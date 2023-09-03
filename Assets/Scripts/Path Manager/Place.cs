@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Place : MonoBehaviour
 {
@@ -18,6 +18,8 @@ public class Place : MonoBehaviour
     }
     public bool HaveEmptyRelaxPoint()
     {
+        return pointConnection.relaxPoints.Count == 0 && pointConnection.indirectRelaxPoints.Count == 0 ||
+            pointConnection.relaxPoints.Exists(x => x.equipedNpc == null) || pointConnection.indirectRelaxPoints.Exists(x => x.equipedNpc == null);
         return pointConnection.relaxPoints.Exists(x =>x.pointConnection.relaxPoints.Count==0 && x.pointConnection.relaxPoints.Count==0 ||x.equipedNpc == null) || pointConnection.indirectRelaxPoints.Exists(x => x.equipedNpc == null);
     }
     /// <summary>
@@ -33,7 +35,7 @@ public class Place : MonoBehaviour
         return new Tuple<Point,Point>(closeConnected,  closeConnected.pointConnection.relaxPoints.Find(x=>x.equipedNpc == null));
 
     }
-    public List<Point> GetPathFromPlaceToRelax(Place place,Point currentPointOfNpcInPlace)
+    public List<Point> GetPathFromPlaceToRelax(Place place,Point currentPointOfNpcInPlace,bool nearest = false)
     {
         List<Point> points = new();
         // ensuring place have empty space
@@ -46,27 +48,68 @@ public class Place : MonoBehaviour
         {
             return points;
         }
-        var nearestConnecetedPointAndItsEmptyRelax = GetNearestConnecetedPointAndItsEmptyRelax(currentPointOfNpcInPlace);
-
-        if (currentPointOfNpcInPlace != nearestConnecetedPointAndItsEmptyRelax.Item1)
-        {
-            points.AddRange(PathManager._instance.GetPath(currentPointOfNpcInPlace, nearestConnecetedPointAndItsEmptyRelax.Item1));
-
-        }
         if (RelaxPointType == RelaxPointType.work)
         {
-            var allRelax = nearestConnecetedPointAndItsEmptyRelax.Item1.pointConnection.relaxPoints.ToList();
-            allRelax.Reverse();
-            points.AddRange(allRelax);
+           List<Point> listOfContainingEmpthRelax = pointConnection.connectedPoints.FindAll(x=>x.pointConnection.relaxPoints.Exists(x=>x.equipedNpc ==null));
+            listOfContainingEmpthRelax.AddRange(pointConnection.indirectConnectedPoints.FindAll(x => x.pointConnection.relaxPoints.Exists(x => x.equipedNpc == null)));
+            int i = 0;
+            while (listOfContainingEmpthRelax.Count>0)
+            {
+                foreach (var pointWithRelax in listOfContainingEmpthRelax)
+                {
+                    if (pointWithRelax.pointConnection.relaxPoints.Count-1<i)
+                    {
+                        listOfContainingEmpthRelax.Remove(pointWithRelax);
+                    }
+                    else if (pointWithRelax.pointConnection.relaxPoints[i].equipedNpc == null)
+                    {
+                        points = pointWithRelax.pointConnection.relaxPoints.ToList(); 
+                        points.Reverse();
+                        return points;
+                    }
+                }
+                i++;
+            }
+            return points;
         }
-        else
+        else if (RelaxPointType == RelaxPointType.relax)
         {
-            points.Add(nearestConnecetedPointAndItsEmptyRelax.Item2);
+            if (nearest)
+            {
+                var nearestConnecetedPointAndItsEmptyRelax = GetNearestConnecetedPointAndItsEmptyRelax(currentPointOfNpcInPlace);
+
+                if (currentPointOfNpcInPlace != nearestConnecetedPointAndItsEmptyRelax.Item1)
+                {
+                    points.AddRange(PathManager._instance.GetPath(currentPointOfNpcInPlace, nearestConnecetedPointAndItsEmptyRelax.Item1));
+
+                }
+
+                                    points.Add(nearestConnecetedPointAndItsEmptyRelax.Item2);
+                
+                return points;
+
+            }
+            else
+            {
+                List<Point> listOfContainingEmpthRelax = pointConnection.connectedPoints.FindAll(x => x.pointConnection.relaxPoints.Exists(x => x.equipedNpc == null));
+                listOfContainingEmpthRelax.AddRange(pointConnection.indirectConnectedPoints.FindAll(x => x.pointConnection.relaxPoints.Exists(x => x.equipedNpc == null)));
+                Point togo = listOfContainingEmpthRelax[UnityEngine.Random.Range(0, listOfContainingEmpthRelax.Count)];
+                if (currentPointOfNpcInPlace != togo)
+                {
+                    points.AddRange(PathManager._instance.GetPath(currentPointOfNpcInPlace, togo));
+
+                }
+
+                List<Point> relaxes = togo.pointConnection.relaxPoints.FindAll(x => x.equipedNpc == null);
+                points.Add(relaxes[UnityEngine.Random.Range(0, relaxes.Count)]);
+                return points;
+            }
         }
         return points;
 
+
     }
-   
+
 }
 
 public enum PlaceName

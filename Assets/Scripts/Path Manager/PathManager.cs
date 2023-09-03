@@ -31,7 +31,7 @@ public class PathManager : MonoBehaviour
     {
         if (withEmptyRelax )
         {
-            return placeManager.places.Find(x => x.placeName == placeName && x.HaveEmptyRelaxPoint() );
+            return placeManager.places.Find(x => x.placeName == placeName && x.HaveEmptyRelaxPoint());
         }
         return  placeManager.places.Find(x => x.placeName == placeName ); 
     }

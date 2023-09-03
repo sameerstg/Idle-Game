@@ -3,6 +3,7 @@
 public class State:IState
 {
     internal Npc npc;
+    internal State stateQueued;
     public State(Npc npc)
     {
         this.npc = npc;

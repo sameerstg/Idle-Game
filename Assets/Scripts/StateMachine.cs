@@ -15,9 +15,9 @@ public class Statemachine
     }
     public void SwitchState(State state )
     {
-        
-        
-        if (currentState!=null)
+
+
+               if (currentState!=null)
         {
             prevStateName = currentState.GetType().Name;
             currentState.Exit();

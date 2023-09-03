@@ -12,7 +12,7 @@ public class Npc : MonoBehaviour
 
 
     public Statemachine statemachine;
-    private void Awake()
+    private void Start()
     {
         statemachine = new(this);
     }
@@ -28,9 +28,10 @@ public class Npc : MonoBehaviour
             Debug.Log(placeToGoName+ " null");
             return;
         }
+        
         togoPlace = PathManager._instance.GetPlace(placeToGoName,true);
 
-
+        Debug.Log(togoPlace);
         togoWaypoints.Clear();
         // for going relax to connected waypoint which is close to next place
         if (currentPoint.pointType != PointType.wayPoint)
@@ -46,7 +47,7 @@ public class Npc : MonoBehaviour
             togoWaypoints.AddRange(PathManager._instance.GetPath(currentPoint, togoPlace));
 
         }
-
+            
         StartCoroutine(MoveByTransforms(togoPlace.RelaxPointType != RelaxPointType.none));
     }
 
@@ -56,35 +57,36 @@ public class Npc : MonoBehaviour
         {
             while (togoWaypoints.Count > 0)
             {
-                if (togoWaypoints[0] != currentPoint)
-                {
-                    while (togoWaypoints[0].equipedNpc != null)
-                    {
 
-                        yield return null;
+
+                if (currentPoint != togoWaypoints[0])
+                {
+                    if (togoWaypoints[0].pointType == PointType.workPoint)
+                    //if (togoWaypoints[0].pointType == PointType.workPoint || togoWaypoints[0].pointType == PointType.relaxPoint)
+                    {
+                        while (togoWaypoints[0].equipedNpc != null && togoWaypoints[0].equipedNpc != this)
+                        {
+                            Debug.Log("sag");
+                            yield return null;
+                        }
+                            togoWaypoints[0].equipedNpc = this;
+                                                
                     }
                     currentPoint.equipedNpc = null;
-                    togoWaypoints[0].equipedNpc = this;
+
+
+
                     while (Vector3.Distance(transform.position, togoWaypoints[0].transform.position) > 0.1f)
                     {
 
                         transform.position = Vector3.MoveTowards(transform.position, togoWaypoints[0].transform.position, walkSpeed * Time.deltaTime);
                         yield return null;
                     }
-
-
                     currentPoint = togoWaypoints[0];
+                    
                 }
-               
-
-
-
                 togoWaypoints.RemoveAt(0);
-
-
             }
-            currentPoint.equipedNpc = null;
-
             togoWaypoints.Clear();
         }
 
@@ -95,7 +97,7 @@ public class Npc : MonoBehaviour
             togoWaypoints.AddRange( togoPlace.GetPathFromPlaceToRelax(togoPlace,currentPoint));
             StartCoroutine(MoveByTransforms());
         }
-        else if (currentPoint.pointType == PointType.workPoint)
+        else if (currentPoint.pointType == PointType.workPoint && currentPoint.equipedNpc == this)
         {
             currentPoint.DoWork(this);
 

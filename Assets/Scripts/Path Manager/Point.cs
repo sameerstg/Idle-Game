@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,21 +22,24 @@ public class Point : MonoBehaviour
     {
         Debug.Log($"waiting time = {waitTime}");
         yield return new WaitForSeconds(waitTime);
-        if (equipedNpc.togoPlace.placeName == PlaceName.Entrance)
+        if (equipedNpc != null)
         {
-            NpcManager._instance.AdmitNpc(equipedNpc);
-        }
-        else if (equipedNpc.togoPlace.placeName == PlaceName.FoodRoom)
-        {
+            if (equipedNpc.togoPlace.placeName == PlaceName.Entrance)
+            {
+                NpcManager._instance.AdmitNpc(equipedNpc);
+            }
+            else if (equipedNpc.togoPlace.placeName == PlaceName.FoodRoom)
+            {
 
-            equipedNpc.statemachine.SwitchState(new MovingState(equipedNpc,PlaceName.DinningTable));
-        }
-        else
-        {
+                equipedNpc.statemachine.SwitchState(new MovingState(equipedNpc, PlaceName.DinningTable));
+            }
+            else
+            {
 
-            equipedNpc.statemachine.SwitchState(new IdleState(equipedNpc));
+                equipedNpc.statemachine.SwitchState(new IdleState(equipedNpc));
+            }
         }
-        equipedNpc = null;
+      
     }
 }
 //[CustomEditor(typeof(Point))]
