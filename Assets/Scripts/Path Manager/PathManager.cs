@@ -42,6 +42,8 @@ public class PathManager : MonoBehaviour
 
         togoWaypoint ??= place.pointConnection.indirectConnectedPoints.OrderBy(x => Vector3.Distance(x.transform.position, _currentWaypoint.transform.position))?.First();
 
+            Debug.Log(togoWaypoint);
+        
         return GetPath(_currentWaypoint, togoWaypoint)??new List<Point>();
     }
     public List<Point> GetPath(Point _currentWaypoint, Point togoWaypoint)

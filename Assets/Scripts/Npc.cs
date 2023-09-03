@@ -36,11 +36,17 @@ public class Npc : MonoBehaviour
         if (currentPoint.pointType != PointType.wayPoint)
         {
             var dest = currentPoint.pointConnection.connectedPoints.OrderBy(x=>Vector3.Distance(togoPlace.transform.position,x.transform.position))?.First();
-            togoWaypoints.AddRange(new List<Point> {dest});
-            currentPoint = dest;
+            Debug.Log(dest);
+            togoWaypoints.Add(dest);
+            togoWaypoints.AddRange(PathManager._instance.GetPath(dest, togoPlace));
+
+        }
+        else
+        {
+            togoWaypoints.AddRange(PathManager._instance.GetPath(currentPoint, togoPlace));
+
         }
 
-        togoWaypoints.AddRange( PathManager._instance.GetPath(currentPoint, togoPlace));
         StartCoroutine(MoveByTransforms(togoPlace.RelaxPointType != RelaxPointType.none));
     }
 

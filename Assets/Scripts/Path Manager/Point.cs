@@ -25,10 +25,15 @@ public class Point : MonoBehaviour
         {
             NpcManager._instance.AdmitNpc(equipedNpc);
         }
+        else if (equipedNpc.togoPlace.placeName == PlaceName.FoodRoom)
+        {
+
+            equipedNpc.statemachine.SwitchState(new MovingState(equipedNpc,PlaceName.DinningTable));
+        }
         else
         {
 
-        equipedNpc.statemachine.SwitchState(new IdleState(equipedNpc));
+            equipedNpc.statemachine.SwitchState(new IdleState(equipedNpc));
         }
         equipedNpc = null;
     }

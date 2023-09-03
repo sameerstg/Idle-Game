@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
@@ -74,4 +75,21 @@ public class GameStateManager : MonoBehaviour
 public enum GameStateName
 {
     PrisonersEntry,Sleeping,Cell,Bathing,Eating,Gym
+}
+[CustomEditor(typeof(GameStateManager))]
+public class GameStateManagerEditor : Editor {
+
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        DrawDefaultInspector();
+        if (Application.isPlaying)
+        {
+            if (GUILayout.Button("Change State"))
+            {
+                GameStateManager gm = (GameStateManager)target;
+                gm.SwitchState();
+            }
+        }
+    }
 }

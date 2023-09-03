@@ -71,7 +71,7 @@ public class Place : MonoBehaviour
 
 public enum PlaceName
 {
-   None, OuterEntrance,Entrance,Cell,Entertainment,FoodRoom,Bathroom,FoodPrepartaionRoom,ElectricSupply
+   None, OuterEntrance,Entrance,Cell,Entertainment,FoodRoom,Bathroom,FoodPrepartaionRoom,ElectricSupply,DinningTable
 }
 public enum PointType
 {
