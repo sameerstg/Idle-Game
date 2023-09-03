@@ -16,13 +16,20 @@ public class Point : MonoBehaviour
         equipedNpc = npc;
         npc.statemachine.SwitchState(new WaitState(npc));
         StartCoroutine(Wait());
-
     }
     public IEnumerator Wait()
     {
         Debug.Log($"waiting time = {waitTime}");
         yield return new WaitForSeconds(waitTime);
+        if (equipedNpc.togoPlace.placeName == PlaceName.Entrance)
+        {
+            NpcManager._instance.AdmitNpc(equipedNpc);
+        }
+        else
+        {
+
         equipedNpc.statemachine.SwitchState(new IdleState(equipedNpc));
+        }
         equipedNpc = null;
     }
 }

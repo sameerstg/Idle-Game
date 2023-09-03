@@ -17,7 +17,7 @@ public class GameState:IState
 
     public virtual void Enter()
     {
-        NpcManager._instance.SendNpc(placeName);
+        NpcManager._instance.SendAllNpc(placeName);
     }
     public virtual void Update()
     {

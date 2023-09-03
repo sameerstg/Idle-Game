@@ -23,6 +23,11 @@ public class Npc : MonoBehaviour
         //    return;
         //}
         Debug.Log(placeToGoName);
+        if (placeToGoName == PlaceName.None)
+        {
+            Debug.Log(placeToGoName+ " null");
+            return;
+        }
         togoPlace = PathManager._instance.GetPlace(placeToGoName,true);
 
 
@@ -41,7 +46,6 @@ public class Npc : MonoBehaviour
 
     public IEnumerator MoveByTransforms(bool checkForRelax = false)
     {
-        Debug.Log("dd");
         if (togoWaypoints != null)
         {
             while (togoWaypoints.Count > 0)
@@ -50,7 +54,6 @@ public class Npc : MonoBehaviour
                 {
                     while (togoWaypoints[0].equipedNpc != null)
                     {
-                        Debug.Log("dd");
 
                         yield return null;
                     }
@@ -63,7 +66,6 @@ public class Npc : MonoBehaviour
                         yield return null;
                     }
 
-                    Debug.Log("dd");
 
                     currentPoint = togoWaypoints[0];
                 }
@@ -80,7 +82,6 @@ public class Npc : MonoBehaviour
             togoWaypoints.Clear();
         }
 
-        Debug.Log("dd");
 
         if (checkForRelax && togoPlace.HaveEmptyRelaxPoint() )
         {

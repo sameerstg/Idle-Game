@@ -8,25 +8,33 @@ public class NpcManager : MonoBehaviour
     public Npc npcPrefab;
     public List<Npc> npcs = new();
     internal static NpcManager _instance;
+    public PlaceName currentNpcPlace;
 
     private void Awake()
     {
         _instance = this;
-        npcs = GetComponentsInChildren<Npc>().ToList();
+        //npcs = GetComponentsInChildren<Npc>().ToList();
     }
     public void CreateNpc()
     {
-       npcs.Add( Instantiate(npcPrefab, transform));
+        //npcs.Add( Instantiate(npcPrefab, transform));
     }
-    public void SendNpc(PlaceName place)
+    public void AdmitNpc(Npc npc)
     {
-        StartCoroutine(SendNpcDelay(place));
+
+        npcs.Add(npc);
+        npc.statemachine.SwitchState(new MovingState(npc, currentNpcPlace));
+    }
+    public void SendAllNpc(PlaceName place)
+    {
+        currentNpcPlace = place;
+        StartCoroutine(SendAllNpcDelay());
     } 
-    public IEnumerator SendNpcDelay(PlaceName place)
+    public IEnumerator SendAllNpcDelay()
     {
         foreach (var item in npcs)
         {
-            item.statemachine.SwitchState(new MovingState(item, place));
+            item.statemachine.SwitchState(new MovingState(item, currentNpcPlace));
             yield return null;
         }
     }

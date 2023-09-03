@@ -15,7 +15,7 @@ public class GameStateManager : MonoBehaviour
     private void Start()
     {
         currentGameState = null;
-        //SwitchState();
+        SwitchState();
     }
     private void Update()
     {
@@ -34,7 +34,7 @@ public class GameStateManager : MonoBehaviour
                     currentGameState = new CellGameState();
                     break;
                 case GameStateName.Cell:
-                    currentGameState = new EatingGameState();
+                    currentGameState = new SleepingGameState();
 
                     break;
                 case GameStateName.Sleeping:
@@ -51,7 +51,7 @@ public class GameStateManager : MonoBehaviour
 
                     break;
                 case GameStateName.Gym:
-                    currentGameState = new CellGameState();
+                    currentGameState = new PrisonersEntryState();
 
                     break;
                 default:
@@ -62,6 +62,7 @@ public class GameStateManager : MonoBehaviour
         {
             currentGameState = new PrisonersEntryState();
         }
+        
         Debug.Log(currentGameState.gameStateName); 
         
         currentGameState.Enter();
