@@ -50,7 +50,7 @@ public class PathManager : MonoBehaviour
     {
         if (_currentWaypoint == togoWaypoint)
         {
-            Debug.LogError("current post = final pos");
+            //Debug.LogError("current post = final pos");
             return null;
         }
         if (_currentWaypoint == null || togoWaypoint == null)

@@ -112,6 +112,18 @@ public class Npc : MonoBehaviour
     }
 
 }
+[System.Serializable]
+public class Attributes
+{
+
+    public int comfort;
+    public int hunger;
+    public int sanity;
+    public int hapiness;
+    public int health;
+    public int security;
+
+}
 //[CustomEditor(typeof(Npc))]
 //public class NpcEditor : Editor {
 
